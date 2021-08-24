@@ -1,0 +1,18 @@
+.home-main {
+  background: #ed2f21;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-main-button {
+  border: none;
+  border-radius: 0.25rem;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 1em;
+  padding-left: 1em;
+  font-size: 1.2em;
+}

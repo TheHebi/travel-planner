@@ -1,0 +1,42 @@
+/* ============================= */
+/* =       NAVBAR STYLING      = */
+/* ============================= */
+
+.custom-nav {
+  background: #dedede;
+  padding-top: 2em !important;
+  padding-bottom: 2em !important;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-navbar-items {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-navlink-text {
+  color: black;
+  font-size: 1.2em;
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  text-align: center;
+}
+
+.custom-navlink-text:hover {
+  text-decoration: none;
+}
+
+.navbar-button {
+  color: black;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 0.25rem;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+}
