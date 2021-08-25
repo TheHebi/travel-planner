@@ -1,0 +1,41 @@
+.travellers {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-right: 0.25rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+}
+
+.traveller {
+  display: flex;
+  align-items: center;
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
+
+.add-traveller-btn {
+  border: none;
+  background: orange;
+  border-radius: 0.25rem;
+  min-width: fit-content;
+  max-width: 60%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  align-self: center;
+}
+
+.message-board {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-left: 0.25rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+}

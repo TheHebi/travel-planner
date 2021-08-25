@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 // LOCAL IMPORTS
 import './Tripcard.css';
 import Budget from '../Budget/Budget.js';
+import Lounge from '../Lounge/Lounge.js';
 
 export default function Tripcard() {
     const [activeTab, setActiveTab] = useState('Overview')
@@ -49,7 +50,8 @@ export default function Tripcard() {
                     }
                     {activeTab === 'Lounge' &&
                         <div>
-                            <h1>Lounge</h1>
+                            <h1>Travel Lounge</h1>
+                            <Lounge />
                         </div>
                     }
                 </div>
