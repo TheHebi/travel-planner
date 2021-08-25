@@ -1,8 +1,7 @@
 .trips-main {
   background: #ed2f21;
   padding-top: 4rem;
-
-  height: 600px;
+  padding-bottom: 4rem;
 }
 
 .trip-nav {
@@ -15,7 +14,7 @@
 .trip-nav-first-filler {
   display: flex;
   height: 2.4em;
-  width: 0.8em;
+  width: 1.2em;
   border-bottom-right-radius: 0.8rem;
   background: #ed2f21;
 }
@@ -35,6 +34,7 @@
   padding-bottom: 0.7em;
   text-decoration: none;
   color: inherit;
+  border: none;
   border-radius: 0.6rem 0.6rem 0 0;
   background: #dedede;
 }
@@ -56,6 +56,8 @@
 
 .trip-content {
   display: flex;
+  flex-direction: column;
+
   width: 100%;
   background: #e8e8e8;
   border-radius: 10px;
