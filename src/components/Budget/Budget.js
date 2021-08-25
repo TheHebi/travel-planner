@@ -25,32 +25,38 @@ export default function Budget() {
                 <div className="budgetcard">
                     <h3>Travel</h3>
                     <table className="budgettable">
-                        <tr>
-                            <td>Plane Ticket:</td>
-                            <td>$845</td>
-                        </tr>
-                        <tr>
-                            <td>Eurorail Pass:</td>
-                            <td>$120</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Plane Ticket:</td>
+                                <td>$845</td>
+                            </tr>
+                            <tr>
+                                <td>Eurorail Pass:</td>
+                                <td>$120</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className="budgetcard">
                     <h3>Food</h3>
                     <table className="budgettable">
-                        <tr>
-                            <td>All Food:</td>
-                            <td>$1000</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>All Food:</td>
+                                <td>$1000</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className="budgetcard">
                     <h3>Lodging</h3>
                     <table className="budgettable">
-                        <tr>
-                            <td>AirBnB:</td>
-                            <td>$2,055</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>AirBnB:</td>
+                                <td>$2,055</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>

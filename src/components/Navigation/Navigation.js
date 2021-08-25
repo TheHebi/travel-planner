@@ -9,6 +9,10 @@ import Container from 'react-bootstrap/Container';
 import './Navigation.css';
 
 export default function Navigation() {
+    // get whether user is on homepage
+    const location = window.location.pathname
+    const isHome = (location === '/');
+
     return (
         <Navbar
         expand="lg"
@@ -21,9 +25,13 @@ export default function Navigation() {
                             <Nav.Link className="custom-navlink-text mx-4" href="/">LOGO</Nav.Link>
                         </div>
                         <div style={{display: 'flex'}}>
-                            <Nav.Link className="custom-navlink-text mx-4" href="/">Home</Nav.Link>
-                            <Nav.Link className="custom-navlink-text mx-4" href="#features">Features</Nav.Link>
-                            <Nav.Link className="custom-navlink-text mx-4" href="#contact">Contact Us</Nav.Link>
+                            {isHome === true &&
+                            <div style={{display: 'flex'}}>
+                                <Nav.Link className="custom-navlink-text mx-4" href="/">Home</Nav.Link>
+                                <Nav.Link className="custom-navlink-text mx-4" href="#features">Features</Nav.Link>
+                                <Nav.Link className="custom-navlink-text mx-4" href="#contact">Contact Us</Nav.Link>
+                            </div>
+                            }       
                             <button className="navbar-button mx-4">Login</button>
                             <button className="navbar-button mx-4">Sign Up</button>
                         </div>
