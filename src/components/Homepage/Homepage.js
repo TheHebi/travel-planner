@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 
-
 // FONTAWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
@@ -11,14 +10,14 @@ import './Homepage.css';
 
 export default function Homepage() {
     // states
-    // For the time being, just manually deletes navbar height (109px)
-    const [mainHeight, setMainHeight] = useState(window.innerHeight - 109);
+    // Navbar height: (124px)
+    const [mainHeight, setMainHeight] = useState(window.innerHeight);
 
     // set height
     useEffect(() => {
         function handleResize() {
             console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-            setMainHeight(window.innerHeight - 109)
+            setMainHeight(window.innerHeight)
         }
         window.addEventListener('resize', handleResize);
         return _ => {
