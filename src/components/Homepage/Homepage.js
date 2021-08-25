@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+
+
 // FONTAWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
@@ -27,10 +29,10 @@ export default function Homepage() {
     
     return (
         <div className="home-main" style={{ height: mainHeight }}>
-            <h1>Message to Customer</h1>
-            <h3>Message to Customer</h3>
+            <h1 className="text-light">Message to Customer</h1>
+            <h3 className="text-light">Message to Customer</h3>
             <a href="/trips">
-                <button className="mt-3 home-main-button">
+                <button className="mt-3 home-main-button text-light">
                     Get Started
                     <FontAwesomeIcon icon={faPlaneDeparture} size='1x' className="ms-2" />
                 </button>

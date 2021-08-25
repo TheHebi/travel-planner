@@ -1,5 +1,7 @@
 .home-main {
-  background: #ed2f21;
+  background-image: url(https://images.unsplash.com/photo-1488085061387-422e29b40080?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80);
+  background-size: cover;
+  background-position: center;
   min-height: 500px;
 
   display: flex;
@@ -9,6 +11,7 @@
 }
 
 .home-main-button {
+  background-color: #9abee0;
   border: none;
   border-radius: 0.25rem;
   padding-top: 0.5em;

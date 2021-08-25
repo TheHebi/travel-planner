@@ -3,9 +3,9 @@
 /* ============================= */
 
 .custom-nav {
-  background: #dedede;
-  padding-top: 2em !important;
-  padding-bottom: 2em !important;
+  background: #202530;
+  padding-top: 1.5em !important;
+  padding-bottom: 1.5em !important;
 }
 
 .navbar-container {
@@ -14,18 +14,20 @@
 }
 
 .custom-navbar-items {
+  /* font-family: 'Klee One', cursive; */
+  font-weight: bold;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .custom-navlink-text {
-  color: black;
   font-size: 1.2em;
   display: block;
   padding: 0.5rem 1rem;
   text-decoration: none;
   text-align: center;
+  transition: 0.2s;
 }
 
 .custom-navlink-text:hover {
@@ -33,10 +35,16 @@
 }
 
 .navbar-button {
-  color: black;
+  transition: all .5s ease;
+  color: white;
   font-size: 1.2em;
   border: none;
-  border-radius: 0.25rem;
-  padding-right: 1.5em;
-  padding-left: 1.5em;
+  padding-right: 1em;
+  padding-left: 1em;
+  background-color: transparent;
+}
+
+.navbar-button:hover {
+  color: black;
+  background-color: white;
 }
