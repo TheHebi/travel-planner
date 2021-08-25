@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // LOCAL IMPORTS
 import Navigation from './components/Navigation/Navigation.js';
-import Homepage from './components/Homepage/Homepage.js';
-import Features from './components/Features/Features.js';
-import Contact from './components/Contact/Contact.js';
+import Main from './pages/Main.js';
+import Trips from './pages/Trips.js';
 
 function App() {
   return (
@@ -14,9 +13,10 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Homepage />
-            <Features />
-            <Contact />
+            <Main />
+          </Route>
+          <Route path="/trips">
+            <Trips />
           </Route>
         </Switch>
       </Router>

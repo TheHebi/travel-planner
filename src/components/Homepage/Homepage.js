@@ -29,10 +29,12 @@ export default function Homepage() {
         <div className="home-main" style={{ height: mainHeight }}>
             <h1>Message to Customer</h1>
             <h3>Message to Customer</h3>
-            <button className="mt-3 home-main-button">
-                Get Started
-                <FontAwesomeIcon icon={faPlaneDeparture} size='1x' className="ms-2" />
-            </button>
+            <a href="/trips">
+                <button className="mt-3 home-main-button">
+                    Get Started
+                    <FontAwesomeIcon icon={faPlaneDeparture} size='1x' className="ms-2" />
+                </button>
+            </a>
         </div>
     )
 }
