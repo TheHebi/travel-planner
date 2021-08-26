@@ -33,9 +33,40 @@
   display: flex;
   flex-direction: column;
 
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 1em;
   margin-left: 0.25rem;
   border: 1px solid black;
   border-radius: 0.25rem;
+}
+
+.message-board h3 {
+  line-height: 1.5em;
+}
+
+.messages {
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.message-input {
+  justify-self: flex-end;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.add-post-btn {
+  background: orange;
+  border: none;
+  border-radius: 0.25rem;
+  min-width: fit-content;
+  max-width: 25%;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  margin-left: 1em;
 }

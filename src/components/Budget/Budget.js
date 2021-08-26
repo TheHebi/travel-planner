@@ -7,13 +7,23 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 // LOCAL IMPORTS
 import './Budget.css';
 import Budgetbar from '../Budgetbar/Budgetbar.js';
+import Budgetcard from '../Budgetcard/Budgetcard.js';
 
-export default function Budget() {
+export default function Budget({budget}) {
+    let budgetTotal = 0;
+    for (let i=0; i<budget.budgetCategories.length; i++) {
+        for (let j=0; j<budget.budgetCategories[i].items.length; j++) {
+            budgetTotal += budget.budgetCategories[i].items[j].price
+        };
+    };
+
+    const budgetBarWrapperClasses = (budgetTotal>budget.budget) ? 'budgetbar-wrapper overbudget' : 'budgetbar-wrapper'
+
     return (
         <div style={{display: 'flex', flexDirection: 'column'}}>
-            <div className="budgetbar-wrapper">
-                <h3>$ 3,500 / 5,000</h3>
-                <Budgetbar />
+            <div className={budgetBarWrapperClasses}>
+                <h3>$ {budgetTotal} / {budget.budget}</h3>
+                <Budgetbar budget={budget}/>
             </div>
             <div style={{display: 'flex', justifyContent: 'flex-end', marginLeft: '5em', marginRight: '5em', borderBottom: '1px solid black'}}>
                 <button style={{display: 'flex', alignItems: 'center', border: 'none', background: 'none', marginBottom: '10px'}}>
@@ -21,44 +31,8 @@ export default function Budget() {
                     Add an item
                 </button>
             </div>
-            <div style={{display: 'flex', flexWrap: 'wrap'}}>
-                <div className="budgetcard">
-                    <h3>Travel</h3>
-                    <table className="budgettable">
-                        <tbody>
-                            <tr>
-                                <td>Plane Ticket:</td>
-                                <td>$845</td>
-                            </tr>
-                            <tr>
-                                <td>Eurorail Pass:</td>
-                                <td>$120</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div className="budgetcard">
-                    <h3>Food</h3>
-                    <table className="budgettable">
-                        <tbody>
-                            <tr>
-                                <td>All Food:</td>
-                                <td>$1000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div className="budgetcard">
-                    <h3>Lodging</h3>
-                    <table className="budgettable">
-                        <tbody>
-                            <tr>
-                                <td>AirBnB:</td>
-                                <td>$2,055</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+                {budget.budgetCategories.map((budgetDetails, i) => <Budgetcard key={i} budgetDetails={budgetDetails}/>)}
             </div>
         </div>
     )

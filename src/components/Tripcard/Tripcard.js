@@ -20,6 +20,57 @@ export default function Tripcard() {
         };
     }
 
+    // temporary data
+    const budget = {
+        budget: 5000,
+        budgetCategories: [
+            {
+                title: 'Travel',
+                items: [
+                    {
+                        name: 'Plane Ticket',
+                        price: 845,
+                    },
+                    {
+                        name: 'Eurorail Pass',
+                        price: 120,
+                    }
+                ]
+            },
+            {
+                title: 'Food',
+                items: [
+                    {
+                        name: 'Various foodstuffs',
+                        price: 350
+                    },
+                    {
+                        name: 'This is an extremely long name for testing purposes',
+                        price: 10
+                    }
+                ]
+            },
+            {
+                title: 'Lodging',
+                items: [
+                    {
+                        name: 'AirBNB',
+                        price: 1200
+                    }
+                ]
+            },
+            {
+                title: 'An Extremely Long Title',
+                items: [
+                    {
+                        name: 'Example',
+                        price: 760
+                    }
+                ]
+            }
+        ]
+    }
+
     return (
         <Container fluid className="trips-main">
             <Container>
@@ -45,7 +96,7 @@ export default function Tripcard() {
                     {activeTab === 'Budget' &&
                         <div>
                             <h1>Budget</h1>
-                            <Budget />
+                            <Budget budget={budget} />
                         </div>
                     }
                     {activeTab === 'Lounge' &&

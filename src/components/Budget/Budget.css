@@ -7,29 +7,6 @@
   padding-bottom: 4em;
 }
 
-.budgetcard {
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-top: 1em;
-  padding: 1.5em;
-  min-width: fit-content;
-  max-width: 40%;
-  display: flex;
-  flex-direction: column;
-}
-
-.budgetcard h3 {
-  text-decoration: underline;
-}
-
-.budgettable td {
-  border-bottom: 1px solid black;
-  line-height: 2em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 5em;
-  max-width: 10em;
+.overbudget {
+  border: 1px solid red;
 }

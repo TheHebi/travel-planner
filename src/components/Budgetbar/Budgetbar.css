@@ -5,12 +5,13 @@
   background: #a6a6a6;
 
   display: flex;
+  transition: width 500ms ease;
 }
 
 .budgetbar-item {
   height: 100%;
   transform: scale(1);
-  transition: transform 50ms;
+  transition: transform 50ms, width 500ms ease;
 }
 
 .budgetbar-item:hover {

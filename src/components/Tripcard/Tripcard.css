@@ -1,5 +1,5 @@
 .trips-main {
-  background: #ed2f21;
+  background: #202530;
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
@@ -8,7 +8,7 @@
   display: flex;
   align-items: flex-end;
   width: fit-content;
-  background-image: linear-gradient(0deg, #e8e8e8 0 50%, #ed2f21 50% 100%);
+  background-image: linear-gradient(0deg, #e8e8e8 0 50%, #202530 50% 100%);
 }
 
 .trip-nav-first-filler {
@@ -16,7 +16,7 @@
   height: 2.4em;
   width: 1.2em;
   border-bottom-right-radius: 0.8rem;
-  background: #ed2f21;
+  background: #202530;
 }
 
 .trip-nav-last-filler {
@@ -24,7 +24,7 @@
   height: 2.4em;
   width: 0.8em;
   border-bottom-left-radius: 0.8rem;
-  background: #ed2f21;
+  background: #202530;
 }
 
 .trip-nav-item {
