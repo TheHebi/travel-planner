@@ -38,7 +38,8 @@ export default function Navigation() {
                                 <div className="custom-navlink-list d-flex flex-row align-items-center">
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="/">Home</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#features">Features</Nav.Link>
-                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#contact">Contact Us</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#trending">Trending</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#contact">Contact</Nav.Link>
                                 </div>
                                 <button onClick={loginModalShow} className="navbar-button mx-2" id="navbarLoginBtn">Login</button>
                                 <button onClick={signupModalShow} className="navbar-button mx-2" id="navbarSignupBtn">Signup</button>
