@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import ScrollToTop from 'react-scroll-to-top';
 // LOCAL IMPORTS
 import Navigation from './components/Navigation/Navigation.js';
 import Main from './pages/Main.js';
@@ -14,6 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Main />
+            <ScrollToTop smooth/>
           </Route>
           <Route path="/trips">
             <Trips />

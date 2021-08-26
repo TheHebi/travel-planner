@@ -25,7 +25,7 @@ export default function Homepage() {
         }
     }, [mainHeight])
 
-    
+
     return (
         <div className="home-main" style={{ height: mainHeight }}>
             <h1 className="text-light">Message to Customer</h1>
@@ -36,6 +36,7 @@ export default function Homepage() {
                     <FontAwesomeIcon icon={faPlaneDeparture} size='1x' className="ms-2" />
                 </button>
             </a>
+            <a href="/#features" className="ca3-scroll-down-link ca3-scroll-down-arrow" data-ca3_iconfont="ETmodules" data-ca3_icon=""></a>
         </div>
     )
 }
