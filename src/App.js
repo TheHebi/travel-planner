@@ -5,6 +5,7 @@ import ScrollToTop from 'react-scroll-to-top';
 import Navigation from './components/Navigation/Navigation.js';
 import Main from './pages/Main.js';
 import Trips from './pages/Trips.js';
+import CreateTrip from './pages/CreateTrip.js';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route path="/trips">
             <Trips />
+          </Route>
+          <Route path="/createTrip">
+            <CreateTrip />
           </Route>
         </Switch>
       </Router>
