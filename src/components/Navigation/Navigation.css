@@ -33,18 +33,3 @@
 .custom-navlink-text:hover {
   text-decoration: none;
 }
-
-.navbar-button {
-  transition: all .5s ease;
-  color: white;
-  font-size: 1.2em;
-  border: none;
-  padding-right: 1em;
-  padding-left: 1em;
-  background-color: transparent;
-}
-
-.navbar-button:hover {
-  color: black;
-  background-color: white;
-}

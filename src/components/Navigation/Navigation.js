@@ -38,75 +38,14 @@ export default function Navigation() {
                                 <div className="custom-navlink-list d-flex flex-row align-items-center">
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="/">Home</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#features">Features</Nav.Link>
-                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#trending">Trending</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#recommendation">Recommendation</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#contact">Contact</Nav.Link>
                                 </div>
-                                <button onClick={loginModalShow} className="navbar-button mx-2" id="navbarLoginBtn">Login</button>
-                                <button onClick={signupModalShow} className="navbar-button mx-2" id="navbarSignupBtn">Signup</button>
                             </div>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
-            <Modal show={loginModalState} onHide={loginModalClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Login</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label><strong>Email</strong></Form.Label>
-                            <Form.Control type="email" placeholder="Email" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label><strong>Password</strong></Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={loginModalClose}>
-                        Login
-                    </Button>
-                    <Button variant="secondary" onClick={loginModalClose}>
-                        Cancel
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-            <Modal show={signupModalState} onHide={signupModalClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Signup</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicUsername">
-                            <Form.Label><strong>Username</strong></Form.Label>
-                            <Form.Control type="text" placeholder="Username" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label><strong>Email</strong></Form.Label>
-                            <Form.Control type="email" placeholder="Email" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label><strong>Password</strong></Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={signupModalClose}>
-                        Signup
-                    </Button>
-                    <Button variant="secondary" onClick={signupModalClose}>
-                        Cancel
-                    </Button>
-                </Modal.Footer>
-            </Modal>
         </>
     );
 }
