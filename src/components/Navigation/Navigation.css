@@ -1,0 +1,35 @@
+/* ============================= */
+/* =       NAVBAR STYLING      = */
+/* ============================= */
+
+.custom-nav {
+  background: #202530;
+  padding-top: 1.5em !important;
+  padding-bottom: 1.5em !important;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-navbar-items {
+  /* font-family: 'Klee One', cursive; */
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-navlink-text {
+  font-size: 1.2em;
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.custom-navlink-text:hover {
+  text-decoration: none;
+}

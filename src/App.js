@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ScrollToTop from 'react-scroll-to-top';
+// LOCAL IMPORTS
+import Navigation from './components/Navigation/Navigation.js';
+import Main from './pages/Main.js';
+import Trips from './pages/Trips.js';
+import CreateTrip from './pages/CreateTrip.js';
+import api from './utils/api';
 
 function App() {
+
+  // useEffect(() => {
+  //   api.login({username:"Kevin", password:"password"}).then(res => {
+  //     console.log(res.data);
+  //   })
+  // },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{minHeight: '100vh', background: '#202530', overflowX: 'hidden'}}>
+      <Navigation />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Main />
+            <ScrollToTop smooth/>
+          </Route>
+          <Route path="/trips">
+            <Trips />
+          </Route>
+          <Route path="/createTrip">
+            <CreateTrip />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

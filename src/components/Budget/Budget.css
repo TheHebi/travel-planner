@@ -1,0 +1,12 @@
+.budgetbar-wrapper {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+
+.overbudget {
+  border: 1px solid red;
+}

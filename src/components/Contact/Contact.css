@@ -1,0 +1,49 @@
+.contact-main {
+  background-color: #202530;
+  color: #c2bcbc;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.contact-team {
+  width:80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 1em;
+}
+
+.fe-be-team {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.contact-individual {
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-list {
+  display: inline-flex;
+  list-style-type: none;
+}
+
+@media screen and (max-width: 458px) {
+  .contact-individual {
+    flex-direction: column;
+  }
+}

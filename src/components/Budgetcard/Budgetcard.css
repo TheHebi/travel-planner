@@ -1,0 +1,56 @@
+.budgetcard {
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 2em;
+  padding-top: 0.5em;
+  width: 18em;
+  display: flex;
+  flex-direction: column;
+}
+
+.budgetcard h3 {
+  margin-bottom: 0.5em;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 1em;
+  margin-right: 6px;
+}
+
+.budgettable {
+  width: 100%;
+}
+
+.budgettable-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.budgettable-item p:first-child {
+  width: 66%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.budgettable-item-total {
+  width: 100%;
+  text-align: end;
+  background: #dedede;
+  padding-left: 1em;
+  padding-right: 1em;
+  line-height: 1.8em;
+  border-top: 1px solid black;
+  border-radius: 0 0 10px 10px;
+}
+
+.budgettable-item-total strong {
+  padding-bottom: none !important;
+}
