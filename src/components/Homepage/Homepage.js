@@ -37,7 +37,7 @@ export default function Homepage() {
     const signupModalShow = () => setSignupModalState(true);
 
     return (
-        <>
+        <div id="home">
             <div className="home-main" style={{ height: mainHeight }}>
                 <h1 className="text-light">Message to Customer</h1>
                 <h3 className="mb-4 text-light">Message to Customer</h3>
@@ -57,6 +57,6 @@ export default function Homepage() {
             <LoginModal loginModalState={loginModalState} setLoginModalState={setLoginModalState} loginModalShow={loginModalShow} loginModalClose={loginModalClose}/>
             <SignupModal signupModalState={signupModalState} setSignupModalState={setSignupModalState} signupModalShow={signupModalShow} signupModalClose={signupModalClose}/>
 
-        </>
+        </div>
     )
 }

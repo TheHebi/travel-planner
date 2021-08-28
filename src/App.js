@@ -6,18 +6,18 @@ import Navigation from './components/Navigation/Navigation.js';
 import Main from './pages/Main.js';
 import Trips from './pages/Trips.js';
 import CreateTrip from './pages/CreateTrip.js';
-import API from './utils/API';
+import api from './utils/api';
 
 function App() {
 
   // useEffect(() => {
-  //   API.login({username:"Kevin", password:"password"}).then(res => {
+  //   api.login({username:"Kevin", password:"password"}).then(res => {
   //     console.log(res.data);
   //   })
   // },[])
 
   return (
-    <div style={{minHeight: '100vh', background: '#202530'}}>
+    <div style={{minHeight: '100vh', background: '#202530', overflowX: 'hidden'}}>
       <Navigation />
       <Router>
         <Switch>

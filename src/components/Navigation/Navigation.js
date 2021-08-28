@@ -30,7 +30,7 @@ export default function Navigation() {
                             <div style={{ display: 'flex' }}>
                                 {isHome === true &&
                                 <div className="custom-navlink-list d-flex flex-row align-items-center">
-                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="/">Home</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#home">Home</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#features">Features</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#recommendation">Recommendations</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#contact">Contact</Nav.Link>
