@@ -1,9 +1,9 @@
 .loginModalHeader {
     height: 200px;
-    background-image: url(https://images.unsplash.com/photo-1525612432014-bafe7292b3d6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80);
+    background-image: url(https://images.unsplash.com/photo-1602190276434-4cd5500bc6fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2572&q=80);
     background-size: cover;
     background-position: top;
-    color: white;
+    color: rgb(71, 110, 158);
 }
 
 .loginModalBody {

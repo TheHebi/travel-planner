@@ -61,7 +61,7 @@ export default function CreateTripCard() {
 
                     <Form className="">
                         <Form.Group className="mb-3" controlId="destination">
-                            <Form.Label>Destination</Form.Label>
+                            <Form.Label><h5>Destination</h5></Form.Label>
                             <InputGroup style={{ width: "auto", height: "45px" }}>
                                 <InputGroup.Text>
                                     <FontAwesomeIcon icon={faCity} size='1x' />
@@ -71,7 +71,7 @@ export default function CreateTripCard() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="dates">
-                            <Form.Label>Dates</Form.Label>
+                            <Form.Label><h5>Dates</h5></Form.Label>
                             <InputGroup>
                                 <DateRangePicker
                                     startDate={startDate} // momentPropTypes.momentObj or null,
@@ -90,7 +90,7 @@ export default function CreateTripCard() {
                         </Form.Group>
 
                         <Form.Group className="mb-5">
-                            <Form.Label>Invite</Form.Label>
+                            <Form.Label><h5>Invite</h5></Form.Label>
                             <InputGroup style={{ width: "auto", height: "45px" }}>
                                 <InputGroup.Text>
                                     <FontAwesomeIcon icon={faUsers} size='1x' />
