@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import Logo from '../../images/Logo.png';
 
 // BOOTSTRAP IMPORTS
 import Nav from 'react-bootstrap/Nav';
@@ -14,30 +16,31 @@ export default function Navigation() {
     const isHome = (location === '/');
 
     return (
-        <Navbar
-        expand="lg"
-        className="navbar custom-nav">
-            <Container fluid>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav" className="navbar-container">
-                    <Nav className="custom-navbar-items">
-                        <div style={{display: 'flex'}}>
-                            <Nav.Link className="custom-navlink-text mx-4" href="/">LOGO</Nav.Link>
-                        </div>
-                        <div style={{display: 'flex'}}>
-                            {isHome === true &&
-                            <div style={{display: 'flex'}}>
-                                <Nav.Link className="custom-navlink-text mx-4" href="/">Home</Nav.Link>
-                                <Nav.Link className="custom-navlink-text mx-4" href="#features">Features</Nav.Link>
-                                <Nav.Link className="custom-navlink-text mx-4" href="#contact">Contact Us</Nav.Link>
+        <>
+            <Navbar
+                expand="lg"
+                className="navbar custom-nav fixed-top">
+                <Container fluid>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav" className="navbar-container">
+                        <Nav className="custom-navbar-items">
+                            <div style={{ display: 'flex' }}>
+                                <Nav.Link className="custom-navlink-text mx-4" href="/"><img src={Logo} width="180" height="60" /></Nav.Link>
                             </div>
-                            }       
-                            <button className="navbar-button mx-4">Login</button>
-                            <button className="navbar-button mx-4">Sign Up</button>
-                        </div>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+                            <div style={{ display: 'flex' }}>
+                                {isHome === true &&
+                                <div className="custom-navlink-list d-flex flex-row align-items-center">
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="/">Home</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#features">Features</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#recommendation">Recommendations</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#contact">Contact</Nav.Link>
+                                </div>
+                                }
+                            </div>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </>
     );
 }
