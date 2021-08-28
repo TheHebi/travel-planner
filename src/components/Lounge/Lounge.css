@@ -48,7 +48,43 @@
   border-radius: 0.25rem;
   padding: 1em;
   margin-bottom: 1em;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 500px;
+  overflow: auto;
+  overflow-x: hidden;
 }
+
+.message-button {
+  display: flex;
+  width: 100%;
+  border: none;
+  background: none;
+}
+
+/* SCROLLBAR STYLING */
+/* Works on Firefox */
+.messages {
+  scrollbar-width: thin;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.messages::-webkit-scrollbar {
+  width: 14px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: gray;
+  border: 3px solid #e8e8e8;
+  border-radius: 0.5rem;
+}
+/* END SCROLLBAR STYLING */
 
 .message-input {
   justify-self: flex-end;

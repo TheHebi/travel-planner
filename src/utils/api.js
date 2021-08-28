@@ -1,7 +1,29 @@
 import axios from 'axios';
+const URL_PREFIX = 'http://localhost:3001';
 
-export const getTrips = async (url) => {
-    const response = await axios.get(('http://localhost:3001' + url));
-    const json = await response.json();
-    return json
+
+const api = {
+    // GET ROUTES
+    // ----------
+    // get all trips
+    getTrips: function() {
+        return axios.get(`${URL_PREFIX}/api/trips`);
+    },
+    // get a single trip
+    getSingleTrip: function(id) {
+        return axios.get(`${URL_PREFIX}/api/trips/${id}`)
+    },
+    // POST ROUTES
+    // -----------
+    createPost: function(body) {
+        return axios.post(`${URL_PREFIX}/api/comments`, body)
+    }
+    // PUT ROUTES
+    // ----------
+
+    // DELETE ROUTES
+    // -------------
 }
+
+
+export default api

@@ -21,10 +21,10 @@ export default function Budgetcard({ budgetDetails }) {
                     <h3>{budgetDetails.title}</h3>
                     <div style={{display: 'flex', alignSelf: 'flex-start'}}>
                         <button style={{border: 'none', background: 'none'}}>
-                            <FontAwesomeIcon icon={faEdit} size='1x' />
+                            <FontAwesomeIcon icon={faEdit} size='1x' style={{color: 'green'}} />
                         </button>
                         <button style={{border: 'none', background: 'none'}}>
-                            <FontAwesomeIcon icon={faTrashAlt} size='1x' />
+                            <FontAwesomeIcon icon={faTrashAlt} size='1x' style={{color: 'red'}} />
                         </button>
                     </div>
                 </div>
@@ -38,7 +38,7 @@ export default function Budgetcard({ budgetDetails }) {
                     )
                 })}
                     <div className="budgettable-item-total">
-                        <p>{budgetItemSum}</p>
+                        <strong>{budgetItemSum}</strong>
                     </div>
                 </div>
             </div>

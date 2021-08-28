@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../utils/api.js';
 
 // BOOTSTRAP IMPORTS
 import Container from 'react-bootstrap/Container';
@@ -7,18 +8,54 @@ import Container from 'react-bootstrap/Container';
 import './Tripcard.css';
 import Budget from '../Budget/Budget.js';
 import Lounge from '../Lounge/Lounge.js';
+import Tripoverview from '../Tripoverview/Tripoverview.js';
 
 export default function Tripcard() {
-    const [activeTab, setActiveTab] = useState('Overview')
+    const [activeTab, setActiveTab] = useState(null)
+    const [tripData, setTripData] = useState('')
 
     const handleTabSwitch = (e) => {
         e.preventDefault();
-        if (e.target.id === activeTab) {
-            return
-        } else {
-            setActiveTab(e.target.id);
-        };
+
+        if (activeTab) {
+            activeTab.classList.remove('trip-nav-active')
+        }
+        console.log(activeTab)
+        e.target.classList.add('trip-nav-active');
+        setActiveTab(e.target)
     }
+
+    const renderTab = () => {
+        if (!activeTab) {
+            return <Tripoverview trip={tripData} />
+        } else if (activeTab.id === 'Overview') {
+            return <Tripoverview trip={tripData} />
+        } else if (activeTab.id === 'Itinerary') {
+            return (
+                <div>
+                    <h1>Itinerary</h1>
+                </div>
+            )
+        } else if (activeTab.id === 'Budget') {
+            return (
+                <div>
+                    <h1>Budget</h1>
+                    <Budget budget={budget} />
+                </div>
+            )
+        } else if (activeTab.id === 'Lounge') {
+            return (
+                <div>
+                    <h1>Travel Lounge</h1>
+                    <Lounge messages={tripData.Comments} travellers={tripData.SavedUser} />
+                </div>
+            )
+        }
+    }
+
+    useEffect(() => {
+        api.getSingleTrip('2').then(res => {setTripData(res.data)});
+    }, [])
 
     // temporary data
     const budget = {
@@ -83,28 +120,7 @@ export default function Tripcard() {
                     <div className="trip-nav-last-filler"></div>
                 </div>
                 <div className="trip-content">
-                    {activeTab === 'Overview' &&
-                        <div>
-                            <h1>Paris 08/12/21 - 09/02/21</h1>
-                        </div>
-                    }
-                    {activeTab === 'Itinerary' &&
-                        <div>
-                            <h1>Itinerary</h1>
-                        </div>
-                    }
-                    {activeTab === 'Budget' &&
-                        <div>
-                            <h1>Budget</h1>
-                            <Budget budget={budget} />
-                        </div>
-                    }
-                    {activeTab === 'Lounge' &&
-                        <div>
-                            <h1>Travel Lounge</h1>
-                            <Lounge />
-                        </div>
-                    }
+                    {renderTab()}
                 </div>
             </Container>
         </Container>

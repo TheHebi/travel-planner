@@ -8,7 +8,7 @@ import Trips from './pages/Trips.js';
 
 function App() {
   return (
-    <div>
+    <div style={{minHeight: '100vh', background: '#202530'}}>
       <Navigation />
       <Router>
         <Switch>

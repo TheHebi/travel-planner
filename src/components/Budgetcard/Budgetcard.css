@@ -4,8 +4,7 @@
   margin-left: 1em;
   margin-right: 1em;
   margin-top: 2em;
-  padding: 1.5em;
-  padding-bottom: 0.75em;
+  padding-top: 0.5em;
   width: 18em;
   display: flex;
   flex-direction: column;
@@ -18,6 +17,8 @@
 .header-wrapper {
   display: flex;
   justify-content: space-between;
+  margin-left: 1em;
+  margin-right: 6px;
 }
 
 .budgettable {
@@ -47,15 +48,9 @@
   padding-right: 1em;
   line-height: 1.8em;
   border-top: 1px solid black;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 10px 10px;
 }
 
-/* .budgettable td {
-  border-bottom: 1px solid black;
-  line-height: 2em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 5em;
-  max-width: 10em;
-} */
+.budgettable-item-total strong {
+  padding-bottom: none !important;
+}
