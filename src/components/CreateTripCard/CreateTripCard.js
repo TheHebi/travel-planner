@@ -17,6 +17,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCity } from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSuitcase } from '@fortawesome/free-solid-svg-icons';
+import { faPlaneSlash } from '@fortawesome/free-solid-svg-icons';
 
 // LOCAL IMPORTS
 import './CreateTripCard.css';
@@ -48,85 +50,73 @@ export default function CreateTripCard() {
 
     return (
         <>
-            <div className="create-trip-main">
-                <h1>
-                    <strong>
+            <div className="createTripBackground">
+                <div className="create-trip-main">
+                    <h1 className="mb-5">
+
                         Create your Trip!
-                    </strong>
-                </h1>
+
+                    </h1>
 
 
-                <Form>
-                    <Form.Group className="mb-3" controlId="destination">
-                        <Form.Label><strong>Destination</strong></Form.Label>
-                        <InputGroup style={{ width: "40%", height: "45px" }}>
-                            <InputGroup.Text>
-                                <FontAwesomeIcon icon={faCity} size='1x' />
-                            </InputGroup.Text>
-                            <Form.Control type="text" ref={bootstrapRef} />
-                        </InputGroup>
-                    </Form.Group>
+                    <Form className="">
+                        <Form.Group className="mb-3" controlId="destination">
+                            <Form.Label>Destination</Form.Label>
+                            <InputGroup style={{ width: "auto", height: "45px" }}>
+                                <InputGroup.Text>
+                                    <FontAwesomeIcon icon={faCity} size='1x' />
+                                </InputGroup.Text>
+                                <Form.Control type="text" ref={bootstrapRef} />
+                            </InputGroup>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="dates">
-                        <Form.Label><strong>Dates</strong></Form.Label>
-                        <InputGroup>
-                            <DateRangePicker
-                                startDate={startDate} // momentPropTypes.momentObj or null,
-                                startDateId="trip-start-date" // PropTypes.string.isRequired,
-                                endDate={endDate} // momentPropTypes.momentObj or null,
-                                endDateId="trip-end-date" // PropTypes.string.isRequired,
-                                onDatesChange={handleDatesChange} // PropTypes.func.isRequired,
-                                focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                                onFocusChange={(focusedInput) => setFocusedInput(focusedInput)} // PropTypes.func.isRequired,
-                                showDefaultInputIcon={true}
-                                showClearDates={true}
-                                isOutsideRange={() => false}
-                                orientation={calendarStack}
-                            />
-                        </InputGroup>
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="dates">
+                            <Form.Label>Dates</Form.Label>
+                            <InputGroup>
+                                <DateRangePicker
+                                    startDate={startDate} // momentPropTypes.momentObj or null,
+                                    startDateId="trip-start-date" // PropTypes.string.isRequired,
+                                    endDate={endDate} // momentPropTypes.momentObj or null,
+                                    endDateId="trip-end-date" // PropTypes.string.isRequired,
+                                    onDatesChange={handleDatesChange} // PropTypes.func.isRequired,
+                                    focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                                    onFocusChange={(focusedInput) => setFocusedInput(focusedInput)} // PropTypes.func.isRequired,
+                                    showDefaultInputIcon={true}
+                                    showClearDates={true}
+                                    isOutsideRange={() => false}
+                                    orientation={calendarStack}
+                                />
+                            </InputGroup>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label><strong>Invite</strong></Form.Label>
-                        <InputGroup style={{ width: "40%", height: "45px" }}>
-                            <InputGroup.Text>
-                                <FontAwesomeIcon icon={faUsers} size='1x' />
-                            </InputGroup.Text>
-                            <Form.Control type="email" placeholder="User Email" />
-                            <Button className="inviteUserBtn" onClick="">
-                                <FontAwesomeIcon icon={faUserPlus} size='1x' />
+                        <Form.Group className="mb-5">
+                            <Form.Label>Invite</Form.Label>
+                            <InputGroup style={{ width: "auto", height: "45px" }}>
+                                <InputGroup.Text>
+                                    <FontAwesomeIcon icon={faUsers} size='1x' />
+                                </InputGroup.Text>
+                                <Form.Control type="email" placeholder="User Email" />
+                                <Button className="inviteUserBtn" onClick="">
+                                    <FontAwesomeIcon icon={faUserPlus} size='1x' />
+                                </Button>
+                            </InputGroup>
+                        </Form.Group>
+
+                        <Form.Group className="d-flex justify-content-evenly">
+                            <Button className="createTripBtn">
+                                <FontAwesomeIcon className="createTripBtnIcon" icon={faSuitcase} size='1x' />Create!
                             </Button>
-                        </InputGroup>
-                    </Form.Group>
-                    <Button className="createTripBtn">
-                        Create!
-                    </Button>
-                    <Link to="/">
-                        <Button className="createTripCancelBtn">
-                            Cancel
-                        </Button>
-                    </Link>
-                </Form>
+                            <Link to="/">
+                                <Button className="createTripCancelBtn">
+                                    <FontAwesomeIcon className="createTripBtnIcon" icon={faPlaneSlash} size='1x' />Cancel
+                                </Button>
+                            </Link>
+                        </Form.Group>
 
-
-
-                {/* <div>
-                    <form>
-                        <div className="mb-3">
-                            <label for="destination" className="form-label">Destination</label>
-                            <input type="email" className="form-control" id="destination" aria-describedby="emailHelp" />
-                        </div>
-                        <div className="mb-3">
-                            <label for="date-range" className="form-label">Dates</label>
-                            <input type="password" className="form-control" id="date-range" />
-                        </div>
-                        <div className="mb-3">
-
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
-                </div> */}
+                    </Form>
+                </div>
             </div>
+
         </>
     )
 }

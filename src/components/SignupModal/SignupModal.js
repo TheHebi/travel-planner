@@ -17,7 +17,7 @@ const SignupModal = ({ signupModalState, signupModalClose }) => {
     return (
         <Modal show={signupModalState} onHide={signupModalClose}>
             <Modal.Header className="signupModalHeader" closeButton>
-                <Modal.Title>Signup</Modal.Title>
+                <Modal.Title><h2><strong>Signup</strong></h2></Modal.Title>
             </Modal.Header>
             <Modal.Body className="signupModalBody">
                 <Form>

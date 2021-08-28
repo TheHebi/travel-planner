@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // FONTAWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -39,17 +40,17 @@ export default function Homepage() {
         <>
             <div className="home-main" style={{ height: mainHeight }}>
                 <h1 className="text-light">Message to Customer</h1>
-                <h3 className="text-light">Message to Customer</h3>
-                {/* <a href="/trips">
-                <button className="mt-3 home-main-button text-light">
-                    Get Started
-                    <FontAwesomeIcon icon={faPlaneDeparture} size='1x' className="ms-2" />
-                </button>
-            </a> */}
-                <div>
+                <h3 className="mb-4 text-light">Message to Customer</h3>
+                <div className="mb-3">
                     <button onClick={loginModalShow} className="modal-button mx-2" id="loginBtn">Login</button>
                     <button onClick={signupModalShow} className="modal-button mx-2" id="signupBtn">Signup</button>
                 </div>
+                <Link to="/createTrip">
+                <button className="modal-button mx-2">
+                    Get Started
+                    <FontAwesomeIcon icon={faPlaneDeparture} size='1x' className="ms-3" />
+                </button>
+                </Link>
                 <a href="/#features" className="ca3-scroll-down-link ca3-scroll-down-arrow" data-ca3_iconfont="ETmodules" data-ca3_icon=""></a>
             </div>
 

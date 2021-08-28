@@ -13,8 +13,8 @@ import './LoginModal.css';
 const LoginModal = ({ loginModalState, loginModalClose }) => {
     return (
         <Modal show={loginModalState} onHide={loginModalClose}>
-            <Modal.Header className="loginModalHeader" closeButton>
-                <Modal.Title>Login</Modal.Title>
+            <Modal.Header className="loginModalHeader">
+                <Modal.Title><h2><strong>Login</strong></h2></Modal.Title>
             </Modal.Header>
             <Modal.Body className="loginModalBody">
                 <Form>
