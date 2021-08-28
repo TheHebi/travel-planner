@@ -1,0 +1,27 @@
+.signupModalHeader {
+    background-color: #f5f5f5;
+}
+
+.signupModalBody {
+    background-color: #f5f5f5;
+}
+
+.signupModalFooter {
+    background-color: #f5f5f5;
+}
+
+.signupModalBtn {
+    background-color: rgb(71, 110, 158) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}
+
+.signupBtnIcon {
+    margin-right: 5px !important;
+}
+
+.signupModalCancelBtn {
+    background-color: rgb(106, 167, 162) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}

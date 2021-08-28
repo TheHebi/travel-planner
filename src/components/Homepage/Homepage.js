@@ -4,9 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import LoginModal from '../LoginModal/LoginModal';
+import SignupModal from '../SignupModal/SignupModal';
 
 // LOCAL IMPORTS
 import './Homepage.css';
@@ -54,64 +53,9 @@ export default function Homepage() {
                 <a href="/#features" className="ca3-scroll-down-link ca3-scroll-down-arrow" data-ca3_iconfont="ETmodules" data-ca3_icon=""></a>
             </div>
 
-            <Modal show={loginModalState} onHide={loginModalClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Login</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label><strong>Email</strong></Form.Label>
-                            <Form.Control type="email" placeholder="Email" />
-                        </Form.Group>
+            <LoginModal loginModalState={loginModalState} setLoginModalState={setLoginModalState} loginModalShow={loginModalShow} loginModalClose={loginModalClose}/>
+            <SignupModal signupModalState={signupModalState} setSignupModalState={setSignupModalState} signupModalShow={signupModalShow} signupModalClose={signupModalClose}/>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label><strong>Password</strong></Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={loginModalClose}>
-                        Login
-                    </Button>
-                    <Button variant="secondary" onClick={loginModalClose}>
-                        Cancel
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-            <Modal show={signupModalState} onHide={signupModalClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Signup</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicUsername">
-                            <Form.Label><strong>Username</strong></Form.Label>
-                            <Form.Control type="text" placeholder="Username" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label><strong>Email</strong></Form.Label>
-                            <Form.Control type="email" placeholder="Email" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label><strong>Password</strong></Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={signupModalClose}>
-                        Signup
-                    </Button>
-                    <Button variant="secondary" onClick={signupModalClose}>
-                        Cancel
-                    </Button>
-                </Modal.Footer>
-            </Modal>
         </>
     )
 }

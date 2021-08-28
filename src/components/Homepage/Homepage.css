@@ -24,6 +24,7 @@
 html body [data-ca3_iconfont="ETmodules"]::before {
   font-family: "ETmodules";
 }
+
 [data-ca3_icon]::before {
   font-weight: normal;
   content: attr(data-ca3_icon);

@@ -1,0 +1,28 @@
+.loginModalHeader {
+    background-color: #f5f5f5;
+}
+
+.loginModalBody {
+    background-color: #f5f5f5;
+}
+
+.loginModalFooter {
+    background-color: #f5f5f5;
+}
+
+.loginModalBtn {
+    background-color: rgb(71, 110, 158) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}
+
+.loginBtnIcon {
+    margin-right: 5px !important;
+}
+
+
+.loginModalCancelBtn {
+    background-color: rgb(106, 167, 162) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}

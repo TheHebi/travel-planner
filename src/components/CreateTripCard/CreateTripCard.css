@@ -1,0 +1,23 @@
+.create-trip-main {
+    margin-top: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inviteUserBtn {
+    background-color: #e9ecef !important;
+    border: 1px solid #ced4da !important;
+    color:#222529 !important;
+}
+
+.createTripBtn {
+    background-color: rgb(71, 110, 158) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}
+
+.createTripCancelBtn {
+    background-color: rgb(106, 167, 162) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}

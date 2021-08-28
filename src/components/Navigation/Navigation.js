@@ -6,22 +6,11 @@ import Logo from '../../images/Logo.png';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
 
 // LOCAL IMPORTS
 import './Navigation.css';
 
 export default function Navigation() {
-    const [loginModalState, setLoginModalState] = useState(false);
-    const [signupModalState, setSignupModalState] = useState(false);
-
-    const loginModalClose = () => setLoginModalState(false);
-    const loginModalShow = () => setLoginModalState(true);
-    const signupModalClose = () => setSignupModalState(false);
-    const signupModalShow = () => setSignupModalState(true);
-
     return (
         <>
             <Navbar
@@ -38,7 +27,7 @@ export default function Navigation() {
                                 <div className="custom-navlink-list d-flex flex-row align-items-center">
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="/">Home</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#features">Features</Nav.Link>
-                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#recommendation">Recommendation</Nav.Link>
+                                    <Nav.Link className="custom-navlink-text mx-4 text-light" href="#recommendation">Recommendations</Nav.Link>
                                     <Nav.Link className="custom-navlink-text mx-4 text-light" href="#contact">Contact</Nav.Link>
                                 </div>
                             </div>
