@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.home-main-button {
+/* .home-main-button {
   background-color: #9abee0;
   border: none;
   border-radius: 0.25rem;
@@ -19,7 +19,7 @@
   padding-right: 1em;
   padding-left: 1em;
   font-size: 1.2em;
-}
+} */
 
 html body [data-ca3_iconfont="ETmodules"]::before {
   font-family: "ETmodules";
@@ -31,7 +31,7 @@ html body [data-ca3_iconfont="ETmodules"]::before {
 }
 
 .modal-button {
-  transition: all .5s ease;
+	transition: all 0.5s ease-in-out;	
   color: white;
   font-size: 1.2em;
   border: none;

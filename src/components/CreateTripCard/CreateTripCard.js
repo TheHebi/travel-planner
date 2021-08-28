@@ -19,6 +19,8 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faSuitcase } from '@fortawesome/free-solid-svg-icons';
 import { faPlaneSlash } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 // LOCAL IMPORTS
 import './CreateTripCard.css';
@@ -39,12 +41,15 @@ export default function CreateTripCard() {
     }, [window.innerWidth]);
 
     const handleDatesChange = ({ startDate, endDate }) => {
+        console.log(startDate);
+        console.log(endDate);
         setStartDate(startDate);
         setEndDate(endDate);
     };
 
     const { ref: bootstrapRef } = usePlacesWidget({
         apiKey: "AIzaSyBCkCMjgFyX6U9QyzmjTmbOfrUKAd_mO7w",
+        language: "en",
         onPlaceSelected: (place) => console.log(place),
     });
 
@@ -60,6 +65,17 @@ export default function CreateTripCard() {
 
 
                     <Form className="">
+
+                        <Form.Group className="mb-3" controlId="tripName">
+                            <Form.Label><h5>Trip Name</h5></Form.Label>
+                            <InputGroup style={{ width: "auto", height: "45px" }}>
+                                <InputGroup.Text>
+                                    <FontAwesomeIcon icon={faPencilAlt} size='1x' />
+                                </InputGroup.Text>
+                                <Form.Control type="text" placeholder="Name your Trip!"/>
+                            </InputGroup>
+                        </Form.Group>
+
                         <Form.Group className="mb-3" controlId="destination">
                             <Form.Label><h5>Destination</h5></Form.Label>
                             <InputGroup style={{ width: "auto", height: "45px" }}>
@@ -96,7 +112,7 @@ export default function CreateTripCard() {
                                     <FontAwesomeIcon icon={faUsers} size='1x' />
                                 </InputGroup.Text>
                                 <Form.Control type="email" placeholder="User Email" />
-                                <Button className="inviteUserBtn" onClick="">
+                                <Button className="inviteUserBtn">
                                     <FontAwesomeIcon icon={faUserPlus} size='1x' />
                                 </Button>
                             </InputGroup>
