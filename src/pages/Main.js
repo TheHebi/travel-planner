@@ -7,9 +7,10 @@ import Contact from '../components/Contact/Contact';
 import Recommendation from '../components/Recommendation/Recommendation';
 
 export default function Main() {
+
     return (
         <div>
-            <Homepage />
+            <Homepage/>
             <Features />
             <Recommendation />
             <Contact />

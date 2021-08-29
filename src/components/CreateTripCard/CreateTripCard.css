@@ -26,6 +26,12 @@
     background-color: rgb(151, 197, 193) !important;
     border: 1px solid rgb(151, 197, 193) !important;
     color:#222529 !important;
+    z-index: 0 !important;
+}
+
+.inviteUserBtn:hover .inviteUserIcon {
+    transform: scale(0.8);
+    color:teal;
 }
 
 .createTripBtn {
@@ -38,8 +44,22 @@
     margin-right: 5px;
 }
 
+.createTripBtn:hover .createTripBtnIcon {
+    transform: scale(0.8);
+    color:rgb(106, 167, 162);
+}
+
 .createTripCancelBtn {
     background-color: rgb(106, 167, 162) !important;
     border-style: hidden !important;
     border-radius: 100px !important;
+}
+
+.createTripCancelBtnIcon {
+    margin-right: 5px;
+}
+
+.createTripCancelBtn:hover .createTripCancelBtnIcon {
+    transform: scale(0.8);
+    color:rgb(71, 110, 158);
 }

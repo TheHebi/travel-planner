@@ -113,7 +113,7 @@ export default function CreateTripCard() {
                                 </InputGroup.Text>
                                 <Form.Control type="email" placeholder="User Email" />
                                 <Button className="inviteUserBtn">
-                                    <FontAwesomeIcon icon={faUserPlus} size='1x' />
+                                    <FontAwesomeIcon className="inviteUserIcon" icon={faUserPlus} size='1x' />
                                 </Button>
                             </InputGroup>
                         </Form.Group>
@@ -124,7 +124,7 @@ export default function CreateTripCard() {
                             </Button>
                             <Link to="/">
                                 <Button className="createTripCancelBtn">
-                                    <FontAwesomeIcon className="createTripBtnIcon" icon={faPlaneSlash} size='1x' />Cancel
+                                    <FontAwesomeIcon className="createTripCancelBtnIcon" icon={faPlaneSlash} size='1x' />Cancel
                                 </Button>
                             </Link>
                         </Form.Group>

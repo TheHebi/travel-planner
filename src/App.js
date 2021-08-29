@@ -10,11 +10,6 @@ import api from './utils/api';
 
 function App() {
 
-  // useEffect(() => {
-  //   api.login({username:"Kevin", password:"password"}).then(res => {
-  //     console.log(res.data);
-  //   })
-  // },[])
 
   return (
     <div style={{minHeight: '100vh', background: '#202530', overflowX: 'hidden'}}>
