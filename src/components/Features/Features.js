@@ -1,15 +1,14 @@
 import React from 'react';
 
 // LOCAL IMPORTS
+import featuresLogo from '../../images/features.png';
 import './Features.css';
 
 export default function Features() {
     return (
         <div className="features-main" id="features">
             <div className="d-flex flex-column align-items-center">
-                <span className="dot mt-3 mb-2"></span>
-                <span className="dot my-2"></span>
-                <span className="dot my-2"></span>
+            <img src={featuresLogo} width="100px" height="100px" />
             </div>
             <div className="features-header">
                 <h1>Features</h1>

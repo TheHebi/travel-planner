@@ -3,9 +3,19 @@ const URL_PREFIX = 'http://localhost:3001';
     
     
 const api = {
-    // login: function(userData) {
-    //     return axios.post('http://localhost:3001/api/users/login', userData)
-    // },
+    login: function(userData) {
+        return axios.post('http://localhost:3001/api/users/login', userData)
+    },
+    signup: function(userData) {
+        return axios.post('http://localhost:3001/api/users/', userData)
+    },
+    getUser: function(id, token) {
+        return axios.get("http://localhost:3001/api/users/"+ `${id}`, {
+            headers:{
+                authorization: `Bearer ${token}`
+            }
+        })
+    },
     // GET ROUTES
     // ----------
     // get all trips
