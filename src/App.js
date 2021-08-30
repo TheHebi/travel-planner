@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
+
 // LOCAL IMPORTS
 import Navigation from './components/Navigation/Navigation.js';
 import Main from './pages/Main.js';
@@ -63,8 +64,8 @@ function App() {
             <Main setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} handleLogout={handleLogout}/>
             <ScrollToTop smooth />
           </Route>
-          <Route path="/trips">
-            <Trips />
+          <Route path="/trips/:id">
+            <Trips setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} />
           </Route>
           <Route path="/createTrip">
             <CreateTrip />

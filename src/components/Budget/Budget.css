@@ -2,11 +2,35 @@
   align-self: center;
   display: flex;
   flex-direction: column;
-  width: 75%;
-  padding-top: 4em;
-  padding-bottom: 4em;
+  width: 80%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-right: 2em;
+  padding-left: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 0.5rem;
+
+  transition: color 300ms;
+}
+
+.add-budget-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 5em;
+  margin-right: 5em;
+  border-bottom: 1px solid black;
+}
+
+.add-budget-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  margin-bottom: 10px;
 }
 
 .overbudget {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  color: red;
 }

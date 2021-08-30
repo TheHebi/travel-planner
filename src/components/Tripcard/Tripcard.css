@@ -38,7 +38,10 @@
   color: inherit;
   border: none;
   border-radius: 0.6rem 0.6rem 0 0;
-  background: #dedede;
+  background: #aeaeae;
+
+  transform: scaleY(1);
+  transition: transform 200ms;
 }
 
 .trip-nav-active {
@@ -63,5 +66,6 @@
   width: 100%;
   background: #e8e8e8;
   border-radius: 10px;
+  border-top-left-radius: 0;
   padding: 3em;
 }

@@ -3,24 +3,32 @@ import React from 'react';
 // LOCAL IMPORTS
 import './Budgetbar.css';
 
-export default function Budgetbar({ budget }) {
+export default function Budgetbar({ budgetTotal, budgetDetails }) {
+    const colorArr = ['blue', 'yellow', 'red', 'green', 'orange', 'lightblue'];
     return (
         <div className="budgetbar">
-            {budget.budgetCategories.map((budgetCategory, index) => {
-                let categoryTotal = 0;
-                for (let i=0; i<budgetCategory.items.length; i++) {
-                    categoryTotal += budgetCategory.items[i].price
-                };
-                const percentage = Math.floor(categoryTotal/budget.budget*100) + '%';
+            {budgetDetails ? (
+                budgetDetails.BudgetCategories.map((budgetCategory, index) => {
+                    let categoryTotal = 0;
+                    for (let i=0; i<budgetCategory.BudgetItems.length; i++) {
+                        categoryTotal += budgetCategory.BudgetItems[i].price
+                    };
+                    const percentage = (categoryTotal/budgetTotal*100) + '%';
 
-                if (index === 0) {
-                    return <div className="budgetbar-item" style={{background: 'green', width: percentage, borderRadius: '3px 0 0 3px'}} key={index}/>
-                } else if (index === budget.budgetCategories.length-1) {
-                    return <div className="budgetbar-item" style={{background: 'blue', width: percentage, borderRadius: '0 3px 3px 0'}} key={index} />
-                } else {
-                    return <div className="budgetbar-item" style={{background: 'orange', width: percentage}} key={index} />
-                }
-            })}
+                    return (
+                        <div 
+                        className="budgetbar-item" 
+                        style={{
+                            background: colorArr[index], 
+                            width: [percentage],
+                            borderRadius: index === 0 ? '3px 0 0 3px' : (index === (budgetCategory.length - 1)) ? '0 3px 3px 0' : '0 0 0 0',
+                        }} 
+                        key={index}>
+                            {budgetDetails.BudgetCategories[index].description}
+                        </div>
+                    )
+                })
+            ) : null}
         </div>
     )
 }

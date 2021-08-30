@@ -86,7 +86,7 @@ export default function Contact() {
 
             </div>
             <div className="d-flex justify-content-center align-items-center">
-                <span className="custom-navlink-text mx-4" href="/"><img src={Logo} width="180" height="60" /></span>
+                <span className="custom-navlink-text mx-4" href="/"><img src={Logo} width="180" height="60" alt="team logo" /></span>
             </div>
             <div className="contact-copyright">
                 <p>© 2021 Trips Refocused - All rights reserved.</p>

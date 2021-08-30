@@ -120,7 +120,7 @@ export default function Homepage({ setUserContext }) {
     return (
         <div id="home">
             <div className="home-main" style={{ height: mainHeight }}>
-                <h1 className="text-light">Message to Customer</h1>
+                <h1 className="text-light">Hello, user!</h1>
                 <h3 className="mb-4 text-light">Message to Customer</h3>
                 {!userState.user?.username ? (<div className="mb-3">
                     <button onClick={loginModalShow} className="modal-button mx-2" id="loginBtn">Login</button>
