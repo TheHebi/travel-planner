@@ -7,7 +7,7 @@ import Navigation from './components/Navigation/Navigation.js';
 import Main from './pages/Main.js';
 import Trips from './pages/Trips.js';
 import CreateTrip from './pages/CreateTrip.js';
-// import api from './utils/api';
+import api from './utils/api';
 
 function App() {
 
@@ -65,7 +65,7 @@ function App() {
             <ScrollToTop smooth />
           </Route>
           <Route path="/trips/:id">
-            <Trips />
+            <Trips setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} />
           </Route>
           <Route path="/createTrip">
             <CreateTrip />
