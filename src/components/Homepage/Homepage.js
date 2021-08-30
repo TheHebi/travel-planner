@@ -5,7 +5,6 @@ import api from '../../utils/api';
 // FONTAWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
-import {  } from '@fortawesome/free-solid-svg-icons';
 
 import LoginModal from '../LoginModal/LoginModal';
 import SignupModal from '../SignupModal/SignupModal';
