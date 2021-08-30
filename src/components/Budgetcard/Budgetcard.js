@@ -9,36 +9,53 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import './Budgetcard.css';
 
 export default function Budgetcard({ budgetDetails }) {
-    let budgetItemSum = 0;
-    for (let i=0; i<budgetDetails.items.length; i++) {
-        budgetItemSum += budgetDetails.items[i].price;
+    const findCardTotal = (data) => {
+        let budgetItemSum = 0;
+        for (let i=0; i<data.BudgetItems.length; i++) {
+            budgetItemSum += data.BudgetItems[i].price;
+        }
+        return budgetItemSum
+    }
+
+    const handleAddBudgetItem = (e) => {
+        e.preventDefault();
+    }
+
+    const handleDeleteBudgetCategory = (e) => {
+        e.preventDefault();
+
+        if (e.target.tagName === 'BUTTON') {
+            e.target.parentElement.parentElement.parentElement.parentElement.classList.add('hidden-item')
+        } else {
+            e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('hidden-item')
+        }
     }
 
     return (
         <div>
             <div className="budgetcard">
                 <div className="header-wrapper">
-                    <h3>{budgetDetails.title}</h3>
+                    <h3>{budgetDetails.description}</h3>
                     <div style={{display: 'flex', alignSelf: 'flex-start'}}>
-                        <button style={{border: 'none', background: 'none'}}>
+                        <button style={{border: 'none', background: 'none'}} onClick={handleAddBudgetItem}>
                             <FontAwesomeIcon icon={faEdit} size='1x' style={{color: 'green'}} />
                         </button>
-                        <button style={{border: 'none', background: 'none'}}>
+                        <button style={{border: 'none', background: 'none'}} onClick={handleDeleteBudgetCategory}>
                             <FontAwesomeIcon icon={faTrashAlt} size='1x' style={{color: 'red'}} />
                         </button>
                     </div>
                 </div>
-                <div className="budggettable">
-                {budgetDetails.items.map((budgetItem, i) => {
+                <div className="budgettable">
+                {budgetDetails.BudgetItems.map((budgetItem, i) => {
                     return (
                         <div key={i} className="budgettable-item">
-                            <p>{budgetItem.name}</p>
+                            <p>{budgetItem.description}</p>
                             <p>{budgetItem.price}</p>
                         </div>
                     )
                 })}
                     <div className="budgettable-item-total">
-                        <strong>{budgetItemSum}</strong>
+                        <strong>{findCardTotal(budgetDetails)}</strong>
                     </div>
                 </div>
             </div>

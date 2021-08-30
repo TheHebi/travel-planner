@@ -5,7 +5,7 @@
   margin-right: 1em;
   margin-top: 2em;
   padding-top: 0.5em;
-  width: 18em;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -53,4 +53,8 @@
 
 .budgettable-item-total strong {
   padding-bottom: none !important;
+}
+
+.hidden-item {
+  display: none;
 }

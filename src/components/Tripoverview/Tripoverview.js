@@ -3,9 +3,7 @@ import Moment from 'react-moment';
 
 // FONT AWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faPlane } from '@fortawesome/free-solid-svg-icons';
-import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
-import { faPlaneArrival } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faPlaneDeparture, faPlaneArrival } from '@fortawesome/free-solid-svg-icons';
 
 // LOCAL IMPORTS
 import './Tripoverview.css';

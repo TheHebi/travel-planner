@@ -15,7 +15,7 @@ import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 // LOCAL IMPORTS
 import './Lounge.css';
 import Message from '../Loungemessage/Loungemessage.js';
-import api from '../../utils/api';
+// import api from '../../utils/api';
 
 export default function Lounge({ messages, travellers }) {
     const [viewAll, setViewAll] = useState(true);
@@ -68,8 +68,8 @@ export default function Lounge({ messages, travellers }) {
                         <div className="messages">
                             {messages.map(message => {
                                 return (
-                                    <button className="message-button" onClick={handleCommentClick}>
-                                        <Message key={message.id} message={message}/>
+                                    <button className="message-button" onClick={handleCommentClick} key={message.id}>
+                                        <Message message={message}/>
                                     </button>
                                 )}
                             )}

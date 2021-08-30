@@ -16,13 +16,20 @@ const api = {
     getSingleTrip: function(id) {
         return axios.get(`${URL_PREFIX}/api/trips/${id}`)
     },
+    // get a budget associated with a trip and a user
+    getSingleBudget: function(tripId) {
+        return axios.get(`${URL_PREFIX}/api/budgets/trips/${tripId}`)
+    },
+
     // POST ROUTES
     // -----------
     createPost: function(body) {
         return axios.post(`${URL_PREFIX}/api/comments`, body)
     }
+
     // PUT ROUTES
     // ----------
+
 
     // DELETE ROUTES
     // -------------
