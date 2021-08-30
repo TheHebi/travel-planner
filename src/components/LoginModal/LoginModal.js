@@ -1,52 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 
 import './LoginModal.css';
 
-const LoginModal = ({ loginModalState, loginModalClose }) => {
+const LoginModal = ({ loginModalState, loginModalClose, loginFormState, setLoginFormState, handleLoginFormSubmit }) => {
+
     return (
+        <>
         <Modal show={loginModalState} onHide={loginModalClose}>
             <Modal.Header className="loginModalHeader">
                 <Modal.Title><h2><strong>Login</strong></h2></Modal.Title>
             </Modal.Header>
             <Modal.Body className="loginModalBody">
-                <Form>
-                    <Form.Group className="mb-3" controlId="loginEmail">
-                        <Form.Label><strong>Email</strong></Form.Label>
+                <Form onSubmit={handleLoginFormSubmit}>
+                    <Form.Group className="mb-3">
+                        <Form.Label><strong>Username</strong></Form.Label>
                         <InputGroup>
                             <InputGroup.Text>
-                                <FontAwesomeIcon icon={faEnvelope} size='1x' />
+                                <FontAwesomeIcon icon={faUser} size='1x' />
                             </InputGroup.Text>
-                            <Form.Control type="email" placeholder="Email" />
+                            <Form.Control value={loginFormState.username} onChange={(e) => setLoginFormState({...loginFormState, username: e.target.value })} type="text" placeholder="Username" />
                         </InputGroup>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="loginPassword">
+                    <Form.Group className="mb-4">
                         <Form.Label><strong>Password</strong></Form.Label>
                         <InputGroup>
                             <InputGroup.Text>
                                 <FontAwesomeIcon icon={faKey} size='1x' />
                             </InputGroup.Text>
-                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Control value={loginFormState.password} onChange={(e) => setLoginFormState({...loginFormState, password: e.target.value })} type="password" placeholder="Password" />
                         </InputGroup>
+                    </Form.Group>
+
+                    <Form.Group className="loginModalFooter">
+                        <Button type="submit" value="login" className="loginModalBtn mx-2" onClick={loginModalClose}>Login
+                        </Button>
+                        <Button className="loginModalCancelBtn mx-2" onClick={loginModalClose}>
+                            Cancel
+                        </Button>
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer className="loginModalFooter d-flex justify-content-center">
-                <Button className="loginModalBtn" onClick={loginModalClose}>Login
-                </Button>
-                <Button className="loginModalCancelBtn" onClick={loginModalClose}>
-                    Cancel
-                </Button>
-            </Modal.Footer>
         </Modal>
+        </>
     )
 }
 

@@ -42,9 +42,26 @@ html body [data-ca3_iconfont="ETmodules"]::before {
   background-color: transparent;
 }
 
+.logout-button {
+	transition: all 0.5s ease-in-out;	
+  color: red;
+  font-size: 1.2em;
+  border: none;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  background-color: transparent;
+}
+
 .modal-button:hover {
   color: black;
   background-color: white;
+}
+
+.logout-button:hover {
+  color: black;
+  background-color: red;
 }
 
 .ca3-scroll-down-arrow {

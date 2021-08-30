@@ -53,6 +53,32 @@ export default function CreateTripCard() {
         onPlaceSelected: (place) => console.log(place),
     });
 
+    const [createTripFormState, setCreateTripFormState] = useState({
+        tripName:"",
+        startDate: null,
+        endDate: null,
+        email:""
+    })
+
+    const handleCreateTripFormSubmit = e => {
+        e.preventDefault();
+        console.log('Trip Name: ' + createTripFormState.tripName);
+        console.log('Email: ' + createTripFormState.email);
+        console.log('Start Date: ' + startDate);
+        console.log('End Date: ' + endDate);
+
+        setCreateTripFormState({
+            tripName: "",
+            startDate: null,
+            endDate: null,
+            email: ""
+        })
+    }
+
+    const toTripOverviewPage = () => {
+        window.location.href = '/trips'
+    }
+
     return (
         <>
             <div className="createTripBackground">
@@ -64,7 +90,7 @@ export default function CreateTripCard() {
                     </h1>
 
 
-                    <Form className="">
+                    <Form onSubmit={handleCreateTripFormSubmit}>
 
                         <Form.Group className="mb-3" controlId="tripName">
                             <Form.Label><h5>Trip Name</h5></Form.Label>
@@ -72,7 +98,7 @@ export default function CreateTripCard() {
                                 <InputGroup.Text>
                                     <FontAwesomeIcon icon={faPencilAlt} size='1x' />
                                 </InputGroup.Text>
-                                <Form.Control type="text" placeholder="Name your Trip!"/>
+                                <Form.Control value={createTripFormState.tripName} onChange={(e) => setCreateTripFormState({...createTripFormState, tripName: e.target.value})} type="text" placeholder="Name your Trip!"/>
                             </InputGroup>
                         </Form.Group>
 
@@ -101,6 +127,7 @@ export default function CreateTripCard() {
                                     showClearDates={true}
                                     isOutsideRange={() => false}
                                     orientation={calendarStack}
+                                    reopenPickerOnClearDates = {true}
                                 />
                             </InputGroup>
                         </Form.Group>
@@ -111,20 +138,20 @@ export default function CreateTripCard() {
                                 <InputGroup.Text>
                                     <FontAwesomeIcon icon={faUsers} size='1x' />
                                 </InputGroup.Text>
-                                <Form.Control type="email" placeholder="User Email" />
-                                <Button className="inviteUserBtn">
-                                    <FontAwesomeIcon icon={faUserPlus} size='1x' />
-                                </Button>
+                                <Form.Control value={createTripFormState.email} onChange={(e) => setCreateTripFormState({...createTripFormState, email: e.target.value})} type="email" placeholder="User Email" />
+                                {/* <Button className="inviteUserBtn">
+                                    <FontAwesomeIcon className="inviteUserIcon" icon={faUserPlus} size='1x' />
+                                </Button> */}
                             </InputGroup>
                         </Form.Group>
 
                         <Form.Group className="d-flex justify-content-evenly">
-                            <Button className="createTripBtn">
+                            <Button type="submit" value="createTrip" className="createTripBtn">
                                 <FontAwesomeIcon className="createTripBtnIcon" icon={faSuitcase} size='1x' />Create!
                             </Button>
                             <Link to="/">
                                 <Button className="createTripCancelBtn">
-                                    <FontAwesomeIcon className="createTripBtnIcon" icon={faPlaneSlash} size='1x' />Cancel
+                                    <FontAwesomeIcon className="createTripCancelBtnIcon" icon={faPlaneSlash} size='1x' />Cancel
                                 </Button>
                             </Link>
                         </Form.Group>

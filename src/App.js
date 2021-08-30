@@ -10,20 +10,58 @@ import api from './utils/api';
 
 function App() {
 
-  // useEffect(() => {
-  //   api.login({username:"Kevin", password:"password"}).then(res => {
-  //     console.log(res.data);
-  //   })
-  // },[])
+  const [userState, setUserState] = useState({
+    token: "",
+    user: {
+
+    }
+  });
+
+  useEffect(() => {
+    document.title = "Trips Refocused";
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    if (token && userId) {
+      api.getUser(userId, token).then(res => {
+        console.log(res.data)
+        setUserState({
+          token: token,
+          user: {
+            email: res.data.email,
+            id: res.data.id,
+            username: res.data.username
+          }
+        })
+      }).catch(err => {
+        console.log('no logged in user');
+        setUserState({
+          token: "",
+          user: {}
+        })
+      })
+    } else {
+      console.log('no token provided');
+    }
+  }, []);
+
+  const handleLogout = () => {
+    setUserState({
+        token: "",
+        user: {}
+    });
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    window.location = '/';
+};
 
   return (
-    <div style={{minHeight: '100vh', background: '#202530', overflowX: 'hidden'}}>
-      <Navigation />
+    <div style={{ minHeight: '100vh', background: '#202530', overflowX: 'hidden' }}>
+      <Navigation setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} handleLogout={handleLogout}/>
       <Router>
         <Switch>
           <Route exact path="/">
-            <Main />
-            <ScrollToTop smooth/>
+            <Main setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} handleLogout={handleLogout}/>
+            <ScrollToTop smooth />
           </Route>
           <Route path="/trips">
             <Trips />

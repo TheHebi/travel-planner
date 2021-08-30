@@ -18,6 +18,7 @@
   font-weight: bold;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -32,4 +33,60 @@
 
 .custom-navlink-text:hover {
   text-decoration: none;
+}
+
+.navbar-welcome {
+  align-self: center !important;
+  color: white;
+}
+
+.example1-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  top: 28px;
+  right: 0;
+  padding: 8px 0px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px #c3c5c7;
+}
+
+.example1-dropdown-menu-enter {
+  opacity: 0;
+}
+
+.example1-dropdown-menu-enter-active {
+  opacity: 1;
+  transition: 0.2s ease-in;
+}
+
+.example1-dropdown-menu-exit {
+  opacity: 1;
+}
+
+.example1-dropdown-menu-exit-active {
+  opacity: 0;
+  transition: 0.2s ease-in;
+}
+
+.example1-dropdown-menu-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 26px;
+  font-size: 12px;
+  color: #333537;
+}
+
+.example1-dropdown-menu-item:hover {
+  background-color: #f3f5f7;
+}
+
+.example1-dropdown-menu-item__spacer {
+  width: 6px;
+}
+
+.example1-dropdown-menu-item__text {
+  padding: 0px 2px;
 }
