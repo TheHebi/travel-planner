@@ -9,7 +9,6 @@ import { faArrowRight, faPlaneDeparture, faPlaneArrival } from '@fortawesome/fre
 import './Tripoverview.css';
 
 export default function Tripoverview({trip}) {
-    console.log(trip)
     return (
         <div className="overview-wrapper">
             <div className="overview-header">

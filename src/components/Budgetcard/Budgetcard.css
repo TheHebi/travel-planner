@@ -10,6 +10,11 @@
   flex-direction: column;
 }
 
+.icon-btn {
+  background: none;
+  border: none;
+}
+
 .budgetcard h3 {
   margin-bottom: 0.5em;
 }
@@ -31,6 +36,7 @@
   justify-content: space-between;
   padding-left: 1em;
   padding-right: 1em;
+  border-top: 1px solid #454545;
 }
 
 .budgettable-item p:first-child {
@@ -38,6 +44,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.budgettable-item-right {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  vertical-align: middle;
+  text-align: end;
 }
 
 .budgettable-item-total {

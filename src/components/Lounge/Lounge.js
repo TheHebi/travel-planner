@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 // BOOTSTRAP IMPORTS
 import Row from 'react-bootstrap/Row';
@@ -15,24 +16,53 @@ import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 // LOCAL IMPORTS
 import './Lounge.css';
 import Message from '../Loungemessage/Loungemessage.js';
-// import api from '../../utils/api';
+import api from '../../utils/api';
 
-export default function Lounge({ messages, travellers }) {
-    const [viewAll, setViewAll] = useState(true);
+export default function Lounge({ messages, travellers, user, token }) {
+    const { id } = useParams();
+    // STATE VARIABLES
+    // ---------------
+    const [viewAll, setViewAll] = useState(null);
+    const [tripComments, setTripComments] = useState(messages);
 
+    // VISUAL CHANGES
+    // --------------
     const handleCommentClick = (e) => {
         e.preventDefault();
-        viewAll ? setViewAll(false) : setViewAll(true)
+        setViewAll(e.target)
+        console.log(e.target)
+        // viewAll ? setViewAll(false) : setViewAll(true)
     }
-    const postSubmitHandler = (e) => {
+
+    const handleExitCommentViewerClick = (e) => {
+        e.preventDefault();
+        setViewAll(null);
+    }
+
+    // CREATE NEW COMMENT ON TRIP
+    const postSubmitHandler = async (e) => {
         e.preventDefault();
         const body = {
-            title: e.target.elements[0].value,
-            content: e.target.elements[2].value,
+            UserId: user.id,
+            content: e.target.elements[0].value,
+            TripId: id,
         }
-        // api.createPost(body)
-        console.log(body)
+        const res = await api.createComment(body, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        });
+
+        if (res.status === 200) {
+            const newCommentData = await api.getAllTripComments(id);
+            setTripComments(newCommentData.data);
+            e.target.elements[0].value = '';
+        } else {
+            alert('Error posting comment...')
+        }
     }
+
+    // CREATE NEW COMMENT ON COMMENT
     const commentSubmitHandler = (e) => {
         e.preventDefault();
         const body = {
@@ -64,11 +94,11 @@ export default function Lounge({ messages, travellers }) {
             <Col lg={9}>
                 <div className="message-board">
                     <h3>Message Board</h3>
-                    {viewAll ? (
+                    {viewAll === null ? (
                         <div className="messages">
-                            {messages.map(message => {
+                            {tripComments.map(message => {
                                 return (
-                                    <button className="message-button" onClick={handleCommentClick} key={message.id}>
+                                    <button className="message-button" onClick={handleCommentClick} key={message.id} message={message}>
                                         <Message message={message}/>
                                     </button>
                                 )}
@@ -76,22 +106,17 @@ export default function Lounge({ messages, travellers }) {
                         </div>
                     ) : (
                         <div className="messages">
-                            <button onClick={handleCommentClick}>
+                            <button onClick={handleExitCommentViewerClick}>
                                 <FontAwesomeIcon icon={faChevronCircleLeft} size='1x' className="me-2"/>
                                 Back
                             </button>
+                            <h6>{tripComments[0].content}</h6>
+                            {tripComments[0].User.username}
                         </div>
                     )}
-                    {viewAll ? (
-                        <form id="post-submit-form" className="message-input" onSubmit={postSubmitHandler}>
-                            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5em'}}>
-                                <Form.Control type="text" placeholder="Post Title" style={{width: '60%'}} />
-                                <button className="add-post-btn" type="submit">
-                                    Submit
-                                    <FontAwesomeIcon icon={faChevronCircleRight} size='1x' className="ms-2" />
-                                </button>
-                            </div>
-                            <Form.Control as="textarea" rows={3} placeholder="What needs discussing?" />
+                    {viewAll === null ? (
+                        <form id="post-submit-form" onSubmit={postSubmitHandler}>
+                            <Form.Control type="text" placeholder="Share your thoughts!" />
                         </form>
                     ) : (
                         <form id="comment-submit-form" onSubmit={commentSubmitHandler}>

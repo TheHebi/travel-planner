@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Tripcard from '../components/Tripcard/Tripcard.js';
 import api from '../utils/api.js';
 
-export default function Trips() {  
+export default function Trips({ user, token }) {
     const { id } = useParams();
     // STATE VARIABLES
     // ---------------
@@ -16,19 +16,21 @@ export default function Trips() {
     // ------------------
     useEffect(() => {
         api.getSingleTrip(id).then(res => {setTripData(res.data)});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // GRAB DATA FROM API
+    // GRAB BUDGET DATA FROM API
     // ------------------
     useEffect(() => {
-        api.getSingleBudget(id).then(res => {
+        api.getSingleBudget(id, user.id).then(res => {
             if (res.data) {
                 setBudgetData(res.data[0]);
             }
         });
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user])
 
     return (
-        <Tripcard tripData={tripData} budgetData={budgetData} />
+        <Tripcard tripData={tripData} budgetData={budgetData} user={user} token={token} />
     )
 }
