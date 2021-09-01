@@ -1,0 +1,121 @@
+.viewTripsMain {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardTripName {
+    color: #4d5e85;
+    align-self: center;
+    margin: 10px 0px;
+}
+
+.viewTripsHeaderBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.viewTripsHeader {
+    color:#dfd9d9;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.viewTripsBackgroundImg {
+    width: 110px;
+    height: 110x;
+}
+
+.earthImg {
+    width: 90px;
+    height: 90x;
+}
+
+.viewTripsCardContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 30px 0px;
+    justify-content: space-evenly;
+    /* border: 1px white solid; */
+}
+
+.viewTripsCard {
+    width: 300px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    background-color: #dfd9d9;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+.cityName {
+    color: #4d5e85;
+    display: flex;
+    flex-direction: row;
+    color: #4d5e85;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tripDuration {
+    display: flex;
+    flex-direction: row;
+    color: #4d5e85;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.numberOfTraveler {
+    display: flex;
+    flex-direction: row;
+    color: #4d5e85;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+.viewDeleteBtn {
+    display: flex;
+    flex-direction: column !important;
+    align-self: center;
+}
+
+.tripViewBtn {
+    background-color: rgb(100, 153, 149) !important;
+    color: #dfd9d9 !important;
+}
+
+.tripDeleteBtn {
+    background-color: rgb(211, 46, 17) !important;
+    color: #dfd9d9 !important;
+}
+
+.pTag {
+    margin-bottom: 0px !important;
+}
+
+.locationIcon {
+    color: #4d5e85;
+    transform: scale(0.8);
+}
+
+.durationIcon {
+    color: #4d5e85;
+    transform: scale(0.8);
+}
+
+.groupIcon {
+    color: #4d5e85;
+    transform: scale(0.8);
+}

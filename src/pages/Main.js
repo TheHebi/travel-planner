@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../utils/api';
 
@@ -9,9 +9,6 @@ import Contact from '../components/Contact/Contact';
 import Recommendation from '../components/Recommendation/Recommendation';
 import LoginModal from '../components/LoginModal/LoginModal';
 import SignupModal from '../components/SignupModal/SignupModal';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 
 import './Main.css';
 
@@ -80,15 +77,31 @@ export default function Main(props) {
         <div>
             <div id="home">
                 <div className="home-main" style={{ height: mainHeight }}>
-                    <h1 className="text-light">Message to Customer</h1>
-                    <h3 style={{marginBottom:"60px"}} className="text-light">Message to Customer</h3>
+                    <h1 className="text-light">LET US PLAN FOR YOU</h1>
+                    <h3 style={{ marginBottom: "60px" }} className="text-light">Message to Customer</h3>
                     {!props.user?.username ? (<div className="mb-3">
-                        <button onClick={loginModalShow} className="modal-button mx-2" id="loginBtn">Login</button>
-                        <button onClick={signupModalShow} className="modal-button mx-2" id="signupBtn">Signup</button>
+                        <button onClick={loginModalShow} className="modal-button mx-2" id="loginBtn">
+                            <span class="material-icons md-18">
+                                login
+                            </span><br />
+                            Login
+
+                        </button>
+                        <button onClick={signupModalShow} className="modal-button mx-2" id="signupBtn">
+                            <span class="material-icons">
+                                person_add
+                            </span><br />
+                            Signup
+
+                        </button>
                     </div>) : (<div className="d-flex flex-column align-items-center"><h3 style={{ color: "white" }}>Welcome back, {props.user.username}</h3> <Link to="/createTrip">
                         <button className="modal-button mx-2">
+                            <span class="material-icons">
+                                flight_takeoff
+                            </span>
+                            <br />
                             Get Started
-                            <FontAwesomeIcon icon={faPlaneDeparture} size='1x' className="ms-3" />
+
                         </button>
                     </Link> </div>)}
 

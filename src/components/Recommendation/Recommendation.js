@@ -8,10 +8,11 @@ export default function Recommendation() {
     return (
         <div className="recommendation-main" id="recommendation">
             <div className="d-flex flex-column align-items-center">
-            <img src={globe} width="80px" height="80px" />
+            <img className="globeLogo" src={globe}/>
             </div>
-            <div className="recommendation-header">
-                <h1>Recommendations from our Staff</h1>
+            <div className="recommendation-header mb-4">
+                <h1 className="recommendation-header-main">Recommendations from our Staff</h1>
+                <h1 className="recommendation-header-mobile">Recommendations</h1>
                 <h5>Here are some of our suggestions!</h5>
             </div>
 
