@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Logo from '../../images/Logo.png';
 
@@ -15,6 +15,7 @@ import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
 // LOCAL IMPORTS
@@ -22,7 +23,7 @@ import './Navigation.css';
 
 export default function Navigation(props) {
     // get whether user is on homepage
-    const location = window.location.pathname
+    const location = window.location.pathname;
     const isHome = (location === '/');
 
     const toCreateTripPage = () => {
@@ -34,22 +35,24 @@ export default function Navigation(props) {
             {!props.user?.username ? (<Navbar
                 expand="lg"
                 className="navbar custom-nav fixed-top">
-                <Container fluid>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Container fluid style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex' }}>
+                        <Nav.Link className="custom-navlink-text mx-4 mb-2" href="/"><img src={Logo} width="180" height="60" /></Nav.Link>
+                    </div>
+                    <Navbar.Toggle className="navbar-toggler" aria-controls="basic-navbar-nav">
+                        <span><FontAwesomeIcon style={{ color: "white" }} icon={faBars}/></span>
+                    </Navbar.Toggle>
                     <Navbar.Collapse id="basic-navbar-nav" className="navbar-container">
                         <Nav className="custom-navbar-items">
                             <div style={{ display: 'flex' }}>
-                                <Nav.Link className="custom-navlink-text mx-4" href="/"><img src={Logo} width="180" height="60" /></Nav.Link>
-                            </div>
-                            <div style={{ display: 'flex' }}>
-                                {isHome === true &&
-                                    <div className="custom-navlink-list d-flex flex-row align-items-center">
-                                        <Nav.Link className="custom-navlink-text mx-4 text-light" href="#home">Home</Nav.Link>
-                                        <Nav.Link className="custom-navlink-text mx-4 text-light" href="#features">Features</Nav.Link>
-                                        <Nav.Link className="custom-navlink-text mx-4 text-light" href="#recommendation">Recommendations</Nav.Link>
-                                        <Nav.Link className="custom-navlink-text mx-4 text-light" href="#contact">Contact Us</Nav.Link>
+                                {(isHome === true &&
+                                    <div className="custom-navlink-list">
+                                        <Nav.Link className="custom-navlink-text text-light" href="#home"><span className="navbar-content">HOME</span></Nav.Link>
+                                        <Nav.Link className="custom-navlink-text text-light" href="#features"><span className="navbar-content">FEATURES</span></Nav.Link>
+                                        <Nav.Link className="custom-navlink-text text-light" href="#recommendation"><span className="navbar-content">RECOMMENDATIONS</span></Nav.Link>
+                                        <Nav.Link className="custom-navlink-text text-light" href="#contact"><span className="navbar-content">CONTACT</span></Nav.Link>
                                     </div>
-                                }
+                                )}
                             </div>
                         </Nav>
                     </Navbar.Collapse>
@@ -57,22 +60,21 @@ export default function Navigation(props) {
             </Navbar>) : (<Navbar
                 expand="lg"
                 className="navbar custom-nav fixed-top">
-                <Container fluid>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav" className="navbar-container">
+                <Container fluid className="container-mobile">
+                    <div className="loggedinLogo">
+                        <Nav.Link className="custom-navlink-text mx-4" href="/"><img src={Logo} width="180" height="60" /></Nav.Link>
+                    </div>
+                    <div className="navbar-container">
                         <Nav className="custom-navbar-items">
-                            <div style={{ display: 'flex' }}>
-                                <Nav.Link className="custom-navlink-text mx-4" href="/"><img src={Logo} width="180" height="60" /></Nav.Link>
-                            </div>
                             <div className="mx-3">
                                 <span className="navbar-welcome mx-2">Hello, {props.user.username}</span>
                                 <NavbarDropdown>
                                     <NavbarDropdown.Toggle className="menu__item">
                                         <NavbarDropdown.Open>
-                                            <FontAwesomeIcon style={{color:"white"}} icon={faCaretDown} fixedWidth />
+                                            <FontAwesomeIcon style={{ color: "white" }} icon={faCaretDown} fixedWidth />
                                         </NavbarDropdown.Open>
                                         <NavbarDropdown.Close>
-                                            <FontAwesomeIcon style={{color:"white"}} icon={faCaretUp} fixedWidth />
+                                            <FontAwesomeIcon style={{ color: "white" }} icon={faCaretUp} fixedWidth />
                                         </NavbarDropdown.Close>
                                     </NavbarDropdown.Toggle>
                                     <NavbarDropdown.CSSTransitionMenu
@@ -80,7 +82,7 @@ export default function Navigation(props) {
                                     >
                                         <NavbarDropdown.Item className="example1-dropdown-menu-item" onClick={toCreateTripPage}>
                                             <div>
-                                                <FontAwesomeIcon icon={faCalendarPlus} fixedWidth />
+                                                <FontAwesomeIcon icon={faCalendarPlus} fixedWidth/>
                                             </div>
                                             <div className="example1-dropdown-menu-item__spacer" />
                                             <div className="example1-dropdown-menu-item__text">Create New Trip</div>
@@ -101,17 +103,16 @@ export default function Navigation(props) {
                                         </NavbarDropdown.Item>
                                         <NavbarDropdown.Item className="example1-dropdown-menu-item" onClick={props.handleLogout}>
                                             <div>
-                                                <FontAwesomeIcon style={{color:"red"}} icon={faSignOutAlt} fixedWidth />
+                                                <FontAwesomeIcon style={{ color: "red" }} icon={faSignOutAlt} fixedWidth />
                                             </div>
                                             <div className="example1-dropdown-menu-item__spacer" />
-                                            <div style={{color:"red"}} className="example1-dropdown-menu-item__text">Logout</div>
+                                            <div style={{ color: "red" }} className="example1-dropdown-menu-item__text">Logout</div>
                                         </NavbarDropdown.Item>
                                     </NavbarDropdown.CSSTransitionMenu>
                                 </NavbarDropdown>
-                                );
                             </div>
                         </Nav>
-                    </Navbar.Collapse>
+                    </div>
                 </Container>
             </Navbar>)}
         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
+import { usePlacesWidget } from 'react-google-autocomplete';
+import moment from 'moment';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
@@ -8,15 +9,13 @@ import "./react_dates_overrides.css";
 
 
 // BOOTSTRAP IMPORTS
-import Container from 'react-bootstrap/Container';
+import api from '../../utils/api';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCity } from '@fortawesome/free-solid-svg-icons';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faSuitcase } from '@fortawesome/free-solid-svg-icons';
 import { faPlaneSlash } from '@fortawesome/free-solid-svg-icons';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
@@ -25,10 +24,13 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 // LOCAL IMPORTS
 import './CreateTripCard.css';
 
-export default function CreateTripCard() {
+export default function CreateTripCard(props) {
 
+    // const [destination, setDestination] = useState("");
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [destination, setDestination] = useState("");
+    const [tripName, setTripName] = useState("");
     const [focusedInput, setFocusedInput] = useState(null);
     const [calendarStack, setCalendarStack] = useState("horizontal");
 
@@ -41,8 +43,8 @@ export default function CreateTripCard() {
     }, [window.innerWidth]);
 
     const handleDatesChange = ({ startDate, endDate }) => {
-        console.log(startDate);
-        console.log(endDate);
+        // console.log(startDate);
+        // console.log(endDate);
         setStartDate(startDate);
         setEndDate(endDate);
     };
@@ -50,29 +52,44 @@ export default function CreateTripCard() {
     const { ref: bootstrapRef } = usePlacesWidget({
         apiKey: "AIzaSyBCkCMjgFyX6U9QyzmjTmbOfrUKAd_mO7w",
         language: "en",
-        onPlaceSelected: (place) => console.log(place),
+        onPlaceSelected: (place) => {
+            console.log(place)
+            if (place.address_components[3].long_name === "United States") {
+                setDestination(place.address_components[0].long_name + ", " + place.address_components[2].short_name + ", " + place.address_components[3].short_name)
+            } else {
+                setDestination(place.address_components[0].long_name + ", " + place.address_components[3].long_name)
+            }
+        },
     });
-
-    const [createTripFormState, setCreateTripFormState] = useState({
-        tripName:"",
-        startDate: null,
-        endDate: null,
-        email:""
-    })
 
     const handleCreateTripFormSubmit = e => {
         e.preventDefault();
-        console.log('Trip Name: ' + createTripFormState.tripName);
-        console.log('Email: ' + createTripFormState.email);
-        console.log('Start Date: ' + startDate);
-        console.log('End Date: ' + endDate);
+        console.log('Trip Name: ' + tripName);
+        console.log('Destination: ' + destination);
+        const formattedStartDate = moment.unix(startDate / 1000).format("MM/DD/YYYY");
+        const formattedEndDate = moment.unix(endDate / 1000).format("MM/DD/YYYY");
+        console.log('Start Date: ' + formattedStartDate);
+        console.log('End Date: ' + formattedEndDate);
+        console.log('Username: ' + props.user.username);
+        console.log('User ID: ' + props.user.id);
 
-        setCreateTripFormState({
-            tripName: "",
-            startDate: null,
-            endDate: null,
-            email: ""
-        })
+        // TODO: api post route
+        api.createTrip({ name: tripName, destination: destination, departure: formattedStartDate, return: formattedEndDate, UserId: props.user.id }, {
+            headers: {
+                authorization: `Bearer ${props.token}`
+            }
+        }).then(res => {
+            console.log(res.data);
+
+        }).catch(err => {
+            console.log('error occured');
+            console.log(err);
+        });
+
+        setDestination("");
+        setTripName("");
+        setStartDate(null);
+        setEndDate(null);
     }
 
     const toTripOverviewPage = () => {
@@ -84,37 +101,34 @@ export default function CreateTripCard() {
             <div className="createTripBackground">
                 <div className="create-trip-main">
                     <h1 className="mb-5">
-
                         Create your Trip!
-
                     </h1>
-
 
                     <Form onSubmit={handleCreateTripFormSubmit}>
 
-                        <Form.Group className="mb-3" controlId="tripName">
-                            <Form.Label><h5>Trip Name</h5></Form.Label>
-                            <InputGroup style={{ width: "auto", height: "45px" }}>
+                        <Form.Group className="formGroup mb-5" controlId="tripName">
+                            <Form.Label className="labelName"><h5>Trip Name</h5></Form.Label>
+                            <InputGroup className="inputStyle">
                                 <InputGroup.Text>
                                     <FontAwesomeIcon icon={faPencilAlt} size='1x' />
                                 </InputGroup.Text>
-                                <Form.Control value={createTripFormState.tripName} onChange={(e) => setCreateTripFormState({...createTripFormState, tripName: e.target.value})} type="text" placeholder="Name your Trip!"/>
+                                <Form.Control value={tripName} onChange={(e) => setTripName(e.target.value)} type="text" placeholder="Name your Trip!" />
                             </InputGroup>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="destination">
-                            <Form.Label><h5>Destination</h5></Form.Label>
-                            <InputGroup style={{ width: "auto", height: "45px" }}>
+                        <Form.Group className="formGroup mb-5" controlId="destination">
+                            <Form.Label className="labelName"><h5>Destination</h5></Form.Label>
+                            <InputGroup className="inputStyle">
                                 <InputGroup.Text>
                                     <FontAwesomeIcon icon={faCity} size='1x' />
                                 </InputGroup.Text>
-                                <Form.Control type="text" ref={bootstrapRef} />
+                                <Form.Control value={destination} onChange={(e) => setDestination(e.target.value)} type="text" ref={bootstrapRef} />
                             </InputGroup>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="dates">
-                            <Form.Label><h5>Dates</h5></Form.Label>
-                            <InputGroup>
+                        <Form.Group className="mb-5" controlId="dates">
+                            <Form.Label className="labelName"><h5>Dates</h5></Form.Label>
+                            <InputGroup className="datePicker-mobile">
                                 <DateRangePicker
                                     startDate={startDate} // momentPropTypes.momentObj or null,
                                     startDateId="trip-start-date" // PropTypes.string.isRequired,
@@ -127,21 +141,8 @@ export default function CreateTripCard() {
                                     showClearDates={true}
                                     isOutsideRange={() => false}
                                     orientation={calendarStack}
-                                    reopenPickerOnClearDates = {true}
+                                    reopenPickerOnClearDates={true}
                                 />
-                            </InputGroup>
-                        </Form.Group>
-
-                        <Form.Group className="mb-5">
-                            <Form.Label><h5>Invite</h5></Form.Label>
-                            <InputGroup style={{ width: "auto", height: "45px" }}>
-                                <InputGroup.Text>
-                                    <FontAwesomeIcon icon={faUsers} size='1x' />
-                                </InputGroup.Text>
-                                <Form.Control value={createTripFormState.email} onChange={(e) => setCreateTripFormState({...createTripFormState, email: e.target.value})} type="email" placeholder="User Email" />
-                                {/* <Button className="inviteUserBtn">
-                                    <FontAwesomeIcon className="inviteUserIcon" icon={faUserPlus} size='1x' />
-                                </Button> */}
                             </InputGroup>
                         </Form.Group>
 

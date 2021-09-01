@@ -3,24 +3,14 @@
     background-size: cover;
     background-position: center;
     min-height: 500px;
-  
+    font-family: 'Noto Sans KR', sans-serif;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
-  /* .home-main-button {
-    background-color: #9abee0;
-    border: none;
-    border-radius: 0.25rem;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    padding-right: 1em;
-    padding-left: 1em;
-    font-size: 1.2em;
-  } */
-  
+
   html body [data-ca3_iconfont="ETmodules"]::before {
     font-family: "ETmodules";
   }
@@ -31,20 +21,9 @@
   }
   
   .modal-button {
-      transition: all 0.5s ease-in-out;	
+    transition: all 0.5s ease-in-out;	
+    font-family: 'Assistant', sans-serif;
     color: white;
-    font-size: 1.2em;
-    border: none;
-    padding-top:0.5em;
-    padding-bottom:0.5em;
-    padding-right: 1.5em;
-    padding-left: 1.5em;
-    background-color: transparent;
-  }
-  
-  .logout-button {
-      transition: all 0.5s ease-in-out;	
-    color: red;
     font-size: 1.2em;
     border: none;
     padding-top:0.5em;
@@ -57,11 +36,6 @@
   .modal-button:hover {
     color: black;
     background-color: white;
-  }
-  
-  .logout-button:hover {
-    color: black;
-    background-color: red;
   }
   
   .ca3-scroll-down-arrow {
@@ -107,4 +81,22 @@
   0%   { transform:translate(0,-20px); opacity: 0;  }
   50%  { opacity: 1;  }
   100% { transform:translate(0,20px); opacity: 0; }
+  }
+
+  @media screen and (max-width: 576px) {
+    .home-main {
+      background-image: url(https://images.unsplash.com/photo-1498354178607-a79df2916198?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
+      background-size: cover;
+      background-position: bottom;
+      min-height: 500px;
+    
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mainSlogan {
+      text-align: center;
+    }
   }

@@ -7,6 +7,7 @@ import Navigation from './components/Navigation/Navigation.js';
 import Main from './pages/Main.js';
 import Trips from './pages/Trips.js';
 import CreateTrip from './pages/CreateTrip.js';
+import AboutTeam from './pages/AboutTeam.js';
 import api from './utils/api';
 
 function App() {
@@ -68,7 +69,10 @@ function App() {
             <Trips setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} />
           </Route>
           <Route path="/createTrip">
-            <CreateTrip />
+            <CreateTrip setUserState={setUserState} userState={userState} user={userState.user} token={userState.token}/>
+          </Route>
+          <Route path="/about">
+            <AboutTeam/>
           </Route>
         </Switch>
       </Router>

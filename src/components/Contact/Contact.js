@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../images/Logo.png';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
@@ -9,14 +13,35 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import './Contact.css';
 
 export default function Contact() {
+
+    const handleContactFormSubmit = e => {
+        e.preventDefault();
+        alert("Thank you for submitting your query!")
+    }
+
+    // Contact Us Modal
+    // const [contactModalState, setContactModalState] = useState(false);
+
+    // const contactModalClose = () => setContactModalState(false);
+    // const contactModalShow = () => setContactModalState(true);
+
     return (
         <div className="contact-main" id="contact">
             <div className="contact-header">
-                <h1>Contact Us</h1>
+                <h1>CONTACT</h1>
             </div>
-            <div className="contact-team">
 
+            <div>
+                <Link className="meet-our-team-button" to="/about">
+                    Meet Our Team
+                </Link>
+            </div>
 
+            <div className="contact-us-modal-button">
+                <p>Contact Us</p>
+            </div>
+
+            {/* <div className="contact-team">
                 <div className="fe-be-team">
                     <div className="mb-3">
                         <h3>Front-End Team</h3>
@@ -83,11 +108,12 @@ export default function Contact() {
                         </ul>
                     </div>
                 </div>
+            </div> */}
 
-            </div>
             <div className="d-flex justify-content-center align-items-center">
-                <span className="custom-navlink-text mx-4" href="/"><img src={Logo} width="180" height="60" alt="team logo" /></span>
+                <img className="contact-logo mb-2" src={Logo} alt="team logo" />
             </div>
+
             <div className="contact-copyright">
                 <p>© 2021 Trips Refocused - All rights reserved.</p>
             </div>
