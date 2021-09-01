@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Moment from 'react-moment';
+import { useParams } from 'react-router-dom';
 
 // BOOTSTRAP IMPORTS
 import Row from 'react-bootstrap/Row';
@@ -8,38 +10,161 @@ import Form from 'react-bootstrap/Form'
 // FONT AWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
 
 // LOCAL IMPORTS
 import './Lounge.css';
 import Message from '../Loungemessage/Loungemessage.js';
-// import api from '../../utils/api';
+import api from '../../utils/api';
 
-export default function Lounge({ messages, travellers }) {
+export default function Lounge({ messages, travellers, creator, handleUserAddition, user, token }) {
+    const { id } = useParams();
+    // STATE VARIABLES
+    // ---------------
     const [viewAll, setViewAll] = useState(true);
+    const [tripComments, setTripComments] = useState(messages);
+    const [tripComment, setTripComment] = useState(tripComments[0]);
+    const [commentId, setCommentId] = useState(0);
+    // search bar
+    const [allUsers, setAllUsers] = useState([]);
+    const [visibleSearchedUsers, setVisibleSearchedUsers] = useState([]);
+    const [searchedUser, setSearchedUser] = useState('');
+    const [searchedUserId, setSearchedUserId] = useState('');
 
-    const handleCommentClick = (e) => {
+    // EFFECTS
+    // --------------
+    useEffect(async () => {
+        const userData = await api.getAllUsers();
+
+        // create an object linking user IDs to usernames
+        const users = [];
+        const usersLowercase = [];
+        for (let i=0; i<userData.data.length; i++) {
+            users.push({
+                username: userData.data[i].username,
+                id: userData.data[i].id,
+            });
+        };
+        setAllUsers(users);
+    }, []);
+
+    useEffect(() => {
+        if (searchedUser === '') {
+            setVisibleSearchedUsers([]);
+        } else {
+            const searchResults = [];
+            for (let i=0; i<allUsers.length; i++) {
+                if (allUsers[i].username.toLowerCase().includes(searchedUser) || allUsers[i].username.includes(searchedUser)) {
+                    searchResults.push(allUsers[i])
+                }
+            };
+            setVisibleSearchedUsers(searchResults);
+        }
+
+    }, [searchedUser]);
+
+    // VISUAL CHANGES
+    // --------------
+    const handleCommentClick = async (e) => {
         e.preventDefault();
-        viewAll ? setViewAll(false) : setViewAll(true)
+        const res = await api.getSingleComment(e.target.getAttribute('data-id'));
+        if (res.status = 200) {
+            setTripComment(res.data);
+            console.log(`viewing comment ${res.data.id}`);
+            setCommentId(res.data.id);
+            setViewAll(false);
+        } else {
+            alert('Error fetching comment data. Please try again later.')
+        };
     }
-    const postSubmitHandler = (e) => {
+
+    const handleExitCommentViewerClick = (e) => {
+        e.preventDefault();
+        setViewAll(true);
+    }
+
+    // ADD USER TO TRIP
+    const userAddHandler = async (e) => {
+        e.preventDefault();
+        handleUserAddition(id, searchedUserId);
+        setSearchedUser('');
+    }
+
+    // CREATE NEW COMMENT ON TRIP
+    const postSubmitHandler = async (e) => {
         e.preventDefault();
         const body = {
-            title: e.target.elements[0].value,
-            content: e.target.elements[2].value,
+            UserId: user.id,
+            content: e.target.elements[0].value,
+            TripId: id,
         }
-        // api.createPost(body)
-        console.log(body)
+        const res = await api.createComment(body, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        });
+
+        if (res.status === 200) {
+            const newCommentData = await api.getAllTripComments(id);
+            setTripComments(newCommentData.data);
+            e.target.elements[0].value = '';
+        } else {
+            alert('Error posting comment...')
+        }
     }
-    const commentSubmitHandler = (e) => {
+
+    // CREATE NEW COMMENT ON COMMENT
+    const commentSubmitHandler = async (e) => {
         e.preventDefault();
         const body = {
-            content: e.target.elements[0].value
+            CommentId: commentId,
+            content: e.target.elements[0].value,
+            UserId: user.id,
         }
-        // api.createComment(body)
-        console.log(body)
+        const res = await api.createComment(body, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        });
+
+        if (res.status === 200) {
+            const newCommentData = await api.getAllTripComments(id);
+            setTripComments(newCommentData.data);
+            for (let i=0; i<newCommentData.data.length; i++) {
+                if (newCommentData.data[i].id === commentId) {
+                    setTripComment(newCommentData.data[i])
+                }
+            }
+            e.target.elements[0].value = '';
+        } else {
+            alert('Error posting comment...');
+        };
+    }
+
+    // DELETE A USER'S COMMENT
+    const commentDeleteHandler = async (deletionId) => {
+        // delete comment
+        const res = await api.deleteComment(deletionId, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+
+        if (res.status === 200) {
+            // grab all comments
+            const newCommentData = await api.getAllTripComments(id);
+            setTripComments(newCommentData.data);
+            for (let i=0; i<newCommentData.data.length; i++) {
+                console.log(newCommentData.data[i])
+                console.log(commentId)
+                if (newCommentData.data[i].id === commentId) {
+                    setTripComment(newCommentData.data[i])
+                }
+            };
+        } else {
+            alert('Error deleting comment...')
+        }
     }
 
     return (
@@ -47,6 +172,10 @@ export default function Lounge({ messages, travellers }) {
             <Col lg={3}>
                 <div className="travellers">
                     <h3 style={{alignSelf: 'center', lineHeight: '1.5em'}}>Travellers</h3>
+                    <div className="traveller">
+                        <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
+                        {creator.username}
+                    </div>
                     {travellers.map((traveller, index) => {
                         return (
                             <div className="traveller" key={index}>
@@ -55,43 +184,99 @@ export default function Lounge({ messages, travellers }) {
                             </div>
                         )
                     })}
-                    <button className="add-traveller-btn">
-                        <FontAwesomeIcon icon={faPlusCircle} size='1x' className="me-2" />
-                        Invite a Traveller
-                    </button>
+                    <div className="search-area">
+                        <form onSubmit={userAddHandler}>
+                            <Form.Control
+                                className="user-search-bar"
+                                type="text"
+                                placeholder="Search by username"
+                                value={searchedUser}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setSearchedUser(e.target.value);
+
+                                    for (let i=0; i<allUsers.length; i++) {
+                                        if (e.target.value.toLowerCase() === allUsers[i].username.toLowerCase()) {
+                                            setSearchedUserId(allUsers[i].id)
+                                        };
+                                    };
+                                }}
+                            />
+                            <input type="submit" style={{display: 'none'}} />
+                            <div className="search-list">
+                                {visibleSearchedUsers.map((user, index) => (
+                                    <button
+                                        key={index}
+                                        className="user-search-result"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setSearchedUser(user.username);
+                                            setSearchedUserId(user.id);
+                                        }}
+                                    >
+                                        {user.username}
+                                    </button>
+                                ))}
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </Col>
             <Col lg={9}>
                 <div className="message-board">
                     <h3>Message Board</h3>
-                    {viewAll ? (
+                    {viewAll === true ? (
                         <div className="messages">
-                            {messages.map(message => {
+                            {tripComments.map(message => {
                                 return (
-                                    <button className="message-button" onClick={handleCommentClick} key={message.id}>
-                                        <Message message={message}/>
+                                    <button
+                                        className="message-button"
+                                        onClick={handleCommentClick}
+                                        key={message.id}
+                                        message={message}
+                                        data-id={message.id}
+                                    >
+                                        <Message
+                                            message={message}
+                                            data-id={message.id}
+                                            user={user}
+                                            handleDelete={commentDeleteHandler}
+                                        />
                                     </button>
                                 )}
                             )}
                         </div>
                     ) : (
                         <div className="messages">
-                            <button onClick={handleCommentClick}>
+                            <button
+                                className="back-to-view-all-btn"
+                                onClick={handleExitCommentViewerClick}
+                            >
                                 <FontAwesomeIcon icon={faChevronCircleLeft} size='1x' className="me-2"/>
                                 Back
                             </button>
+                            <div className="comment-subject-wrapper">
+                                <h6 className="comment-subject-content">{tripComment.content}</h6>
+                                <p className="comment-subject-poster">
+                                    {tripComment.User.username} - 
+                                    <Moment className="comment-subject-date" format="MMM Do YYYY" date = {tripComment.createdAt} />
+                                </p>
+                            </div>
+                            <p>Replies:</p>
+                            {tripComment.SubComment ? (tripComment.SubComment.map(message =>
+                                (<Message
+                                    key={message.id}
+                                    message={message}
+                                    data-id={message.id}
+                                    user={user}
+                                    handleDelete={commentDeleteHandler}
+                                />)
+                            )) : ( null )}
                         </div>
                     )}
-                    {viewAll ? (
-                        <form id="post-submit-form" className="message-input" onSubmit={postSubmitHandler}>
-                            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5em'}}>
-                                <Form.Control type="text" placeholder="Post Title" style={{width: '60%'}} />
-                                <button className="add-post-btn" type="submit">
-                                    Submit
-                                    <FontAwesomeIcon icon={faChevronCircleRight} size='1x' className="ms-2" />
-                                </button>
-                            </div>
-                            <Form.Control as="textarea" rows={3} placeholder="What needs discussing?" />
+                    {viewAll === true ? (
+                        <form id="post-submit-form" onSubmit={postSubmitHandler}>
+                            <Form.Control type="text" placeholder="Share your thoughts!" />
                         </form>
                     ) : (
                         <form id="comment-submit-form" onSubmit={commentSubmitHandler}>

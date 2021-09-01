@@ -26,7 +26,7 @@ function App() {
     const userId = localStorage.getItem('userId');
     if (token && userId) {
       api.getUser(userId, token).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         setUserState({
           token: token,
           user: {
@@ -69,7 +69,7 @@ function App() {
             <ScrollToTop smooth />
           </Route>
           <Route path="/trips/:id">
-            <Trips setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} />
+            <Trips user={userState.user} token={userState.token} />
           </Route>
           <Route path="/createTrip">
             <CreateTrip setUserState={setUserState} userState={userState} user={userState.user} token={userState.token}/>
