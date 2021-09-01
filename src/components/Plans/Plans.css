@@ -1,0 +1,18 @@
+.plan-wrapper-super {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.plan-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.add-plan-button {
+  background: green;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.3em 1em 0.3em 1em;
+  margin-right: 1em;
+}
