@@ -10,7 +10,7 @@
 .create-trip-main {
     background: rgb(187, 181, 181, 0.8);
     color:rgb(71, 110, 158);
-    width: 60%;
+    width: 80%;
     height: 70%;
     padding: 50px 0 50px 0;
     margin-top: 200px;
@@ -20,6 +20,23 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.labelName {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px !important;
+}
+
+.inputStyle {
+    width: 80%;
+    height: 50px;
 }
 
 .inviteUserBtn {
@@ -62,4 +79,17 @@
 .createTripCancelBtn:hover .createTripCancelBtnIcon {
     transform: scale(0.8);
     color:rgb(71, 110, 158);
+}
+
+@media screen and (max-width: 576px) {
+
+    .inputStyle {
+        width: 80% !important;
+        align-self: center !important;
+        height: 50px;
+    }
+
+    .datePicker-mobile {
+        padding: 0px 20px;
+    }
 }
