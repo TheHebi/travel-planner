@@ -4,7 +4,7 @@ const URL_PREFIX = 'http://localhost:3001';
     
 const api = {
     login: function(userData) {
-        return axios.post(`${URL_PREFIX}/api//users/login`, userData)
+        return axios.post(`${URL_PREFIX}/api/users/login`, userData)
     },
     signup: function(userData) {
         return axios.post(`${URL_PREFIX}/api//users/`, userData)
