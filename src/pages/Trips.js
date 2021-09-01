@@ -30,7 +30,25 @@ export default function Trips({ user, token }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
+    // HANDLE ADDING A USER TO TRIP
+    const addUser = async (tripId, userId) => {
+        const res = await api.addUserToTrip({
+            TripId: tripId,
+            UserId: userId
+        }, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        });
+
+        if (res.status === 200) {
+            api.getSingleTrip(id).then(res => {setTripData(res.data)});
+        } else {
+            alert('Error adding user to trip...');
+        };
+    }
+
     return (
-        <Tripcard tripData={tripData} budgetData={budgetData} user={user} token={token} />
+        <Tripcard tripData={tripData} budgetData={budgetData} handleUserAdd={addUser} user={user} token={token} />
     )
 }

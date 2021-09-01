@@ -11,13 +11,14 @@ import Form from 'react-bootstrap/Form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
 
 // LOCAL IMPORTS
 import './Lounge.css';
 import Message from '../Loungemessage/Loungemessage.js';
 import api from '../../utils/api';
 
-export default function Lounge({ messages, travellers, user, token }) {
+export default function Lounge({ messages, travellers, creator, handleUserAddition, user, token }) {
     const { id } = useParams();
     // STATE VARIABLES
     // ---------------
@@ -29,6 +30,7 @@ export default function Lounge({ messages, travellers, user, token }) {
     const [allUsers, setAllUsers] = useState([]);
     const [visibleSearchedUsers, setVisibleSearchedUsers] = useState([]);
     const [searchedUser, setSearchedUser] = useState('');
+    const [searchedUserId, setSearchedUserId] = useState('');
 
     // EFFECTS
     // --------------
@@ -37,13 +39,14 @@ export default function Lounge({ messages, travellers, user, token }) {
 
         // create an object linking user IDs to usernames
         const users = [];
+        const usersLowercase = [];
         for (let i=0; i<userData.data.length; i++) {
             users.push({
                 username: userData.data[i].username,
                 id: userData.data[i].id,
             });
         };
-        setAllUsers(users)
+        setAllUsers(users);
     }, []);
 
     useEffect(() => {
@@ -52,7 +55,7 @@ export default function Lounge({ messages, travellers, user, token }) {
         } else {
             const searchResults = [];
             for (let i=0; i<allUsers.length; i++) {
-                if (allUsers[i].username.includes(searchedUser)) {
+                if (allUsers[i].username.toLowerCase().includes(searchedUser) || allUsers[i].username.includes(searchedUser)) {
                     searchResults.push(allUsers[i])
                 }
             };
@@ -82,15 +85,9 @@ export default function Lounge({ messages, travellers, user, token }) {
     }
 
     // ADD USER TO TRIP
-    const userAddHandler = (e) => {
+    const userAddHandler = async (e) => {
         e.preventDefault();
-        // build body
-        // const body = {
-        //     TripId: id,
-        //     UserId: 
-        // }
-        console.log(searchedUser)
-        // set back to no value
+        handleUserAddition(id, searchedUserId);
         setSearchedUser('');
     }
 
@@ -175,6 +172,10 @@ export default function Lounge({ messages, travellers, user, token }) {
             <Col lg={3}>
                 <div className="travellers">
                     <h3 style={{alignSelf: 'center', lineHeight: '1.5em'}}>Travellers</h3>
+                    <div className="traveller">
+                        <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
+                        {creator.username}
+                    </div>
                     {travellers.map((traveller, index) => {
                         return (
                             <div className="traveller" key={index}>
@@ -184,10 +185,7 @@ export default function Lounge({ messages, travellers, user, token }) {
                         )
                     })}
                     <div className="search-area">
-                        <form
-                            onSubmit={userAddHandler}
-                            style={{position: 'relative'}}
-                        >
+                        <form onSubmit={userAddHandler}>
                             <Form.Control
                                 className="user-search-bar"
                                 type="text"
@@ -196,6 +194,12 @@ export default function Lounge({ messages, travellers, user, token }) {
                                 onChange={(e) => {
                                     e.preventDefault();
                                     setSearchedUser(e.target.value);
+
+                                    for (let i=0; i<allUsers.length; i++) {
+                                        if (e.target.value.toLowerCase() === allUsers[i].username.toLowerCase()) {
+                                            setSearchedUserId(allUsers[i].id)
+                                        };
+                                    };
                                 }}
                             />
                             <input type="submit" style={{display: 'none'}} />
@@ -207,6 +211,7 @@ export default function Lounge({ messages, travellers, user, token }) {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             setSearchedUser(user.username);
+                                            setSearchedUserId(user.id);
                                         }}
                                     >
                                         {user.username}

@@ -16,9 +16,35 @@
 .date-wrapper {
   display: flex;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .date-item {
   font-size: 1.6em;
   font-weight: 500;
+}
+
+.travellers-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  border-radius: 0.5rem;
+  /* border: 1px solid black; */
+  background: white;
+  padding: 1em;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.overview-traveller {
+  display: flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  width: 100%;
+  padding: 0.5em;
+}
+
+.trip-owner {
+  background: gold;
 }
