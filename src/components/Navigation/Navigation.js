@@ -30,6 +30,10 @@ export default function Navigation(props) {
         window.location = '/createTrip'
     };
 
+    const toViewTripsPage = () => {
+        window.location = '/viewTrips'
+    };
+
     return (
         <div>
             {!props.user?.username ? (<Navbar
@@ -87,7 +91,7 @@ export default function Navigation(props) {
                                             <div className="example1-dropdown-menu-item__spacer" />
                                             <div className="example1-dropdown-menu-item__text">Create New Trip</div>
                                         </NavbarDropdown.Item>
-                                        <NavbarDropdown.Item className="example1-dropdown-menu-item" onClick={() => alert('Item 2: clicked!')}>
+                                        <NavbarDropdown.Item className="example1-dropdown-menu-item" onClick={toViewTripsPage}>
                                             <div>
                                                 <FontAwesomeIcon icon={faBookmark} fixedWidth />
                                             </div>

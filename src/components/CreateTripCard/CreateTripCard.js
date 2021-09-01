@@ -54,11 +54,12 @@ export default function CreateTripCard(props) {
         language: "en",
         onPlaceSelected: (place) => {
             console.log(place)
-            if (place.address_components[3].long_name === "United States") {
-                setDestination(place.address_components[0].long_name + ", " + place.address_components[2].short_name + ", " + place.address_components[3].short_name)
-            } else {
-                setDestination(place.address_components[0].long_name + ", " + place.address_components[3].long_name)
-            }
+            setDestination(place.formatted_address);
+            // if (place.address_components[3].long_name === "United States") {
+            //     setDestination(place.address_components[0].long_name + ", " + place.address_components[2].short_name + ", " + place.address_components[3].short_name)
+            // } else {
+            //     setDestination(place.address_components[0].long_name + ", " + place.address_components[3].long_name)
+            // }
         },
     });
 

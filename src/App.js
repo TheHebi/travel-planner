@@ -8,6 +8,7 @@ import Main from './pages/Main.js';
 import Trips from './pages/Trips.js';
 import CreateTrip from './pages/CreateTrip.js';
 import AboutTeam from './pages/AboutTeam.js';
+import ViewTrips from './pages/ViewTrips.js';
 import api from './utils/api';
 
 function App() {
@@ -31,9 +32,11 @@ function App() {
           user: {
             email: res.data.email,
             id: res.data.id,
-            username: res.data.username
+            username: res.data.username,
+            trips: res.data.Trips
           }
         })
+        console.log(userState);
       }).catch(err => {
         console.log('no logged in user');
         setUserState({
@@ -70,6 +73,9 @@ function App() {
           </Route>
           <Route path="/createTrip">
             <CreateTrip setUserState={setUserState} userState={userState} user={userState.user} token={userState.token}/>
+          </Route>
+          <Route path="/viewTrips">
+            <ViewTrips setUserState={setUserState} userState={userState} user={userState.user} token={userState.token} trips={userState.user.trips}/>
           </Route>
           <Route path="/about">
             <AboutTeam/>

@@ -10,9 +10,6 @@ import Recommendation from '../components/Recommendation/Recommendation';
 import LoginModal from '../components/LoginModal/LoginModal';
 import SignupModal from '../components/SignupModal/SignupModal';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
-
 import './Main.css';
 
 export default function Main(props) {

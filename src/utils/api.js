@@ -4,21 +4,20 @@ const URL_PREFIX = 'http://localhost:3001';
     
 const api = {
     login: function(userData) {
-        return axios.post('http://localhost:3001/api/users/login', userData)
+        return axios.post(`${URL_PREFIX}/api//users/login`, userData)
     },
     signup: function(userData) {
-        return axios.post('http://localhost:3001/api/users/', userData)
+        return axios.post(`${URL_PREFIX}/api//users/`, userData)
     },
     createTrip: function(userData, headers) {
         return axios.post(`${URL_PREFIX}/api/trips/`, userData, headers)
     }
     ,
-    getUser: function(id, token) {
-        return axios.get("http://localhost:3001/api/users/"+ `${id}`, {
-            headers:{
-                authorization: `Bearer ${token}`
-            }
-        })
+    getUser: function(id) {
+        return axios.get(`${URL_PREFIX}/api//users/`+ `${id}`)
+    },
+    deleteTrip: function(id, headers) {
+        return axios.delete(`${URL_PREFIX}/api/trips/`+ `${id}`, headers)
     },
     // GET ROUTES
     // ----------
