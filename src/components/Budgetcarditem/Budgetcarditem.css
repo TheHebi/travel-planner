@@ -1,0 +1,45 @@
+.budgettable-item {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-top: 1px solid #454545;
+}
+
+.budgettable-item-left {
+  width: 66%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.budgettable-item-right {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.budgettable-item-left p {
+  width: 100%;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  margin: 0.5em 0 0.5em 0;
+}
+
+.budgettable-item-right p {
+  width: 100%;
+  margin: 0.5em 0 0.5em 0;
+  text-align: end;
+}
+
+.budgettable-item-left input {
+  width: 80%;
+  margin: 0.5em 0 0.5em 0;
+}
+
+.budgettable-item-right input {
+  width: 80%;
+  margin: 0.5em 0 0.5em 0;
+  text-align: end;
+}

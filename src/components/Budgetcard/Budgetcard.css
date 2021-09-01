@@ -30,32 +30,6 @@
   width: 100%;
 }
 
-.budgettable-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 1em;
-  padding-right: 1em;
-  border-top: 1px solid #454545;
-}
-
-.budgettable-item p:first-child {
-  width: 66%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.budgettable-item-right {
-  width: 33%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  vertical-align: middle;
-  text-align: end;
-}
-
 .budgettable-item-total {
   width: 100%;
   text-align: end;
@@ -73,4 +47,9 @@
 
 .hidden-item {
   display: none;
+}
+
+.budget-input-title {
+  margin: 0.2em 0 0.5em 0;
+  font-size: 1.4em;
 }

@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
 
 // LOCAL IMPORTS
 import './Budget.css';
@@ -20,6 +19,7 @@ export default function Budget({ budgetData, user, token }) {
     const { id } = useParams();
     // STATE VARIABLES
     // ---------------
+    const [isEditingBudget, setIsEditingBudget] = useState(false);
     const [budgetTotal, setBudgetTotal] = useState(budgetData ? budgetData.total : 0);
     const [addCategory, setAddCategory] = useState(false);
     const [budgetObject, setBudgetObject] = useState(budgetData);
@@ -38,6 +38,11 @@ export default function Budget({ budgetData, user, token }) {
         return budgetTotal;
     };
 
+    const toggleBudgetEditor = (e) => {
+        e.preventDefault();
+        setIsEditingBudget(!isEditingBudget);
+    }
+
     const handleBudgetChange = async (e) => {
         e.preventDefault();
         const newTotal = e.target.elements[0].value;
@@ -53,7 +58,8 @@ export default function Budget({ budgetData, user, token }) {
 
         if (res.status === 200) {
             // set on success
-            setBudgetTotal(newTotal)
+            setBudgetTotal(newTotal);
+            setIsEditingBudget(false);
         } else {
             alert('Error connecting to server... please try again later.')
         }
@@ -176,15 +182,30 @@ export default function Budget({ budgetData, user, token }) {
 
     return (
         <div style={{display: 'flex', flexDirection: 'column'}}>
-            <form onSubmit={handleBudgetChange} style={{display: 'flex'}}>
-                <input placeholder={budgetObject ? "Budget" : "Set a Budget"} type="number" />
-                <button className="ms-2" style={{background: 'none', border: 'none'}}>
-                    <FontAwesomeIcon icon={faArrowRight} size='1x' className="me-2" />
-                </button>
-            </form>
             <div className={(findBudgetTotal(budgetObject)>budgetTotal) ? 'budgetbar-wrapper overbudget' : 'budgetbar-wrapper'}>
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <h3>$ {budgetObject ? findBudgetTotal(budgetObject) : 0} / {budgetTotal}</h3>
+                <div className="budget-overview-wrapper">
+                    <h3 className="budget-overview-text">{budgetObject ? findBudgetTotal(budgetObject) : 0}</h3>
+                    <h3 className="budget-overview-divider"> / </h3>
+                    {isEditingBudget ? (
+                        <form
+                            onSubmit={handleBudgetChange}
+                            className="budget-editor-input-wrapper"
+                        >
+                            <input
+                                placeholder={budgetObject ? "Budget" : "Set a Budget"}
+                                type="number"
+                                step="0.01"
+                                className="budget-editor-input"
+                                defaultValue={budgetTotal}
+                            />
+                            <input type="submit" style={{display: 'none'}} />
+                        </form>
+                    ) : (
+                        <h3 className="budget-overview-text">{budgetTotal}</h3>
+                    )}
+                    <button className="budget-overview-editor" onClick={toggleBudgetEditor}>
+                        📝
+                    </button>
                 </div>
                 <Budgetbar budgetTotal={budgetTotal} budgetDetails={budgetObject}/>
             </div>
@@ -198,12 +219,14 @@ export default function Budget({ budgetData, user, token }) {
                 <form style={{display: (addCategory === true ? 'block' : 'none')}} onSubmit={handleAddBudgetCategory}>
                     <div className="budgetcard">
                         <div className="header-wrapper mb-2">
-                            <input placeholder="Category Title" />
-                            <input type="submit" value="Submit" />
+                            <input
+                                className="budget-input-title"
+                                placeholder="Category Title"
+                            />
+                            <input type="submit" style={{display: 'none'}} />
                             <div style={{display: 'flex', alignSelf: 'flex-start'}}>
                                 <button style={{border: 'none', background: 'none'}} onClick={toggleBudgetCategoryCreator}>
                                     ✖️
-                                    {/* <FontAwesomeIcon icon={faSave} size='1x' /> */}
                                 </button>
                             </div>
                         </div>

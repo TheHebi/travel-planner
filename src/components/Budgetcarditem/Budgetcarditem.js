@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// LOCAL IMPORTS
+import './Budgetcarditem.css';
+
 export default function Budgetcarditem({ isEditing, description, price, itemId, deleteHandler, editHandler}) {
     // STATE VARIABLES
     // --------------------
@@ -27,19 +30,21 @@ export default function Budgetcarditem({ isEditing, description, price, itemId, 
             className="budgettable-item"
             onSubmit={handleEditSubmit}
         >
-            {isEditing === false ? (
-                <p>{description}</p>
-            ) : (
-                <input
-                    type="text"
-                    required
-                    defaultValue={description}
-                    onChange={(e) => {
-                        e.preventDefault();
-                        setItem(e.target.value);
-                    }}
-                />
-            )}
+            <div className="budgettable-item-left">
+                {isEditing === false ? (
+                    <p>{description}</p>
+                ) : (
+                    <input
+                        type="text"
+                        required
+                        defaultValue={description}
+                        onChange={(e) => {
+                            e.preventDefault();
+                            setItem(e.target.value);
+                        }}
+                    />
+                )}
+            </div>
             <div className="budgettable-item-right">
                 {isEditing === false ? (
                     <p>{price}</p>

@@ -7,11 +7,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .message-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between !important;
   align-items: flex-start;
+}
+
+.message-metadata {
+  margin-top: 0.3em;
+}
+
+.message-metadata p {
+  margin-bottom: 0;
+}
+
+.message-delete-button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 0;
 }

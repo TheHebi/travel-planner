@@ -3,7 +3,6 @@
   flex-direction: column;
 
   padding-top: 1em;
-  padding-bottom: 1em;
   margin-right: 0.25rem;
   border: 1px solid black;
   border-radius: 0.25rem;
@@ -16,17 +15,28 @@
   margin-bottom: 1em;
 }
 
-.add-traveller-btn {
+.search-area {
+  padding: 6px;
+}
+
+.user-search-bar:focus + div {
+  display: flex;
+}
+
+.search-list {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.user-search-result {
   border: none;
-  background: orange;
-  border-radius: 0.25rem;
-  min-width: fit-content;
-  max-width: 60%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-  align-self: center;
+  border-top: 1px solid black;
+  background: none;
+}
+
+.user-search-result:hover {
+  background: #d8d8d8;
 }
 
 .message-board {
@@ -86,6 +96,28 @@
 }
 /* END SCROLLBAR STYLING */
 
+.back-to-view-all-btn {
+  width: fit-content;
+  border: none;
+  background: none;
+}
+
+.comment-subject-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0.8em 1em 0.8em 1em;
+  border-bottom: 1px solid black;
+}
+
+.comment-subject-content {
+  font-size: 1.3em;
+}
+
+.comment-subject-date {
+  font-size: inherit;
+  margin-left: 0.3em;
+}
+
 .message-input {
   justify-self: flex-end;
   border: 1px solid black;
@@ -94,15 +126,4 @@
 
   display: flex;
   flex-direction: column;
-}
-
-.add-post-btn {
-  background: orange;
-  border: none;
-  border-radius: 0.25rem;
-  min-width: fit-content;
-  max-width: 25%;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-  margin-left: 1em;
 }

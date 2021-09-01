@@ -21,18 +21,6 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
         return budgetItemSum
     }
 
-    // Update new item text
-    const changeNewItemText = (e) => {
-        e.preventDefault();
-        setNewItemValue(e.target.value);
-    }
-
-    // update new item price
-    const changeNewItemPrice = (e) => {
-        e.preventDefault();
-        setNewItemPrice(e.target.value);
-    }
-
     // toggle add budget item form
     const toggleAddBudgetItem = (e) => {
         e.preventDefault();
@@ -48,11 +36,11 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
         
         addHandler({
             BudgetCategoryId: e.target.getAttribute('data-id'),
-            description: e.target.children[0].value,
-            price: e.target.children[1].children[0].value,
-        })
-        e.target.children[0].value = '';
-        e.target.children[1].children[0].value = '';
+            description: newItemValue,
+            price: newItemPrice,
+        });
+        setNewItemValue('');
+        setNewItemPrice('');
     }
 
     // handle deleting a budget item
@@ -102,6 +90,7 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
                             onSubmit={handleEditBudgetCategory}
                         >
                             <input
+                                className="budget-input-title"
                                 type="text"
                                 required
                                 defaultValue={budgetDetails.description}
@@ -142,13 +131,34 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
                         onSubmit={handleAddBudgetItem}
                         className="budgettable-item"
                     >
-                        <input type="text" placeholder="Enter item..." required onChange={changeNewItemText} />
+                        <div className="budgettable-item-left">
+                            <input
+                                type="text"
+                                placeholder="Enter item..."
+                                value={newItemValue}
+                                required
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setNewItemValue(e.target.value);
+                                }}
+                        />
+                        </div>
                         <div className="budgettable-item-right">
-                            <input type="number" placeholder="Enter price..." step="0.01" required onChange={changeNewItemPrice} />
+                            <input
+                                type="number"
+                                placeholder="Enter price..."
+                                step="0.01"
+                                value={newItemPrice}
+                                required
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setNewItemPrice(e.target.value);
+                                }}
+                            />
                             <input type="submit" style={{display: 'none'}} />
-                            {/* <button className="icon-btn" onClick={toggleAddBudgetItem}>
+                            <button className="icon-btn" onClick={toggleAddBudgetItem}>
                                 ✖️
-                            </button> */}
+                            </button>
                         </div>
                     </form>
                     <div className="budgettable-item-total">

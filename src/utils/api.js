@@ -39,6 +39,14 @@ const api = {
     getAllTripComments: function(tripId) {
         return axios.get(`${URL_PREFIX}/api/comments/trips/${tripId}`)
     },
+    // get single comment by id
+    getSingleComment: function(commentId) {
+        return axios.get(`${URL_PREFIX}/api/comments/${commentId}`);
+    },
+    // get all users
+    getAllUsers: function() {
+        return axios.get(`${URL_PREFIX}/api/users`);
+    },
 
     // POST ROUTES
     // -----------
@@ -71,6 +79,10 @@ const api = {
     },
     deleteBudgetItem: function(budgetItemId, headers) {
         return axios.delete(`${URL_PREFIX}/api/items/${budgetItemId}`, headers);
+    },
+    // delete comment by id
+    deleteComment: function(commentId, headers) {
+        return axios.delete(`${URL_PREFIX}/api/comments/${commentId}`, headers);
     },
 }
 
