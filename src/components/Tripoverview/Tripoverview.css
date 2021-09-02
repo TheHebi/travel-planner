@@ -24,20 +24,28 @@
   font-weight: 500;
 }
 
-.travellers-wrapper {
+.summary-wrapper {
+  width: 100%;
+}
+
+.middle {
+  margin: 10px auto;
+}
+
+.items-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 
   border-radius: 0.5rem;
-  /* border: 1px solid black; */
   background: white;
   padding: 1em;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: fit-content;
 }
 
-.overview-traveller {
+.overview-item {
   display: flex;
   align-items: center;
   border-radius: 0.25rem;

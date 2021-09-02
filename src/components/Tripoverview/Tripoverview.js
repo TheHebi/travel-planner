@@ -1,6 +1,10 @@
 import React from 'react';
 import Moment from 'react-moment';
 
+// BOOTSTRAP IMPORTS
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 // FONT AWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPlaneDeparture, faPlaneArrival, faCrown, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -26,21 +30,37 @@ export default function Tripoverview({ trip }) {
                 <FontAwesomeIcon className="mx-3" icon={faPlaneArrival} size='1x' />
             </div>
 
-            <div className="travellers-wrapper">
-                <h4>The crew:</h4>
-                <div className="overview-traveller trip-owner">
-                    <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
-                    {trip.User.username}
-                </div>
-                {trip.SavedUser.map((traveller, index) => {
-                    return (
-                        <div className="overview-traveller" key={index}>
-                            <FontAwesomeIcon icon={faUser} size='1x' className="me-2" />
-                            {traveller.username}
+            <Row className="summary-wrapper">
+                <Col sm={12} lg={6} className="summary-colum-left">
+                    <div className="items-wrapper middle">
+                        <h4>The crew:</h4>
+                        <div className="overview-item trip-owner">
+                            <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
+                            {trip.User.username}
                         </div>
-                    )
-                })}
-            </div>
+                        {trip.SavedUser.map((traveller, index) => {
+                            return (
+                                <div className="overview-item" key={index}>
+                                    <FontAwesomeIcon icon={faUser} size='1x' className="me-2" />
+                                    {traveller.username}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </Col>
+                <Col sm={12} lg={6} className="summary-colum-right">
+                    <div className="items-wrapper middle">
+                        <h4>The plans:</h4>
+                        {trip.Plans.map((plan, index) => {
+                            return (
+                                <div className="overview-item" key={index}>
+                                    {plan.name}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </Col>
+            </Row>
         </div>
         )}
         </>

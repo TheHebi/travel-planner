@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL_PREFIX = 'http://localhost:3001';
+const URL_PREFIX = 'https://trips-refocused-server.herokuapp.com/';
     
     
 const api = {
@@ -13,10 +13,10 @@ const api = {
         return axios.post(`${URL_PREFIX}/api/trips/`, userData, headers)
     },
     getUser: function(id) {
-        return axios.get(`${URL_PREFIX}/api//users/`+ `${id}`)
+        return axios.get(`${URL_PREFIX}/api//users/${id}`)
     },
     deleteTrip: function(id, headers) {
-        return axios.delete(`${URL_PREFIX}/api/trips/`+ `${id}`, headers)
+        return axios.delete(`${URL_PREFIX}/api/trips/${id}`, headers)
     },
 
     // GET ROUTES
@@ -49,6 +49,10 @@ const api = {
     getAllUsers: function() {
         return axios.get(`${URL_PREFIX}/api/users`);
     },
+    // get all plans by trip id
+    getAllTripPlans: function(tripId) {
+        return axios.get(`${URL_PREFIX}/api/plans/trips/${tripId}`);
+    },
 
     // POST ROUTES
     // -----------
@@ -61,6 +65,9 @@ const api = {
     createComment: function(body, headers) {
         return axios.post(`${URL_PREFIX}/api/comments`, body, headers)
     },
+    createPlan: function(body, headers) {
+        return axios.post(`${URL_PREFIX}/api/plans`, body, headers);
+    },
 
     // PUT ROUTES
     // ----------
@@ -72,6 +79,9 @@ const api = {
     },
     updateBudgetItem: function(itemId, body, headers) {
         return axios.put(`${URL_PREFIX}/api/items/${itemId}`, body, headers);
+    },
+    updatePlan: function(planId, body, headers) {
+        return axios.put(`${URL_PREFIX}/api/plans/${planId}`, body, headers);
     },
 
     // DELETE ROUTES
@@ -86,11 +96,21 @@ const api = {
     deleteComment: function(commentId, headers) {
         return axios.delete(`${URL_PREFIX}/api/comments/${commentId}`, headers);
     },
+    // delete plan by id
+    deletePlan: function(planId, headers) {
+        return axios.delete(`${URL_PREFIX}/api/plans/${planId}`, headers);
+    },
 
     // MISCELLANEOUS ROUTES
     // ---------------------
     addUserToTrip: function(body, headers) {
         return axios.post(`${URL_PREFIX}/api/trips/savedtrips`, body, headers)
+    },
+    addUserToPlan: function(body) {
+        return axios.post(`${URL_PREFIX}/api/plans/savedplans`, body);
+    },
+    removeUserFromPlan: function(body) {
+        return axios.delete(`${URL_PREFIX}/api/plans/savedplans`, { data : body });
     },
 }
 
