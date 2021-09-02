@@ -11,18 +11,14 @@ export default function ViewTrips(props) {
     const [userTripData, setUserTripData] = useState([]);
 
     useEffect(() => {
-        api.getUser(props.user.id).then(res => {
-            console.log(res.data.Trips);
-            console.log(res.data.SavedTrip);
-            // setUserTripData(res.data.Trips);
-            setUserTripData([...res.data.Trips, ...res.data.SavedTrip]);
-            // console.log(userTripData);
-        }).catch(err => {
-            console.log(err);
-        });
+        if (props.user.id) {
+            api.getUser(props.user.id).then(res => {
+                setUserTripData([...res.data.Trips, ...res.data.SavedTrip]);
+            }).catch(err => {
+                console.log(err);
+            });
+        }
     }, [props.user.id]);
-
-    console.log(userTripData);
 
     const tripDeleteHandler = async (tripId) => {
         const res = await api.deleteTrip(tripId, {
@@ -32,7 +28,6 @@ export default function ViewTrips(props) {
         });
         if (res.status === 200) {
             api.getUser(props.user.id).then(res => {
-                // console.log(res.data.Trips);
                 setUserTripData([...res.data.Trips, ...res.data.SavedTrip]);
             })
         } else {
@@ -47,8 +42,6 @@ export default function ViewTrips(props) {
     const toCreateTripHandler = () => {
         window.location = '/createTrip'
     }
-
-    console.log(userTripData.length);
 
     return (
         <div className="viewTripsMain">

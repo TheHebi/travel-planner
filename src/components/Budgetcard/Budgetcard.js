@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 // LOCAL IMPORTS
 import './Budgetcard.css';
-import api from '../../utils/api';
 import Budgetcarditem from '../Budgetcarditem/Budgetcarditem';
 
 export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, editHandler, deleteItemHandler, editItemHandler }) {

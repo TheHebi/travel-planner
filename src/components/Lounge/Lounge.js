@@ -71,7 +71,6 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
         const res = await api.getSingleComment(e.target.getAttribute('data-id'));
         if (res.status = 200) {
             setTripComment(res.data);
-            console.log(`viewing comment ${res.data.id}`);
             setCommentId(res.data.id);
             setViewAll(false);
         } else {
@@ -156,8 +155,6 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
             const newCommentData = await api.getAllTripComments(id);
             setTripComments(newCommentData.data);
             for (let i=0; i<newCommentData.data.length; i++) {
-                console.log(newCommentData.data[i])
-                console.log(commentId)
                 if (newCommentData.data[i].id === commentId) {
                     setTripComment(newCommentData.data[i])
                 }
