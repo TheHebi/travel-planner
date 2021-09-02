@@ -20,7 +20,7 @@ I WANT a user friendly website that allows me to coordinate travel plans with co
 SO THAT we can all remain organized.
 ```
 
-<a href="https://trips-refocused.herokuapp.com/">Trips Refocused</a> is a web application where users can create trips for them and their friends. Users can create, edit, and delete their trips. Each trip has a budget management tool specific to each user. Users can also creat, edit, and delete plans for the trip. Signup today and send an invitation to your friends!
+<a href="https://trips-refocused.herokuapp.com/">Trips Refocused</a> is a web application where users can create trips for them and their friends. Users can create, edit, and delete their trips. Each trip has a budget management tool specific to each user. Users can also create, edit, and delete plans for the trip. Signup today and send an invitation to your friends!
 
 ## Instructions
 
