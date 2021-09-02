@@ -14,6 +14,7 @@
   .let-us-plan-for-you {
     margin-top: 100px;
     text-shadow: 3px 3px black !important;
+    align-self: center;
   }
 
   .welcomeBackShadow {

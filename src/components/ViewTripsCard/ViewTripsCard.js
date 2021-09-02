@@ -50,12 +50,13 @@ export default function ViewTripsCard({ user, userTripData, handleDelete, toThat
                 }} className="btn tripViewBtn mb-2">
                     View this Trip
                 </button>
-                <button onClick={(e) => {
+                {(user === userTripData.UserId) ?
+                (<button onClick={(e) => {
                     e.preventDefault()
                     handleDelete(userTripData.id)
                 }} className="btn tripDeleteBtn" >
                     Delete this Trip
-                </button>
+                </button>) : (<></>)}
             </div>
         </div>
     )
