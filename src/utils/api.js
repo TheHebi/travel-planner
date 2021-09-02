@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL_PREFIX = 'https://trips-refocused-server.herokuapp.com/';
+const URL_PREFIX = 'https://trips-refocused-server.herokuapp.com';
     
     
 const api = {
