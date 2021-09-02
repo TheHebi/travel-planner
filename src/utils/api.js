@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL_PREFIX = 'http://localhost:3001';
+const URL_PREFIX = 'https://trips-refocused-server.herokuapp.com/';
     
     
 const api = {
@@ -64,6 +64,9 @@ const api = {
     },
     createComment: function(body, headers) {
         return axios.post(`${URL_PREFIX}/api/comments`, body, headers)
+    },
+    createPlan: function(body, headers) {
+        return axios.post(`${URL_PREFIX}/api/plans`, body, headers);
     },
 
     // PUT ROUTES

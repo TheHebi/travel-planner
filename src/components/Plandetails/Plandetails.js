@@ -63,6 +63,8 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
     }
 
     return (
+        <>
+        {!planData ? ( null ) : (
         <div className="plan-detail-wrapper">
             {user.id === planData.User.id ? (
                 <div className="action-button-wrapper">
@@ -171,5 +173,7 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
                 </form>
             </div>
         </div>
+    )}
+    </>
     )
 }

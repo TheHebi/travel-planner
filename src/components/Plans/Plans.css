@@ -12,11 +12,18 @@
 
 .add-plan-button {
   align-self: flex-end;
-  background: green;
+  background: none;
   border: none;
   border-radius: 0.25rem;
   padding: 0.3em 1em 0.3em 1em;
   margin-right: 1em;
+}
+
+.submit-add-plan {
+  background: green;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.3em 1em 0.3em 1em;
 }
 
 .view-all-plans-button {
