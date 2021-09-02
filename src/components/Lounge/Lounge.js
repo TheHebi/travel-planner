@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 // BOOTSTRAP IMPORTS
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 
 // FONT AWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

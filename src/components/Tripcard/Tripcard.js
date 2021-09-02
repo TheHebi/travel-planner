@@ -49,7 +49,7 @@ export default function Tripcard({ tripData, budgetData, handleUserAdd, user, to
             return (
                 <div>
                     <h1>Plans</h1>
-                    <Plantab planData={tripData.Plans} />
+                    <Plantab planData={tripData.Plans} user={user} token={token} />
                 </div>
             )
         } else if (activeTab === 'Budget') {
@@ -79,12 +79,10 @@ export default function Tripcard({ tripData, budgetData, handleUserAdd, user, to
         <Container fluid className="trips-main">
             <Container>
                 <div className="trip-nav">
-                    {/* <div className="trip-nav-first-filler"></div> */}
                     <button className="trip-nav-item trip-nav-active" id="Overview" onClick={handleTabSwitch} ref={overviewRef}>Overview</button>
                     <button className="trip-nav-item" id="Plans" onClick={handleTabSwitch} ref={plansRef}>Plans</button>
                     <button className="trip-nav-item" id="Budget" onClick={handleTabSwitch} ref={budgetRef}>Budget</button>
                     <button className="trip-nav-item" id="Lounge" onClick={handleTabSwitch} ref={loungeRef}>Lounge</button>
-                    {/* <div className="trip-nav-last-filler"></div> */}
                 </div>
                 <div className="trip-content">
                     {renderTab()}
