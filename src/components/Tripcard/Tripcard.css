@@ -1,0 +1,44 @@
+.trips-main {
+  background: #202530;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  height: 100%;
+  margin-top: 115px;
+}
+
+.trip-nav {
+  display: flex;
+  width: 100%;
+  background: #202530;
+}
+
+.trip-nav-item {
+  width: 25%;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  background: #aeaeae;
+}
+
+.trip-nav-active {
+  background: #e8e8e8;
+}
+
+.trip-nav-item:hover {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.trip-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  background: #e8e8e8;
+  border-radius: 0 0 10px 10px;
+  padding: 3em;
+}

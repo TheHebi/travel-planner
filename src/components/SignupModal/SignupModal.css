@@ -1,0 +1,32 @@
+.signupModalHeader {
+    height: 200px;
+    background-image: url(https://images.unsplash.com/photo-1487637419635-a2a471ff5c7b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2652&q=80);
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.signupModalBody {
+    background-color: #f5f5f5;
+}
+
+.signupModalFooter {
+    display: flex;
+    justify-content: center;
+}
+
+.signupModalBtn {
+    background-color: rgb(71, 110, 158) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}
+
+.signupBtnIcon {
+    margin-right: 5px !important;
+}
+
+.signupModalCancelBtn {
+    background-color: rgb(106, 167, 162) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}

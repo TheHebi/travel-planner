@@ -1,0 +1,129 @@
+.travellers {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 1em;
+  margin-right: 0.25rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+}
+
+.traveller {
+  display: flex;
+  align-items: center;
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
+
+.search-area {
+  padding: 6px;
+}
+
+.user-search-bar:focus + div {
+  display: flex;
+}
+
+.search-list {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.user-search-result {
+  border: none;
+  border-top: 1px solid black;
+  background: none;
+}
+
+.user-search-result:hover {
+  background: #d8d8d8;
+}
+
+.message-board {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1em;
+  margin-left: 0.25rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+}
+
+.message-board h3 {
+  line-height: 1.5em;
+}
+
+.messages {
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  padding: 1em;
+  margin-bottom: 1em;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 300px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.message-button {
+  display: flex;
+  width: 100%;
+  border: none;
+  background: none;
+}
+
+/* SCROLLBAR STYLING */
+/* Works on Firefox */
+.messages {
+  scrollbar-width: thin;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.messages::-webkit-scrollbar {
+  width: 14px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: gray;
+  border: 3px solid #e8e8e8;
+  border-radius: 0.5rem;
+}
+/* END SCROLLBAR STYLING */
+
+.back-to-view-all-btn {
+  width: fit-content;
+  border: none;
+  background: none;
+}
+
+.comment-subject-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0.8em 1em 0.8em 1em;
+  border-bottom: 1px solid black;
+}
+
+.comment-subject-content {
+  font-size: 1.3em;
+}
+
+.comment-subject-date {
+  font-size: inherit;
+  margin-left: 0.3em;
+}
+
+.message-input {
+  justify-self: flex-end;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+}

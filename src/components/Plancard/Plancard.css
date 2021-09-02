@@ -1,0 +1,44 @@
+.plan-card {
+  width: 20em;
+  min-width: 10em;
+  border: 1px solid black;
+  border-radius: 0.5em;
+
+  margin: 1em 1em 0 0;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plan-card-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plan-card-buttons-wrapper {
+  margin-top: 1em;
+}
+
+.card-btn {
+  border: none;
+  background: none;
+  border-radius: 0.25rem;
+  padding: 0.3em 1em 0.3em 1em;
+}
+
+.btn-left {
+  background: lightblue;
+  margin-right: 1em;
+}
+
+.opt-in {
+  background: orange;
+}
+
+.opt-out {
+  background: red;
+}

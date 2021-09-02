@@ -1,0 +1,79 @@
+.budgetbar-wrapper {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-right: 2em;
+  padding-left: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 0.5rem;
+
+  transition: color 300ms;
+}
+
+.budget-overview-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+  height: 3.5em;
+}
+
+.budget-overview-text {
+  margin: auto 0 auto 0;
+  vertical-align: middle;
+}
+
+.budget-overview-divider {
+  margin: auto 0 auto 0;
+  vertical-align: middle;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+}
+
+.budget-editor-input-wrapper {
+  margin: auto 0 auto 0;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.budget-editor-input {
+  line-height: 1em;
+  font-size: 1.3em;
+  width: 100px;
+}
+
+.budget-overview-editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+}
+
+.add-budget-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 5em;
+  margin-right: 5em;
+  border-bottom: 1px solid black;
+}
+
+.add-budget-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  margin-bottom: 10px;
+}
+
+.overbudget {
+  /* border: 1px solid red; */
+  color: red;
+}

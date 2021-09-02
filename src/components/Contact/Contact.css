@@ -1,0 +1,136 @@
+.contact-main {
+  background-color: #202530;
+  color: #c2bcbc;
+  font-family: 'Assistant', sans-serif !important;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.contact-header h1 {
+  font-weight: bolder !important;
+}
+
+.meet-our-team-button {
+  text-decoration: none;
+  color: #c2bcbc;
+}
+
+.meet-our-team-button:hover {
+  text-decoration: none;
+  color: #c2bcbc;
+}
+
+.contact-us-modal-button {
+  color: #c2bcbc;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.contact-team {
+  width:80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 1em;
+}
+
+.fe-be-team {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.contact-individual {
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-logo {
+  width:180px;
+  height:60px;
+}
+
+.contact-list {
+  display: inline-flex;
+  list-style-type: none;
+}
+
+/* .get-in-touch {
+  max-width: 800px;
+  margin: 20px 20px;
+  position: relative;
+}
+
+.input-text {
+  background-color: #202530;
+  color: #c2bcbc;
+}
+
+.contact-form .form-field {
+  position: relative;
+  margin: 24px 0;
+}
+.contact-form .input-text {
+  display: block;
+  width: 100%;
+  height: 36px;
+  border-width: 0 0 2px 0;
+  border-color: #c2bcbc;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+}
+.contact-form .input-text:focus {
+  outline: none;
+}
+.contact-form .input-text:focus + .label,
+.contact-form .input-text.not-empty + .label {
+  -webkit-transform: translateY(-24px);
+          transform: translateY(-24px);
+}
+.contact-form .label {
+  position: absolute;
+  left: 20px;
+  bottom: 11px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #c2bcbc;
+  cursor: text;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, 
+  -webkit-transform .2s ease-in-out;
+}
+.contact-form .submit-btn {
+  display: inline-block;
+  background-color: #18355a;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  width:100px;
+  cursor: pointer;
+} */
+
+
+@media screen and (max-width: 458px) {
+  .contact-individual {
+    flex-direction: column;
+  }
+}

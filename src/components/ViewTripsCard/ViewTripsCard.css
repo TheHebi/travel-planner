@@ -1,0 +1,89 @@
+.viewTripsCard {
+    width: 300px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    background-color: #dfd9d9;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+.cardTripName {
+    color: #4d5e85;
+    text-align: center !important;
+    margin: 15px auto;
+    border-top: 2px solid #4d5e85;
+    border-bottom: 2px solid #4d5e85;
+}
+
+.cardTripName h3 {
+    font-weight: bolder !important;
+    margin: 5px 0px !important;
+}
+
+.cityName {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.tripDuration {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.numberOfTraveler {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.viewDeleteBtn {
+    display: flex;
+    flex-direction: column !important;
+    align-self: center;
+}
+
+.tripViewBtn {
+    background-color: rgb(100, 153, 149) !important;
+    color: #dfddd9 !important;
+    font-weight: bolder !important;
+}
+
+.tripDeleteBtn {
+    background-color: rgb(211, 46, 17) !important;
+    color: #dfd9d9 !important;
+    font-weight: bolder !important;
+}
+
+.pTag {
+    margin-bottom: 0px !important;
+}
+
+.locationIcon {
+    color: black;
+    transform: scale(0.8);
+}
+
+.durationIcon {
+    color: black;
+    transform: scale(0.8);
+}
+
+.groupIcon {
+    color: black;
+    transform: scale(0.8);
+}

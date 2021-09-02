@@ -1,0 +1,109 @@
+.createTripBackground {
+    height: 944px;
+    display: flex;
+    justify-content: center;
+    background-image: url(https://images.unsplash.com/photo-1604239282228-6a723984962c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80);
+    background-size: cover;
+    background-position: center;
+}
+
+.create-trip-main {
+    background: rgb(187, 181, 181, 0.8);
+    color:#4d5e85;;
+    width: 80%;
+    height: 70%;
+    padding: 50px 0 50px 0;
+    margin-top: 200px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(168, 160, 160);
+    border-radius: 10px;
+}
+
+.createTripHeader {
+    font-size: 3em;
+    font-family: 'Assistant', sans-serif !important;
+    font-weight: 600;
+    text-align: center;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.labelName {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px !important;
+    font-family: 'Assistant', sans-serif !important;
+}
+
+.labelName h5 {
+    font-weight: bolder;
+}
+
+.inputStyle {
+    width: 80%;
+    height: 50px;
+}
+
+.inviteUserBtn {
+    background-color: rgb(151, 197, 193) !important;
+    border: 1px solid rgb(151, 197, 193) !important;
+    color:#222529 !important;
+    z-index: 0 !important;
+}
+
+.inviteUserBtn:hover .inviteUserIcon {
+    transform: scale(0.8);
+    color:teal;
+}
+
+.createTripBtn {
+    background-color: rgb(71, 110, 158) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}
+
+.createTripBtnIcon {
+    margin-right: 5px;
+}
+
+.createTripBtn:hover{
+    transform: scale(0.9);
+}
+
+.createTripCancelBtn {
+    background-color: rgb(106, 167, 162) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}
+
+.createTripCancelBtnIcon {
+    margin-right: 5px;
+}
+
+.createTripCancelBtn:hover {
+    transform: scale(0.9);
+}
+
+@media screen and (max-width: 576px) {
+
+    .create-trip-main {
+        height: auto
+    }
+
+    .inputStyle {
+        width: 80% !important;
+        align-self: center !important;
+        height: 50px;
+    }
+
+    .datePicker-mobile {
+        padding: 0px 20px;
+    }
+}

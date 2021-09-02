@@ -1,0 +1,28 @@
+.loginModalHeader {
+    height: 200px;
+    background-image: url(https://images.unsplash.com/photo-1618765138214-465c0399fcf2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80);
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.loginModalBody {
+    background-color: #f5f5f5;
+}
+
+.loginModalFooter {
+    display: flex;
+    justify-content: center;
+}
+
+.loginModalBtn {
+    background-color: rgb(71, 110, 158) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}
+
+.loginModalCancelBtn {
+    background-color: rgb(106, 167, 162) !important;
+    border-style: hidden !important;
+    border-radius: 100px !important;
+}

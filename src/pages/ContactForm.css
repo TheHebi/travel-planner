@@ -1,0 +1,78 @@
+.contactFormMain {
+    margin-top: 200px;
+}
+
+.contactFormHeader {
+    color: white !important;
+    text-align: center !important;
+    margin-bottom: 30px !important;
+}
+
+.contactFormStyle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formFont {
+    font-weight: bolder;
+}
+
+.contactFormNameEmail {
+    display: flex;
+    flex-direction: row;
+}
+
+.contactFormFont {
+    color: white
+}
+
+.contactFormName {
+    width: 40%;
+}
+
+.contactFormEmail {
+    width: 40%;
+}
+
+.contactFormMessage {
+    width: 40%;
+}
+
+.contactSendBtn {
+    background-color: rgb(71, 110, 158) !important;
+    border-style: hidden !important;
+    border-radius: 10px !important;
+    display: flex;
+    flex-direction: row !important;
+}
+
+.contactSendBtn h5{
+    margin-bottom: 0 !important;
+}
+
+.sendIcon {
+    transform: scale(0.8);
+}
+
+.contactSendBtn:hover {
+    transform: scale(0.95);
+}
+
+.contactSendBtn::after {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 576px) {
+    .contactFormName {
+        width: 70%;
+    }
+    
+    .contactFormEmail {
+        width: 70%;
+    }
+    
+    .contactFormMessage {
+        width: 70%;
+    }
+}
