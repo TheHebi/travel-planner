@@ -77,26 +77,26 @@ export default function Main(props) {
         <div>
             <div id="home">
                 <div className="home-main" style={{ height: mainHeight }}>
-                    <h1 className="text-light">LET US PLAN FOR YOU</h1>
-                    <h3 style={{ marginBottom: "60px" }} className="text-light">Message to Customer</h3>
+                    <h1 className="let-us-plan-for-you text-light">LET US PLAN FOR YOU</h1>
+                    <h4 style={{ marginBottom: "60px" }} className="subHeader text-light">Message to Customer</h4>
                     {!props.user?.username ? (<div className="mb-3">
-                        <button onClick={loginModalShow} className="modal-button mx-2" id="loginBtn">
-                            <span class="material-icons md-18">
+                        <button onClick={loginModalShow} className="loginShadow modal-button mx-2" id="loginBtn">
+                            <span className="material-icons md-18">
                                 login
                             </span><br />
                             Login
 
                         </button>
-                        <button onClick={signupModalShow} className="modal-button mx-2" id="signupBtn">
-                            <span class="material-icons">
+                        <button onClick={signupModalShow} className="signupShadow modal-button mx-2" id="signupBtn">
+                            <span className="material-icons">
                                 person_add
                             </span><br />
                             Signup
 
                         </button>
-                    </div>) : (<div className="d-flex flex-column align-items-center"><h3 style={{ color: "white" }}>Welcome back, {props.user.username}</h3> <Link to="/createTrip">
-                        <button className="modal-button mx-2">
-                            <span class="material-icons">
+                    </div>) : (<div className="d-flex flex-column align-items-center"><h4 className="welcomeBackShadow" style={{ color: "white" }}>Welcome back, {props.user.username}</h4> <Link to="/createTrip">
+                        <button className="getStartedShadow modal-button mx-2">
+                            <span className="material-icons">
                                 flight_takeoff
                             </span>
                             <br />

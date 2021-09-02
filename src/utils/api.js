@@ -18,7 +18,6 @@ const api = {
     deleteTrip: function(id, headers) {
         return axios.delete(`${URL_PREFIX}/api/trips/`+ `${id}`, headers)
     },
-
     // GET ROUTES
     // ----------
     // get all trips

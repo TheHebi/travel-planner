@@ -75,6 +75,17 @@
     font-size: 15px;
     color: #4e5052;
     text-transform: capitalize;
+    font-family: 'Assistant', sans-serif !important;
+    font-weight: bolder;
+  }
+
+  .our-team .name {
+    display: block;
+    font-size: 2em;
+    color: #4e5052;
+    text-transform: capitalize;
+    font-family: 'Assistant', sans-serif !important;
+    font-weight: bolder;
   }
   
   .our-team .social {

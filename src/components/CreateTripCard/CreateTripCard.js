@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { usePlacesWidget } from 'react-google-autocomplete';
 import moment from 'moment';
@@ -6,7 +6,6 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import "./react_dates_overrides.css";
-
 
 // BOOTSTRAP IMPORTS
 import api from '../../utils/api';
@@ -26,11 +25,11 @@ import './CreateTripCard.css';
 
 export default function CreateTripCard(props) {
 
-    // const [destination, setDestination] = useState("");
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [destination, setDestination] = useState("");
     const [tripName, setTripName] = useState("");
+    // const [tripId, setTripId] = useState(null);
     const [focusedInput, setFocusedInput] = useState(null);
     const [calendarStack, setCalendarStack] = useState("horizontal");
 
@@ -43,27 +42,20 @@ export default function CreateTripCard(props) {
     }, [window.innerWidth]);
 
     const handleDatesChange = ({ startDate, endDate }) => {
-        // console.log(startDate);
-        // console.log(endDate);
         setStartDate(startDate);
         setEndDate(endDate);
     };
 
     const { ref: bootstrapRef } = usePlacesWidget({
-        apiKey: "AIzaSyBCkCMjgFyX6U9QyzmjTmbOfrUKAd_mO7w",
+        apiKey: process.env.REACT_APP_GOOGLE_API,
         language: "en",
         onPlaceSelected: (place) => {
             console.log(place)
             setDestination(place.formatted_address);
-            // if (place.address_components[3].long_name === "United States") {
-            //     setDestination(place.address_components[0].long_name + ", " + place.address_components[2].short_name + ", " + place.address_components[3].short_name)
-            // } else {
-            //     setDestination(place.address_components[0].long_name + ", " + place.address_components[3].long_name)
-            // }
         },
     });
 
-    const handleCreateTripFormSubmit = e => {
+    const handleCreateTripFormSubmit = async (e) => {
         e.preventDefault();
         console.log('Trip Name: ' + tripName);
         console.log('Destination: ' + destination);
@@ -74,34 +66,47 @@ export default function CreateTripCard(props) {
         console.log('Username: ' + props.user.username);
         console.log('User ID: ' + props.user.id);
 
-        // TODO: api post route
-        api.createTrip({ name: tripName, destination: destination, departure: formattedStartDate, return: formattedEndDate, UserId: props.user.id }, {
+        await api.createTrip({ name: tripName, destination: destination, departure: formattedStartDate, return: formattedEndDate, UserId: props.user.id }, {
             headers: {
                 authorization: `Bearer ${props.token}`
             }
         }).then(res => {
             console.log(res.data);
-
         }).catch(err => {
-            console.log('error occured');
+            console.log('error occured when creating trip');
             console.log(err);
         });
+
+        // await api.getUser(props.user.id)
+        // .then(res => {
+        //     const userTripArr = res.data.Trips;
+        //     // console.log(userTripArr);
+        //     // console.log(userTripArr[userTripArr.length-1]);
+        //     // console.log(userTripArr[userTripArr.length-1].id);
+        //     console.log(typeof(userTripArr[userTripArr.length-1].id));
+        //     setTripId(userTripArr[userTripArr.length-1].id);
+        //     console.log(tripId);
+        // }). catch(err => {
+        //     console.log('error occured when getting user trip data');
+        //     console.log(err);
+        // });
 
         setDestination("");
         setTripName("");
         setStartDate(null);
         setEndDate(null);
+        // setTripId("");
     }
 
-    const toTripOverviewPage = () => {
-        window.location.href = '/trips'
+    const toViewTripPage = async () => {
+        window.location.href = '/viewTrips';
     }
 
     return (
         <>
             <div className="createTripBackground">
                 <div className="create-trip-main">
-                    <h1 className="mb-5">
+                    <h1 className="createTripHeader mb-5">
                         Create your Trip!
                     </h1>
 
@@ -148,7 +153,7 @@ export default function CreateTripCard(props) {
                         </Form.Group>
 
                         <Form.Group className="d-flex justify-content-evenly">
-                            <Button type="submit" value="createTrip" className="createTripBtn">
+                            <Button onClick={toViewTripPage} type="submit" value="createTrip" className="createTripBtn">
                                 <FontAwesomeIcon className="createTripBtnIcon" icon={faSuitcase} size='1x' />Create!
                             </Button>
                             <Link to="/">
@@ -157,7 +162,6 @@ export default function CreateTripCard(props) {
                                 </Button>
                             </Link>
                         </Form.Group>
-
                     </Form>
                 </div>
             </div>

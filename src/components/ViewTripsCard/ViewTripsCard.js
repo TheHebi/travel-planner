@@ -1,16 +1,26 @@
 import React from 'react';
 import Moment from 'react-moment';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
 import './ViewTripsCard.css';
 
 
 
-export default function ViewTripsCard({userTripData, handleDelete, toThatTripHandler}) {
+export default function ViewTripsCard({ user, userTripData, handleDelete, toThatTripHandler }) {
     return (
         <div data-id={userTripData.id} className="viewTripsCard">
             <div className="cardTripName">
-                <h1 >{userTripData.name}</h1>
+                <h3 >{userTripData.name}</h3>
             </div>
+
+            {(user === userTripData.UserId) ? 
+            (<div style={{alignSelf: "center", marginBottom: "10px"}}>
+                <span style={{color:"#4d5e85", padding:"5px", borderRadius: "5px", fontWeight:"bolder"}}><FontAwesomeIcon className="me-1" icon={faCrown} size='1x' /> Host</span>
+            </div>) :
+            (<div style={{alignSelf: "center", marginBottom: "10px"}}><span style={{color: "#4d5e85", padding:"5px", borderRadius: "5px", fontWeight:"bolder"}}><FontAwesomeIcon className="me-1" icon={faIdBadge} size='1x' /> Participant</span></div>)
+            }
 
             <div className="cityName">
                 <span className="material-icons locationIcon me-2">
@@ -36,12 +46,14 @@ export default function ViewTripsCard({userTripData, handleDelete, toThatTripHan
             <div className="viewDeleteBtn">
                 <button onClick={(e) => {
                     e.preventDefault()
-                    toThatTripHandler(userTripData.id)}} className="btn tripViewBtn mb-2">
+                    toThatTripHandler(userTripData.id)
+                }} className="btn tripViewBtn mb-2">
                     View this Trip
                 </button>
                 <button onClick={(e) => {
                     e.preventDefault()
-                    handleDelete(userTripData.id)}} className="btn tripDeleteBtn" >
+                    handleDelete(userTripData.id)
+                }} className="btn tripDeleteBtn" >
                     Delete this Trip
                 </button>
             </div>

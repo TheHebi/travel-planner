@@ -27,9 +27,14 @@
     margin-top: 2em;
   }
 
+  .recommendation-header-main {
+    font-weight: bolder !important;
+  }
+
   .recommendation-header-mobile {
     display:none;
     color: #4d5e85;
+    font-weight: bold !important;
   }
 
   .img-box {
@@ -95,6 +100,14 @@
     right: 0;
     height: 50px;
     cursor: pointer;
+  }
+
+  .recCityName {
+    text-shadow: 2px 2px black !important;
+  }
+
+  .recCityFamous {
+    text-shadow: 2px 2px black !important;
   }
 
   .img1 {

@@ -11,6 +11,33 @@
     align-items: center;
   }
 
+  .let-us-plan-for-you {
+    margin-top: 100px;
+    text-shadow: 3px 3px black !important;
+  }
+
+  .welcomeBackShadow {
+    text-shadow: 3px 3px black !important;
+  }
+
+  .loginShadow {
+    text-shadow: 1px 1px black !important;
+  }
+
+  .signupShadow {
+    text-shadow: 1px 1px black !important;
+  }
+
+  .getStartedShadow{
+    text-shadow: 1px 1px black !important;
+  }
+
+  .subHeader {
+    width: 400px;
+    text-align: center;
+    text-shadow: 4px 4px black !important;
+  }
+
   html body [data-ca3_iconfont="ETmodules"]::before {
     font-family: "ETmodules";
   }
