@@ -57,45 +57,44 @@ export default function CreateTripCard(props) {
 
     const handleCreateTripFormSubmit = async (e) => {
         e.preventDefault();
-        console.log('Trip Name: ' + tripName);
-        console.log('Destination: ' + destination);
         const formattedStartDate = moment.unix(startDate / 1000).format("MM/DD/YYYY");
         const formattedEndDate = moment.unix(endDate / 1000).format("MM/DD/YYYY");
-        console.log('Start Date: ' + formattedStartDate);
-        console.log('End Date: ' + formattedEndDate);
-        console.log('Username: ' + props.user.username);
-        console.log('User ID: ' + props.user.id);
 
-        await api.createTrip({ name: tripName, destination: destination, departure: formattedStartDate, return: formattedEndDate, UserId: props.user.id }, {
-            headers: {
-                authorization: `Bearer ${props.token}`
+        try {
+            const res = await api.createTrip({ 
+                name: tripName,
+                destination: destination,
+                departure: formattedStartDate,
+                return: formattedEndDate,
+                UserId: props.user.id
+            }, {
+                headers: {
+                    authorization: `Bearer ${props.token}`
+                }
+            });
+
+            const budgetRes = await api.createBudget({
+                TripId: res.data.id,
+                UserId: props.user.id
+            }, {
+                headers: {
+                    authorization: `Bearer ${props.token}`,
+                }
+            });
+    
+            if (res.status === 200 && budgetRes.status === 200) {
+                window.location.href = `/trips/${res.data.id}`;
             }
-        }).then(res => {
-            console.log(res.data);
-        }).catch(err => {
-            console.log('error occured when creating trip');
-            console.log(err);
-        });
 
-        // await api.getUser(props.user.id)
-        // .then(res => {
-        //     const userTripArr = res.data.Trips;
-        //     // console.log(userTripArr);
-        //     // console.log(userTripArr[userTripArr.length-1]);
-        //     // console.log(userTripArr[userTripArr.length-1].id);
-        //     console.log(typeof(userTripArr[userTripArr.length-1].id));
-        //     setTripId(userTripArr[userTripArr.length-1].id);
-        //     console.log(tripId);
-        // }). catch(err => {
-        //     console.log('error occured when getting user trip data');
-        //     console.log(err);
-        // });
+            setDestination("");
+            setTripName("");
+            setStartDate(null);
+            setEndDate(null);
 
-        setDestination("");
-        setTripName("");
-        setStartDate(null);
-        setEndDate(null);
-        // setTripId("");
+        } catch (err) {
+            console.log(err)
+            alert('Error creating trip...')
+        }
     }
 
     const toViewTripPage = async () => {
@@ -153,7 +152,7 @@ export default function CreateTripCard(props) {
                         </Form.Group>
 
                         <Form.Group className="d-flex justify-content-evenly">
-                            <Button onClick={toViewTripPage} type="submit" value="createTrip" className="createTripBtn">
+                            <Button type="submit" value="createTrip" className="createTripBtn">
                                 <FontAwesomeIcon className="createTripBtnIcon" icon={faSuitcase} size='1x' />Create!
                             </Button>
                             <Link to="/">

@@ -37,7 +37,6 @@ function App() {
             trips: res.data.Trips
           }
         })
-        console.log(userState);
       }).catch(err => {
         console.log('no logged in user');
         setUserState({

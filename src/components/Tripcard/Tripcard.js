@@ -10,7 +10,7 @@ import Lounge from '../Lounge/Lounge.js';
 import Tripoverview from '../Tripoverview/Tripoverview.js';
 import Plantab from '../Plans/Plans.js';
 
-export default function Tripcard({ tripData, budgetData, handleUserAdd, user, token }) {
+export default function Tripcard({ tripData, budgetData, changeBudgetTotal, handleUserAdd, user, token }) {
     // SET REFERENCE, STATES FOR TAB SWITCHING
     // ---------------------------------------
     const [activeTab, setActiveTab] = useState('Overview')
@@ -56,7 +56,12 @@ export default function Tripcard({ tripData, budgetData, handleUserAdd, user, to
             return (
                 <div>
                     <h1>Budget</h1>
-                    <Budget budgetData={budgetData} user={user} token={token} />
+                    <Budget
+                        budgetData={budgetData}
+                        changeTotal={changeBudgetTotal}
+                        user={user}
+                        token={token}
+                    />
                 </div>
             )
         } else if (activeTab === 'Lounge') {
