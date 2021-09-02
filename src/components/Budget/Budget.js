@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 // BOOTSTRAP IMPORTS
@@ -7,7 +7,6 @@ import Container from 'react-bootstrap/Container';
 // FONT AWESOME IMPORTS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 // LOCAL IMPORTS
 import './Budget.css';
@@ -15,7 +14,7 @@ import Budgetbar from '../Budgetbar/Budgetbar.js';
 import Budgetcard from '../Budgetcard/Budgetcard.js';
 import api from '../../utils/api';
 
-export default function Budget({ budgetData, user, token }) {
+export default function Budget({ budgetData, changeTotal, user, token }) {
     const { id } = useParams();
     // STATE VARIABLES
     // ---------------
@@ -23,6 +22,10 @@ export default function Budget({ budgetData, user, token }) {
     const [budgetTotal, setBudgetTotal] = useState(budgetData ? budgetData.total : 0);
     const [addCategory, setAddCategory] = useState(false);
     const [budgetObject, setBudgetObject] = useState(budgetData);
+
+    useEffect(() => {
+        setBudgetObject(budgetData)
+    }, [budgetData])
 
     const findBudgetTotal = (data) => {
         if (!data) {
@@ -46,23 +49,10 @@ export default function Budget({ budgetData, user, token }) {
     const handleBudgetChange = async (e) => {
         e.preventDefault();
         const newTotal = e.target.elements[0].value;
-
-        // axios put request
-        const res = await api.updateBudget(budgetData.id, {
-            total: newTotal
-        }, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            // set on success
-            setBudgetTotal(newTotal);
-            setIsEditingBudget(false);
-        } else {
-            alert('Error connecting to server... please try again later.')
-        }
+        changeTotal(budgetObject.id, newTotal)
+        // reset
+        setBudgetTotal(newTotal);
+        setIsEditingBudget(false);
     }
 
     // METHODS FOR EDITING BUDGET CATEGORIES

@@ -46,7 +46,6 @@ export default function Main(props) {
     const handleLoginFormSubmit = e => {
         e.preventDefault();
         api.login(loginFormState).then(res => {
-            console.log(res.data);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('userId', res.data.user.id);
             props.setUserState({

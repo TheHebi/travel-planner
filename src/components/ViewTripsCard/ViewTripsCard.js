@@ -10,6 +10,8 @@ import './ViewTripsCard.css';
 
 export default function ViewTripsCard({ user, userTripData, handleDelete, toThatTripHandler }) {
     return (
+        <>
+        {userTripData ? (
         <div data-id={userTripData.id} className="viewTripsCard">
             <div className="cardTripName">
                 <h3 >{userTripData.name}</h3>
@@ -58,5 +60,7 @@ export default function ViewTripsCard({ user, userTripData, handleDelete, toThat
                 </button>
             </div>
         </div>
+        ) : ( null )}
+        </>
     )
 }
