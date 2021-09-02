@@ -13,9 +13,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  
   margin-top: 2em;
   margin-bottom: 1em;
+}
+
+.contact-header h1 {
+  font-weight: bolder !important;
 }
 
 .meet-our-team-button {

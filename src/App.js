@@ -9,6 +9,7 @@ import Trips from './pages/Trips.js';
 import CreateTrip from './pages/CreateTrip.js';
 import AboutTeam from './pages/AboutTeam.js';
 import ViewTrips from './pages/ViewTrips.js';
+import ContactForm from './pages/ContactForm';
 import api from './utils/api';
 
 function App() {
@@ -79,6 +80,9 @@ function App() {
           </Route>
           <Route path="/about">
             <AboutTeam/>
+          </Route>
+          <Route path="/contactForm">
+            <ContactForm/>
           </Route>
         </Switch>
       </Router>

@@ -12,7 +12,6 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import './SignupModal.css';
 import api from '../../utils/api';
 
-
 const SignupModal = ({ signupModalState, signupModalClose }) => {
 
     const [signupFormState, setSignupFormState] = useState({
@@ -21,9 +20,23 @@ const SignupModal = ({ signupModalState, signupModalClose }) => {
         password: ""
     });
 
-    const handleSignupFormSubmit = e => {
+    const handleSignupFormSubmit = async (e) => {
         e.preventDefault();
-        api.signup(signupFormState).then(res => {
+        // console.log(signupFormState.password.length);
+        // var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+        // if (signupFormState.username === "") {
+        //     alert("Username cannot be empty.");
+        //     return;
+        // } else if (!signupFormState.email.match(mailformat)) {
+        //     alert("Invalid email format. Please provide valid email");
+        //     return;
+        // } else if (signupFormState.password.length < 8) {
+        //     alert("Password must be more than 8 characters");
+        //     return;
+        // } else {
+            
+        // }   
+        await api.signup(signupFormState).then(res => {
             console.log(res.data);
         }).catch(err=>{
             console.log('error occured');

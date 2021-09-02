@@ -22,13 +22,15 @@ export default function Features() {
                     <div className="features-card-main" id="main1">
                         <div className="features-card-number">
                             <span className="spanCircle mb-2" id="span1"><strong>1</strong></span>
-                            <h4>Choose where you want to go!</h4>
+                            <span className="features-subheader">Choose where you want to go!</span>
                         </div>
                         <div className="features-card-list">
                             <ul>
-                                <li>Choose the destination</li>
-                                <li>Choose the trip duration</li>
-                                <li>Invite your co-travelers</li>
+                                <li className="featuresListStyle">Choose the destination</li>
+                                <li className="featuresListStyle">Autocomplete helps you to find destination</li>
+                                <li className="featuresListStyle">Choose the trip duration</li>
+                                <li className="featuresListStyle">Our date range picker will help you</li>
+                                <li className="featuresListStyle">Invite your friends or family to the plan</li>
                                 
                             </ul>
                         </div>
@@ -41,13 +43,14 @@ export default function Features() {
                     <div className="features-card-main">
                         <div className="features-card-number">
                             <span className="spanCircle mb-2" id="span2"><strong>2</strong></span>
-                            <h4 id="main2Subtitle">Manage expenses in live!</h4>
+                            <span id="main2Subtitle">Manage expenses in live!</span>
                         </div>
                         <div className="features-card-list" id="main2List">
                             <ul id="rtlList">
-                                <li>Track your budget as you travel</li>
-                                <li>Share comments with your co-travelers </li>
-                                <li>Plan and chat with your co-travelers</li>
+                                <li className="featuresListStyle">Track your budget as you travel</li>
+                                <li className="featuresListStyle">Share comments with your co-travelers </li>
+                                <li className="featuresListStyle">Plan and chat with your co-travelers</li>
+                                <li className="featuresListStyle">Organize your travel plan</li>
                             </ul>
                         </div>
                     </div>
