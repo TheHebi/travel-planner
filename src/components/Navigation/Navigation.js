@@ -98,13 +98,6 @@ export default function Navigation(props) {
                                             <div className="example1-dropdown-menu-item__spacer" />
                                             <div className="example1-dropdown-menu-item__text">View My Trips</div>
                                         </NavbarDropdown.Item>
-                                        <NavbarDropdown.Item className="example1-dropdown-menu-item" onClick={() => alert('Item 3: clicked!')}>
-                                            <div>
-                                                <FontAwesomeIcon icon={faUserEdit} fixedWidth />
-                                            </div>
-                                            <div className="example1-dropdown-menu-item__spacer" />
-                                            <div className="example1-dropdown-menu-item__text">Edit User Profile</div>
-                                        </NavbarDropdown.Item>
                                         <NavbarDropdown.Item className="example1-dropdown-menu-item" onClick={props.handleLogout}>
                                             <div>
                                                 <FontAwesomeIcon style={{ color: "red" }} icon={faSignOutAlt} fixedWidth />

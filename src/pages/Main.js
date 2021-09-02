@@ -77,8 +77,8 @@ export default function Main(props) {
         <div>
             <div id="home">
                 <div className="home-main" style={{ height: mainHeight }}>
-                    <h1 className="let-us-plan-for-you text-light">LET US PLAN FOR YOU</h1>
-                    <h4 style={{ marginBottom: "60px" }} className="subHeader text-light">Message to Customer</h4>
+                    <h1 className="let-us-plan-for-you text-light">PLAN A TRIP WITH YOUR CREW</h1>
+                    <h4 style={{ marginBottom: "60px" }} className="subHeader text-light">Discuss the Details!</h4>
                     {!props.user?.username ? (<div className="mb-3">
                         <button onClick={loginModalShow} className="loginShadow modal-button mx-2" id="loginBtn">
                             <span className="material-icons md-18">
