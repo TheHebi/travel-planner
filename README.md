@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Trips Refocused
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Trips Refocused deployed <a href="https://trips-refocused.herokuapp.com/">here</a>.
 
-## Available Scripts
+![badmath](https://img.shields.io/github/repo-size/TheHebi/travel-planner-backend)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Instructions](#instructions)
+- [Contributors](#contributors)
+- [Questions](#questions)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+AS A world traveler,
+I WANT a user friendly website that allows me to coordinate travel plans with co-travellers,
+SO THAT we can all remain organized.
+```
 
-### `npm test`
+<a href="https://trips-refocused.herokuapp.com/">Trips Refocused</a> is a web application where users can create trips for them and their friends. Users can create, edit, and delete their trips. Each trip has a budget management tool specific to each user. Users can also creat, edit, and delete plans for the trip. Signup today and send an invitation to your friends!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instructions
 
-### `npm run build`
+1. Follow this <a href="https://trips-refocused.herokuapp.com/">link</a> to navigate to the application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![load screen](./images/load.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. If you have an account log in,
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![login](./images/login.png)
 
-### `npm run eject`
+otherwise creat an account.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![signup](./images/signup.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. After logging in you can create a trip using the `Get Started` button, or click under your name in the navbar.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![user-dropdown](./images/user-dropdown.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. When creating a trip, the following information is needed:
+    * Trip name
+    * Destination
+    * Departure & Return dates.
 
-## Learn More
+    ![create-trip](./images/create-trip.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. Once your trip is created it will be added to your profile, and you will be navigated to the trips page.
+6. If you click on the `Plan` tab, you can view all plans for the trip and create a plan for the trip.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![create-plan](./images/create-plan.png)
 
-### Code Splitting
+7. Once the plan is created you can click on it to add a description and estimated cost of the plan
+8. You can also comment on a plan as well
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![comments](./images/comments.png)
 
-### Analyzing the Bundle Size
+9. Clicking on the `Budget` tab will navigate you to your budget page for the trip, each user on a trip have their own budget page.
+10. Here you can add budget categories, and each budget category can have budget items added to it.
+11. The total cost of your budget is dynamically updated.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![budget-page](./images/budget-page.png)
 
-### Making a Progressive Web App
+12. Clicking on the `Lounge` tab will navigate you to the message board for the trip
+13. Here you can leave comments on the trip as well as leave comments on other users comments.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![message-board](./images/message-board.png)
 
-### Advanced Configuration
+14. The `Search by Username` box allows you to add a user to your trip.
+15. These users will be able to add plans and comments to the trip.
+16. Only the user that created a trip, or a plan will be able to see the delete button for that trip or plan.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributors
 
-### Deployment
+<a href="https://github.com/TheHebi">Kaleb Muse</a> - Backend Developer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<a href="https://github.com/rhwlffk1028">Kevin Choi</a> - Front End Developer
 
-### `npm run build` fails to minify
+<a href="https://github.com/kkolyvek">Koppi Kolyvek</a> - Front End Developer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a href="https://github.com/TheHebi">Nathaniel Turcotte</a> - Back end Developer
+
+## Quesions
+
+If you have any questions, contact me <a href="https://github.com/TheHebi" target="_blank">here</a>, or send me an email at nturcotte8@live.com.
+
+## License
+
+This project uses the MIT License
