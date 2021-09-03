@@ -50,7 +50,6 @@ export default function CreateTripCard(props) {
         apiKey: process.env.REACT_APP_GOOGLE_API,
         language: "en",
         onPlaceSelected: (place) => {
-            console.log(place)
             setDestination(place.formatted_address);
         },
     });

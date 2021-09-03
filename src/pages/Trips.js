@@ -81,12 +81,14 @@ export default function Trips({ user, token }) {
 
     return (
         <Tripcard
-            tripData={tripData}
-            budgetData={budgetData}
-            changeBudgetTotal={changeBudget}
-            handleUserAdd={addUser}
             user={user}
             token={token}
+
+            tripData={tripData}
+            budgetData={budgetData}
+
+            changeBudgetTotal={changeBudget}
+            handleUserAdd={addUser}
         />
     )
 }

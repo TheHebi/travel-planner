@@ -21,25 +21,9 @@ const SignupModal = ({ signupModalState, signupModalClose }) => {
     });
 
     const handleSignupFormSubmit = async (e) => {
-        e.preventDefault();
-        // console.log(signupFormState.password.length);
-        // var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-        // if (signupFormState.username === "") {
-        //     alert("Username cannot be empty.");
-        //     return;
-        // } else if (!signupFormState.email.match(mailformat)) {
-        //     alert("Invalid email format. Please provide valid email");
-        //     return;
-        // } else if (signupFormState.password.length < 8) {
-        //     alert("Password must be more than 8 characters");
-        //     return;
-        // } else {
-            
-        // }   
+        e.preventDefault();  
         await api.signup(signupFormState).then(res => {
-            console.log(res.data);
         }).catch(err=>{
-            console.log('error occured');
             console.log(err);
         });
         setSignupFormState({

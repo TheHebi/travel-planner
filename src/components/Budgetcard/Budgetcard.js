@@ -62,7 +62,6 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
         if (window.confirm(`Are you sure you'd like to delete this category?`)) {
             deleteHandler(e.target.getAttribute('data-id'));
         } else {
-            console.log('Category deletion cancelled.')
         }
     }
 
