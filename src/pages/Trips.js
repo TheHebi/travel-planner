@@ -32,6 +32,9 @@ export default function Trips({ user, token }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
+
+    
+
     // HANDLE ADDING A USER TO TRIP
     const addUser = async (tripId, userId) => {
         const res = await api.addUserToTrip({
