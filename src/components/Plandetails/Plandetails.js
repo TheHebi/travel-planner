@@ -58,7 +58,6 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
         if (window.confirm(`Are you sure you'd like to delete this plan?`)) {
             planDeleteHandler(planData.id);
         } else {
-            console.log('plan delete aborted')
         }
     }
 

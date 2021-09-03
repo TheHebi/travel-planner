@@ -1,5 +1,6 @@
 import axios from 'axios';
 const URL_PREFIX = 'https://trips-refocused-server.herokuapp.com';
+// const URL_PREFIX = 'http://localhost:3001';
     
 const api = {
     login: function(userData) {
