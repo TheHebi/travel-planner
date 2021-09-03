@@ -210,16 +210,18 @@ export default function Plantab({ planData, user, token }) {
                                         setNewPlanName(e.target.value);
                                     }}
                                 />
-                                <SingleDatePicker
-                                    date={newPlanDate}
-                                    onDateChange={date => {
-                                        setNewPlanDate(date)
-                                    }}
-                                    focused={dateFocus}
-                                    onFocusChange={({focused}) => setDateFocus(focused)}
-                                    id="create-plan-date-picker"
-                                    required={true}
-                                />
+                                <div className="single-date-input">
+                                    <SingleDatePicker
+                                        date={newPlanDate}
+                                        onDateChange={date => {
+                                            setNewPlanDate(date)
+                                        }}
+                                        focused={dateFocus}
+                                        onFocusChange={({focused}) => setDateFocus(focused)}
+                                        id="create-plan-date-picker"
+                                        required={true}
+                                    />
+                                </div>
                                 <input type="submit" value="Create plan!" className="submit-add-plan" />
                             </form>
                         ) : ( null )}

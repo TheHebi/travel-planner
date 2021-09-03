@@ -30,3 +30,7 @@
   border: none;
   background: none;
 }
+
+.single-date-input {
+  margin: 0.8em 0;
+}
