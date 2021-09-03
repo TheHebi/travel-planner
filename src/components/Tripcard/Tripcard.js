@@ -10,7 +10,7 @@ import Lounge from '../Lounge/Lounge.js';
 import Tripoverview from '../Tripoverview/Tripoverview.js';
 import Plantab from '../Plans/Plans.js';
 
-export default function Tripcard({ tripData, budgetData, changeBudgetTotal, handleUserAdd, user, token }) {
+export default function Tripcard(props) {
     // SET REFERENCE, STATES FOR TAB SWITCHING
     // ---------------------------------------
     const [activeTab, setActiveTab] = useState('Overview')
@@ -36,20 +36,26 @@ export default function Tripcard({ tripData, budgetData, changeBudgetTotal, hand
 
     // HANDLE ADDING USER TO TRIP
     const userAddHandler = (tripId, userId) => {
-        handleUserAdd(tripId, userId);
+        props.handleUserAdd(tripId, userId);
     }
     
     // RENDER APPROPRIATE CONTENT
     const renderTab = () => {
         if (!activeTab) {
-            return <Tripoverview trip={tripData} />
+            return <Tripoverview trip={props.tripData} />
         } else if (activeTab === 'Overview') {
-            return <Tripoverview trip={tripData} />
+            return <Tripoverview trip={props.tripData} />
         } else if (activeTab === 'Plans') {
             return (
                 <div>
                     <h1>Plans</h1>
-                    <Plantab planData={tripData.Plans} user={user} token={token} />
+                    <Plantab
+                        planData={props.tripData.Plans}
+                        user={props.user}
+                        token={props.token}
+
+                        handlePlanCreate={props.handlePlanAdd}
+                    />
                 </div>
             )
         } else if (activeTab === 'Budget') {
@@ -57,10 +63,10 @@ export default function Tripcard({ tripData, budgetData, changeBudgetTotal, hand
                 <div>
                     <h1>Budget</h1>
                     <Budget
-                        budgetData={budgetData}
-                        changeTotal={changeBudgetTotal}
-                        user={user}
-                        token={token}
+                        budgetData={props.budgetData}
+                        changeTotal={props.changeBudgetTotal}
+                        user={props.user}
+                        token={props.token}
                     />
                 </div>
             )
@@ -69,12 +75,12 @@ export default function Tripcard({ tripData, budgetData, changeBudgetTotal, hand
                 <div>
                     <h1>Travel Lounge</h1>
                     <Lounge
-                        messages={tripData.Comments}
-                        travellers={tripData.SavedUser}
-                        creator={tripData.User}
+                        messages={props.tripData.Comments}
+                        travellers={props.tripData.SavedUser}
+                        creator={props.tripData.User}
                         handleUserAddition={userAddHandler}
-                        user={user}
-                        token={token} />
+                        user={props.user}
+                        token={props.token} />
                 </div>
             )
         }

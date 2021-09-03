@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Moment from 'react-moment';
 
 // BOOTSTRAP IMPORTS
@@ -13,20 +13,30 @@ import { faArrowRight, faPlaneDeparture, faPlaneArrival, faCrown, faUser } from 
 import './Tripoverview.css';
 
 export default function Tripoverview({ trip }) {
+    // STATE VARIABLES
+    // ----------------
+    const [tripData, setTripData] = useState(trip);
+
+    // EFFECTS
+    // ----------------
+    useEffect(() => {
+        setTripData(trip)
+    }, [trip])
+
     return (
         <>
-        {!trip ? ( null ) : (
+        {!tripData ? ( null ) : (
         <div className="overview-wrapper">
             <div className="overview-header">
-                <h1>{trip.name}</h1>
-                <h2>{trip.destination}</h2>
+                <h1>{tripData.name}</h1>
+                <h2>{tripData.destination}</h2>
             </div>
             
             <div className="date-wrapper">
                 <FontAwesomeIcon className="mx-3" icon={faPlaneDeparture} size='1x' />
-                <Moment className="date-item" format="MMM Do YYYY" date = {trip.departure} />
+                <Moment className="date-item" format="MMM Do YYYY" date = {tripData.departure} />
                 <FontAwesomeIcon className="mx-3" icon={faArrowRight} size='1x' />
-                <Moment className="date-item" format="MMM Do YYYY" date = {trip.return} />
+                <Moment className="date-item" format="MMM Do YYYY" date = {tripData.return} />
                 <FontAwesomeIcon className="mx-3" icon={faPlaneArrival} size='1x' />
             </div>
 
@@ -36,9 +46,9 @@ export default function Tripoverview({ trip }) {
                         <h4>The crew:</h4>
                         <div className="overview-item trip-owner">
                             <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
-                            {trip.User.username}
+                            {tripData.User.username}
                         </div>
-                        {trip.SavedUser.map((traveller, index) => {
+                        {tripData.SavedUser.map((traveller, index) => {
                             return (
                                 <div className="overview-item" key={index}>
                                     <FontAwesomeIcon icon={faUser} size='1x' className="me-2" />
@@ -51,7 +61,7 @@ export default function Tripoverview({ trip }) {
                 <Col sm={12} lg={6} className="summary-colum-right">
                     <div className="items-wrapper middle">
                         <h4>The plans:</h4>
-                        {trip.Plans.map((plan, index) => {
+                        {tripData.Plans.map((plan, index) => {
                             return (
                                 <div className="overview-item" key={index}>
                                     {plan.name}

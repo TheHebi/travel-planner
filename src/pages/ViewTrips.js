@@ -54,7 +54,7 @@ export default function ViewTrips(props) {
 
             <div className="viewTripsCardContainer">
                 {(userTripData.length === 0) ?
-                    (<div style={{ color: "white" }}><h3>You currently have no trip!</h3></div>)
+                    (<div style={{ color: "white" }}><h3>You currently have no trips!</h3></div>)
                     :
                     <>
                         {

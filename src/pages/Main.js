@@ -19,7 +19,6 @@ export default function Main(props) {
     // set height
     useEffect(() => {
         function handleResize() {
-            console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
             setMainHeight(window.innerHeight)
         }
         window.addEventListener('resize', handleResize);
@@ -57,7 +56,6 @@ export default function Main(props) {
                 }
             })
         }).catch(err => {
-            console.log('error occured');
             console.log(err);
             localStorage.removeItem('token');
             localStorage.removeItem('userId');
