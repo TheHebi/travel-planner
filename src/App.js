@@ -27,7 +27,6 @@ function App() {
     const userId = localStorage.getItem('userId');
     if (token && userId) {
       api.getUser(userId, token).then(res => {
-        // console.log(res.data)
         setUserState({
           token: token,
           user: {

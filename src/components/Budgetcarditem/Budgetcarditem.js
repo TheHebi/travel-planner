@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 // LOCAL IMPORTS
 import './Budgetcarditem.css';
 
-export default function Budgetcarditem({ isEditing, description, price, itemId, deleteHandler, editHandler}) {
+export default function Budgetcarditem(props) {
     // STATE VARIABLES
     // --------------------
-    const [item, setItem] = useState(description);
-    const [amount, setAmount] = useState(price);
+    const [item, setItem] = useState(props.description);
+    const [amount, setAmount] = useState(props.price);
 
     const handleEditSubmit = (e) => {
         e.preventDefault();
 
         // only submit in editor mode
-        if (isEditing) {
+        if (props.isEditing) {
             // build body
             const body = {
                 description: item,
@@ -21,7 +21,7 @@ export default function Budgetcarditem({ isEditing, description, price, itemId, 
             }
     
             // send body to parent element for backend submission
-            editHandler(itemId, body);
+            props.editHandler(props.itemId, body);
         };
     }
 
@@ -31,13 +31,13 @@ export default function Budgetcarditem({ isEditing, description, price, itemId, 
             onSubmit={handleEditSubmit}
         >
             <div className="budgettable-item-left">
-                {isEditing === false ? (
-                    <p>{description}</p>
+                {props.isEditing === false ? (
+                    <p>{props.description}</p>
                 ) : (
                     <input
                         type="text"
                         required
-                        defaultValue={description}
+                        value={item}
                         onChange={(e) => {
                             e.preventDefault();
                             setItem(e.target.value);
@@ -46,14 +46,14 @@ export default function Budgetcarditem({ isEditing, description, price, itemId, 
                 )}
             </div>
             <div className="budgettable-item-right">
-                {isEditing === false ? (
-                    <p>{price}</p>
+                {props.isEditing === false ? (
+                    <p>{props.price}</p>
                 ) : (
                     <input
                         type="number"
                         step="0.01"
                         required
-                        defaultValue={price}
+                        value={amount}
                         onChange={(e) => {
                             e.preventDefault();
                             setAmount(e.target.value);
@@ -62,13 +62,12 @@ export default function Budgetcarditem({ isEditing, description, price, itemId, 
                 )}
                 <input type="submit" style={{display: 'none'}} />
                 <button 
-                    style={{display: isEditing === true ? 'block' : 'none'}} 
+                    style={{display: props.isEditing === true ? 'block' : 'none'}} 
                     className="icon-btn"
-                    data-id={itemId}
                     onClick={(e) => {
                         e.preventDefault();
                         // pass data-id up to parent
-                        deleteHandler(e.target.getAttribute('data-id'));
+                        props.deleteHandler(props.itemId);
                     }}
                 >
                     ✖️
