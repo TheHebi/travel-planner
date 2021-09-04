@@ -4,14 +4,16 @@ import React, { useState } from 'react';
 import './Budgetcard.css';
 import Budgetcarditem from '../Budgetcarditem/Budgetcarditem';
 
-export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, editHandler, deleteItemHandler, editItemHandler }) {
+export default function Budgetcard(props) {
     // SET STATES
     // ---------------
     const [addItem, setAddItem] = useState(false);
-    const [title, setTitle] = useState(budgetDetails.description)
+    const [title, setTitle] = useState(props.budgetDetails.description)
     const [newItemValue, setNewItemValue] = useState('');
     const [newItemPrice, setNewItemPrice] = useState('');
 
+    // HELPER FUNCTIONS
+    // ----------------
     const findCardTotal = (data) => {
         let budgetItemSum = 0;
         for (let i=0; i<data.BudgetItems.length; i++) {
@@ -20,7 +22,8 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
         return budgetItemSum
     }
 
-    // toggle add budget item form
+    // VISUAL TOGGLERS
+    //------------------
     const toggleAddBudgetItem = (e) => {
         e.preventDefault();
         setAddItem(!addItem);
@@ -32,25 +35,17 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
     // handle adding a budget item
     const handleAddBudgetItem = (e) => {
         e.preventDefault();
-        
-        addHandler({
-            BudgetCategoryId: e.target.getAttribute('data-id'),
+
+        const body = {
+            BudgetCategoryId: props.budgetDetails.id,
             description: newItemValue,
             price: newItemPrice,
-        });
+        }
+
+        props.itemCreateHandler(body);
+
         setNewItemValue('');
         setNewItemPrice('');
-    }
-
-    // handle deleting a budget item
-    const handleDeleteItem = (itemId) => {
-        deleteItemHandler(itemId);
-    }
-
-    // handle editing a budget item
-    const handleEditItem = (itemId, body) => {
-        editItemHandler(itemId, body);
-        setAddItem(false);
     }
 
     // BUDGET CATEGORY METHODS
@@ -59,21 +54,24 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
     // handle deleting a budget category
     const handleDeleteBudgetCategory = (e) => {
         e.preventDefault();
+
         if (window.confirm(`Are you sure you'd like to delete this category?`)) {
-            deleteHandler(e.target.getAttribute('data-id'));
+            props.deleteCategoryHandler(props.budgetDetails.id);
         } else {
         }
     }
 
+    // handle editing a budget category
     const handleEditBudgetCategory = (e) => {
         e.preventDefault();
 
         // build body
         const body = {
-            description: e.target.children[0].value,
+            description: title,
         }
+
         // push to parent
-        editHandler(budgetDetails.id, body);
+        props.editCategoryHandler(props.budgetDetails.id, body);
         setAddItem(false);
     }
 
@@ -82,7 +80,7 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
             <div className="budgetcard">
                 <div className="header-wrapper">
                     {addItem === false ? (
-                        <h3>{title}</h3>
+                        <h3>{props.budgetDetails.description}</h3>
                     ) : (
                         <form
                             onSubmit={handleEditBudgetCategory}
@@ -91,7 +89,7 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
                                 className="budget-input-title"
                                 type="text"
                                 required
-                                defaultValue={budgetDetails.description}
+                                value={title}
                                 onChange={(e) => {
                                     e.preventDefault();
                                     setTitle(e.target.value);
@@ -104,28 +102,29 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
                         <button className="icon-btn" onClick={toggleAddBudgetItem}>
                             📝
                         </button>
-                        <button className="icon-btn" data-id={budgetDetails.id} onClick={handleDeleteBudgetCategory}>
+                        <button className="icon-btn" onClick={handleDeleteBudgetCategory}>
                             ✖️
                         </button>
                     </div>
                 </div>
                 <div className="budgettable">
-                    {budgetDetails.BudgetItems.map((budgetItem, i) => {
+                    {props.budgetDetails.BudgetItems.map((budgetItem, i) => {
                         return (
                             <Budgetcarditem 
                                 key={i} 
-                                isEditing={addItem} 
+                                isEditing={addItem}
+                                
                                 description={budgetItem.description} 
                                 price={budgetItem.price} 
                                 itemId={budgetItem.id}
-                                deleteHandler={handleDeleteItem}
-                                editHandler={handleEditItem}
+
+                                deleteHandler={props.itemDeleteHandler}
+                                editHandler={props.itemUpdateHandler}
                             />
                         )
                     })}
                     <form 
                         style={{display: addItem === true ? 'flex' : 'none'}} 
-                        data-id={budgetDetails.id} 
                         onSubmit={handleAddBudgetItem}
                         className="budgettable-item"
                     >
@@ -160,7 +159,7 @@ export default function Budgetcard({ budgetDetails, deleteHandler, addHandler, e
                         </div>
                     </form>
                     <div className="budgettable-item-total">
-                        <strong>{findCardTotal(budgetDetails)}</strong>
+                        <strong>{findCardTotal(props.budgetDetails)}</strong>
                     </div>
                 </div>
             </div>

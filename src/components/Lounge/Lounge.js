@@ -18,14 +18,19 @@ import './Lounge.css';
 import Message from '../Loungemessage/Loungemessage.js';
 import api from '../../utils/api';
 
-export default function Lounge({ messages, travellers, creator, handleUserAddition, user, token }) {
+export default function Lounge(props) {
     const { id } = useParams();
     // STATE VARIABLES
     // ---------------
+    // toggle all comments vs one comment
     const [viewAll, setViewAll] = useState(true);
-    const [tripComments, setTripComments] = useState(messages);
-    const [tripComment, setTripComment] = useState(tripComments[0]);
-    const [commentId, setCommentId] = useState(0);
+    // state for new main comment
+    const [postContent, setPostContent] = useState('');
+    // state for new sub comment
+    const [commentContent, setCommentContent] = useState('');
+    // index to find individual comment data in messageData
+    const [targetCommentIndex, setTargetCommentIndex] = useState(0);
+
     // search bar
     const [allUsers, setAllUsers] = useState([]);
     const [visibleSearchedUsers, setVisibleSearchedUsers] = useState([]);
@@ -39,7 +44,6 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
 
         // create an object linking user IDs to usernames
         const users = [];
-        const usersLowercase = [];
         for (let i=0; i<userData.data.length; i++) {
             users.push({
                 username: userData.data[i].username,
@@ -64,104 +68,56 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
 
     }, [searchedUser]);
 
-    // VISUAL CHANGES
-    // --------------
-    const handleCommentClick = async (e) => {
-        e.preventDefault();
-        const res = await api.getSingleComment(e.target.getAttribute('data-id'));
-        if (res.status = 200) {
-            setTripComment(res.data);
-            setCommentId(res.data.id);
-            setViewAll(false);
-        } else {
-            alert('Error fetching comment data. Please try again later.')
-        };
-    }
+
+    // HELPER FUNCTIONS 
+    // ----------------
+    const updateCommentTarget = (commentId) => {
+        // find index of comment in which commentId is found
+        for (let i=0; i<props.messages.length; i++) {
+            if (props.messages[i].id === commentId) {
+                setTargetCommentIndex(i);
+                setViewAll(false);
+            }
+        }
+    };
+
+    // VISUAL TOGGLERS
+    // ---------------
 
     const handleExitCommentViewerClick = (e) => {
         e.preventDefault();
         setViewAll(true);
-    }
+    };
 
     // ADD USER TO TRIP
-    const userAddHandler = async (e) => {
+    const handleAddUser = async (e) => {
         e.preventDefault();
-        handleUserAddition(id, searchedUserId);
+        props.handleUserAddition(id, searchedUserId);
         setSearchedUser('');
-    }
+    };
 
     // CREATE NEW COMMENT ON TRIP
     const postSubmitHandler = async (e) => {
         e.preventDefault();
         const body = {
-            UserId: user.id,
-            content: e.target.elements[0].value,
+            UserId: props.user.id,
+            content: postContent,
             TripId: id,
-        }
-        const res = await api.createComment(body, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            const newCommentData = await api.getAllTripComments(id);
-            setTripComments(newCommentData.data);
-            e.target.elements[0].value = '';
-        } else {
-            alert('Error posting comment...')
-        }
-    }
+        };
+        props.handlePostCreate(body);
+        setPostContent('');
+    };
 
     // CREATE NEW COMMENT ON COMMENT
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
         const body = {
-            CommentId: commentId,
+            CommentId: props.messages[targetCommentIndex].id,
             content: e.target.elements[0].value,
-            UserId: user.id,
-        }
-        const res = await api.createComment(body, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            const newCommentData = await api.getAllTripComments(id);
-            setTripComments(newCommentData.data);
-            for (let i=0; i<newCommentData.data.length; i++) {
-                if (newCommentData.data[i].id === commentId) {
-                    setTripComment(newCommentData.data[i])
-                }
-            }
-            e.target.elements[0].value = '';
-        } else {
-            alert('Error posting comment...');
+            UserId: props.user.id,
         };
-    }
-
-    // DELETE A USER'S COMMENT
-    const commentDeleteHandler = async (deletionId) => {
-        // delete comment
-        const res = await api.deleteComment(deletionId, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        });
-
-        if (res.status === 200) {
-            // grab all comments
-            const newCommentData = await api.getAllTripComments(id);
-            setTripComments(newCommentData.data);
-            for (let i=0; i<newCommentData.data.length; i++) {
-                if (newCommentData.data[i].id === commentId) {
-                    setTripComment(newCommentData.data[i])
-                }
-            };
-        } else {
-            alert('Error deleting comment...')
-        }
+        props.handlePostCreate(body);
+        setCommentContent('');
     }
 
     return (
@@ -171,18 +127,18 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
                     <h3 style={{alignSelf: 'center', lineHeight: '1.5em'}}>Travellers</h3>
                     <div className="traveller">
                         <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
-                        {creator.username}
+                        {props.creator.username}
                     </div>
-                    {travellers.map((traveller, index) => {
+                    {props.travellers ? (props.travellers.map((traveller, index) => {
                         return (
                             <div className="traveller" key={index}>
                                 <FontAwesomeIcon icon={faUser} size='1x' className="me-2" />
                                 {traveller.username}
                             </div>
                         )
-                    })}
+                    })) : (null)}
                     <div className="search-area">
-                        <form onSubmit={userAddHandler}>
+                        <form onSubmit={handleAddUser}>
                             <Form.Control
                                 className="user-search-bar"
                                 type="text"
@@ -224,11 +180,14 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
                     <h3>Message Board</h3>
                     {viewAll === true ? (
                         <div className="messages">
-                            {tripComments.map(message => {
+                            {props.messages.map(message => {
                                 return (
                                     <button
                                         className="message-button"
-                                        onClick={handleCommentClick}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            updateCommentTarget(message.id)
+                                        }}
                                         key={message.id}
                                         message={message}
                                         data-id={message.id}
@@ -236,8 +195,8 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
                                         <Message
                                             message={message}
                                             data-id={message.id}
-                                            user={user}
-                                            handleDelete={commentDeleteHandler}
+                                            user={props.user}
+                                            handleDelete={props.handlePostDelete}
                                         />
                                     </button>
                                 )}
@@ -253,31 +212,47 @@ export default function Lounge({ messages, travellers, creator, handleUserAdditi
                                 Back
                             </button>
                             <div className="comment-subject-wrapper">
-                                <h6 className="comment-subject-content">{tripComment.content}</h6>
+                                <h6 className="comment-subject-content">{props.messages[targetCommentIndex].content}</h6>
                                 <p className="comment-subject-poster">
-                                    {tripComment.User.username} - 
-                                    <Moment className="comment-subject-date" format="MMM Do YYYY" date = {tripComment.createdAt} />
+                                    {props.messages[targetCommentIndex].User.username} - 
+                                    <Moment className="comment-subject-date" format="MMM Do YYYY" date = {props.messages[targetCommentIndex].createdAt} />
                                 </p>
                             </div>
                             <p>Replies:</p>
-                            {tripComment.SubComment ? (tripComment.SubComment.map(message =>
+                            {props.messages[targetCommentIndex].SubComment ? (props.messages[targetCommentIndex].SubComment.map(message =>
                                 (<Message
                                     key={message.id}
                                     message={message}
                                     data-id={message.id}
-                                    user={user}
-                                    handleDelete={commentDeleteHandler}
+                                    user={props.user}
+                                    handleDelete={props.handlePostDelete}
                                 />)
                             )) : ( null )}
                         </div>
                     )}
                     {viewAll === true ? (
                         <form id="post-submit-form" onSubmit={postSubmitHandler}>
-                            <Form.Control type="text" placeholder="Share your thoughts!" />
+                            <Form.Control
+                                type="text"
+                                placeholder="Share your thoughts!"
+                                value={postContent}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setPostContent(e.target.value)
+                                }}
+                            />
                         </form>
                     ) : (
                         <form id="comment-submit-form" onSubmit={commentSubmitHandler}>
-                            <Form.Control type="text" placeholder="Send a Comment!" />
+                            <Form.Control
+                                type="text"
+                                placeholder="Send a Comment!"
+                                value={commentContent}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setCommentContent(e.target.value);
+                                }}
+                            />
                         </form>
                     )}
                 </div>

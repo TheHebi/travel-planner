@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 
 // BOOTSTRAP IMPORTS
 import Container from 'react-bootstrap/Container';
@@ -12,22 +11,19 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import './Budget.css';
 import Budgetbar from '../Budgetbar/Budgetbar.js';
 import Budgetcard from '../Budgetcard/Budgetcard.js';
-import api from '../../utils/api';
 
-export default function Budget({ budgetData, changeTotal, user, token }) {
-    const { id } = useParams();
+export default function Budget(props) {
     // STATE VARIABLES
     // ---------------
     const [isEditingBudget, setIsEditingBudget] = useState(false);
-    const [budgetTotal, setBudgetTotal] = useState(budgetData ? budgetData.total : 0);
+    const [budgetTotal, setBudgetTotal] = useState(props.budgetData ? props.budgetData.total : 0);
     const [addCategory, setAddCategory] = useState(false);
-    const [budgetObject, setBudgetObject] = useState(budgetData);
+    const [categoryDescription, setCategoryDescription] = useState('');
 
-    useEffect(() => {
-        setBudgetObject(budgetData)
-    }, [budgetData])
-
+    // HELPER FUNCTIONS
+    // -------------------
     const findBudgetTotal = (data) => {
+        // simple sum function
         if (!data) {
             return 0
         }
@@ -41,152 +37,62 @@ export default function Budget({ budgetData, changeTotal, user, token }) {
         return budgetTotal;
     };
 
+    // VISUAL TOGGLERS
+    // -----------------
     const toggleBudgetEditor = (e) => {
         e.preventDefault();
         setIsEditingBudget(!isEditingBudget);
-    }
+    };
 
-    const handleBudgetChange = async (e) => {
-        e.preventDefault();
-        const newTotal = e.target.elements[0].value;
-        changeTotal(budgetObject.id, newTotal)
-        // reset
-        setBudgetTotal(newTotal);
-        setIsEditingBudget(false);
-    }
-
-    // METHODS FOR EDITING BUDGET CATEGORIES
     const toggleBudgetCategoryCreator = (e) => {
         e.preventDefault();
         setAddCategory(!addCategory);
-    }
+    };
 
+
+    // BUDGET CATEGORY METHODS
+    //-------------------------
     const handleAddBudgetCategory = async (e) => {
         e.preventDefault();
         
-        // create new category
-        const res = await api.createBudgetCategory({
-            BudgetId: budgetObject.id,
-            description: e.target.children[0].children[0].children[0].value,
-        }, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
+        const body = {
+            BudgetId: props.budgetData.id,
+            description: categoryDescription,
+        }
 
-        if (res.status === 200) {
-            // fetch new data and set state to render cards and hide category creator
-            const newBudgetData = await api.getSingleBudget(id, user.id);
-            setBudgetObject(newBudgetData.data[0]);
+        const addCat = props.handleAddBudgetCategory(body);
+
+        if (addCat) {
             setAddCategory(false);
-        } else {
-            alert('Error creating budget category...')
+            setCategoryDescription('');
         };
-    }
-
-    const handleEditBudgetCategory = async (categoryId, body) => {
-        // edit existing category
-        const res = await api.updateBudgetCategory(categoryId, body, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            // fetch new data and set state to render cards and hide category creator
-            const newBudgetData = await api.getSingleBudget(id, user.id);
-            setBudgetObject(newBudgetData.data[0]);
-        } else {
-            alert('Error editing budget category...')
-        }
-    }
-
-    const handleDeleteBudgetCategory = async (budgetCategoryId) => {
-        // delete indicated budget category (using data-id attribute)
-        const res = await api.deleteBudgetCategory(budgetCategoryId, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            // fetch new data and set state
-            const newBudgetData = await api.getSingleBudget(id, user.id);
-            setBudgetObject(newBudgetData.data[0]);
-        } else {
-            alert('Error deleting budget category...')
-        }
-    }
-
-    // METHODS FOR EDITING BUDGET ITEMS
-    const handleAddItem = async (body) => {
-        // create new budget item
-        const res = await api.createBudgetItem(body, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            // fetch new data and set state to render cards and hide category creator
-            const newBudgetData = await api.getSingleBudget(id, user.id);
-            setBudgetObject(newBudgetData.data[0]);
-        } else {
-            alert('Error creating budget item...')
-        };
-    }
-
-    const handleDeleteItem = async (budgetItemId) => {
-        // delete indicated budget item (using data-id attribute from child)
-        const res = await api.deleteBudgetItem(budgetItemId, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            // fetch new data and set state
-            const newBudgetData = await api.getSingleBudget(id, user.id);
-            setBudgetObject(newBudgetData.data[0]);
-        } else {
-            alert('Error deleting item from category...')
-        }
-    }
-
-    const handleEditItem = async (budgetItemId, body) => {
-        // edit existing budget item
-        const res = await api.updateBudgetItem(budgetItemId, body, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            // fetch new data and set state to render cards and hide editor
-            const newBudgetData = await api.getSingleBudget(id, user.id);
-            setBudgetObject(newBudgetData.data[0]);
-        } else {
-            alert('Error editing budget item...')
-        }
     }
 
     return (
         <div style={{display: 'flex', flexDirection: 'column'}}>
-            <div className={(findBudgetTotal(budgetObject)>budgetTotal) ? 'budgetbar-wrapper overbudget' : 'budgetbar-wrapper'}>
+            <div className={(findBudgetTotal(props.budgetData)>budgetTotal) ? 'budgetbar-wrapper overbudget' : 'budgetbar-wrapper'}>
                 <div className="budget-overview-wrapper">
-                    <h3 className="budget-overview-text">{budgetObject ? findBudgetTotal(budgetObject) : 0}</h3>
+                    <h3 className="budget-overview-text">{props.budgetData ? findBudgetTotal(props.budgetData) : 0}</h3>
                     <h3 className="budget-overview-divider"> / </h3>
                     {isEditingBudget ? (
                         <form
-                            onSubmit={handleBudgetChange}
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                props.changeTotal(props.budgetData.id, budgetTotal);
+                                setIsEditingBudget(false);
+                            }}
                             className="budget-editor-input-wrapper"
                         >
                             <input
-                                placeholder={budgetObject ? "Budget" : "Set a Budget"}
+                                placeholder="0"
                                 type="number"
                                 step="0.01"
                                 className="budget-editor-input"
-                                defaultValue={budgetTotal}
+                                value={budgetTotal}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setBudgetTotal(e.target.value);
+                                }}
                             />
                             <input type="submit" style={{display: 'none'}} />
                         </form>
@@ -197,7 +103,7 @@ export default function Budget({ budgetData, changeTotal, user, token }) {
                         📝
                     </button>
                 </div>
-                <Budgetbar budgetTotal={budgetTotal} budgetDetails={budgetObject}/>
+                <Budgetbar budgetTotal={budgetTotal} budgetDetails={props.budgetData}/>
             </div>
             <div className="add-budget-wrapper">
                 <button className="add-budget-button" onClick={toggleBudgetCategoryCreator}>
@@ -212,6 +118,11 @@ export default function Budget({ budgetData, changeTotal, user, token }) {
                             <input
                                 className="budget-input-title"
                                 placeholder="Category Title"
+                                value={categoryDescription}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setCategoryDescription(e.target.value);
+                                }}
                             />
                             <input type="submit" style={{display: 'none'}} />
                             <div style={{display: 'flex', alignSelf: 'flex-start'}}>
@@ -222,15 +133,16 @@ export default function Budget({ budgetData, changeTotal, user, token }) {
                         </div>
                     </div>
                 </form>
-                {budgetObject ? budgetObject.BudgetCategories.map((budgetDetails, i) => 
+                {props.budgetData ? props.budgetData.BudgetCategories.map((budgetDetails, i) => 
                 <Budgetcard 
                     key={i} 
                     budgetDetails={budgetDetails} 
-                    deleteHandler={handleDeleteBudgetCategory} 
-                    editHandler={handleEditBudgetCategory}
-                    addHandler={handleAddItem}
-                    deleteItemHandler={handleDeleteItem}
-                    editItemHandler={handleEditItem}
+                    deleteCategoryHandler={props.handleDeleteBudgetCategory} 
+                    editCategoryHandler={props.handleUpdateBudgetCategory}
+
+                    itemCreateHandler={props.handleCreateBudgetItem}
+                    itemUpdateHandler={props.handleUpdateBudgetItem}
+                    itemDeleteHandler={props.handleDeleteBudgetItem}
                 />
                 ) : null}
             </Container>

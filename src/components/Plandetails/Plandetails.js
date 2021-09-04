@@ -12,15 +12,15 @@ import Message from '../Loungemessage/Loungemessage.js'
 // LOCAL IMPORTS
 import './Plandetails.css';
 
-export default function Plandetails({ planData, user, planDeleteHandler, planUpdateHandler, commentHandler, commentDeleteHandler }) {
+export default function Plandetails(props) {
     // STATE VARIABLES
     // ---------------
     const [isEditing, setIsEditing] = useState(false);
     const [commentValue, setCommentValue] = useState('');
     // plan variables
-    const [planTitle, setPlanTitle] = useState(planData.name);
-    const [planContent, setPlanContent] = useState(planData.content);
-    const [planBudget, setPlanBudget] = useState(planData.budget);
+    const [planTitle, setPlanTitle] = useState(props.planData.name);
+    const [planContent, setPlanContent] = useState(props.planData.content);
+    const [planBudget, setPlanBudget] = useState(props.planData.budget);
 
     // VISUAL TOGGLING
     const togglePlanEditor = (e) => {
@@ -31,13 +31,13 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
     // ADD COMMENT TO PLAN
     const submitPlanComment = (e) => {
         e.preventDefault();
-        commentHandler(planData.id, commentValue);
+        props.commentHandler(props.planData.id, commentValue);
         setCommentValue('');
     };
     
     // DELETE COMMENT
     const deleteComment = (commentId) => {
-        commentDeleteHandler(commentId);
+        props.commentDeleteHandler(commentId);
     };
 
     // UPDATE PLAN
@@ -48,24 +48,24 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
             budget: planBudget,
             content: planContent,
         };
-        planUpdateHandler(planData.id, body);
+        props.planUpdateHandler(props.planData.id, body);
         setIsEditing(false);
     }
 
     // DELETE PLAN
     const deletePlan = (e) => {
         e.preventDefault();
+
         if (window.confirm(`Are you sure you'd like to delete this plan?`)) {
-            planDeleteHandler(planData.id);
-        } else {
-        }
-    }
+            props.planDeleteHandler(props.planData.id);
+        };
+    };
 
     return (
         <>
-        {!planData ? ( null ) : (
+        {!props.planData ? ( null ) : (
         <div className="plan-detail-wrapper">
-            {user.id === planData.User.id ? (
+            {props.user.id === props.planData.User.id ? (
                 <div className="action-button-wrapper">
                     <button className="icon-btn" onClick={togglePlanEditor}>
                         📝
@@ -86,7 +86,7 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
                         }}
                         className="plan-title-input"
                     />
-                    <Moment className="plan-item-date" format="MMM Do YYYY" date = {planData.date} />
+                    <Moment className="plan-item-date" format="MMM Do YYYY" date = {props.planData.date} />
                     <textarea
                         type="text"
                         rows="3"
@@ -113,9 +113,9 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
                     <div className="plan-item-center opted-in-travellers">
                     <div className="plan-partaker plan-creator">
                         <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
-                        {planData.User.username}
+                        {props.planData.User.username}
                     </div>
-                    {planData.SavedUser.map((savedUser, i) => {
+                    {props.planData.SavedUser.map((savedUser, i) => {
                         return (
                             <div key={i} className="plan-partaker">
                                 <FontAwesomeIcon icon={faUser} size='1x' className='me-2' />
@@ -128,16 +128,16 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
                 </form>
             ) : (
                 <>
-                <h3 className="plan-item-center">{planData.name}</h3>
-                <Moment className="plan-item-date" format="MMM Do YYYY" date = {planData.date} />
-                <p className="plan-item-center">{planData.content}</p>
-                <p className="plan-item-center">Approximate Cost: ${planData.budget}</p>
+                <h3 className="plan-item-center">{props.planData.name}</h3>
+                <Moment className="plan-item-date" format="MMM Do YYYY" date = {props.planData.date} />
+                <p className="plan-item-center">{props.planData.content}</p>
+                <p className="plan-item-center">Approximate Cost: ${props.planData.budget}</p>
                 <div className="plan-item-center opted-in-travellers">
                     <div className="plan-partaker plan-creator">
                         <FontAwesomeIcon icon={faCrown} size='1x' className='me-2' />
-                        {planData.User.username}
+                        {props.planData.User.username}
                     </div>
-                    {planData.SavedUser.map((savedUser, i) => {
+                    {props.planData.SavedUser.map((savedUser, i) => {
                         return (
                             <div key={i} className="plan-partaker">
                                 <FontAwesomeIcon icon={faUser} size='1x' className='me-2' />
@@ -149,12 +149,12 @@ export default function Plandetails({ planData, user, planDeleteHandler, planUpd
                 </>
             )}
             <div className="plan-item-center plan-comments">
-                {planData.Comments.map((comment, i) => {
+                {props.planData.Comments.map((comment, i) => {
                     return (
                         <Message 
                             key={i}
                             message={comment}
-                            user={user}
+                            user={props.user}
                             handleDelete={deleteComment}
                         />
                     )
