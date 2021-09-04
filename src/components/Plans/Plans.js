@@ -13,13 +13,11 @@ import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import './Plans.css';
 import Plancard from '../Plancard/Plancard.js';
 import Plandetails from '../Plandetails/Plandetails.js';
-import api from '../../utils/api.js';
 
-export default function Plantab({ planData, user, token }) {
+export default function Plantab(props) {
     const { id } = useParams();
     // STATE VARIABLES
     // -----------------
-    const [planObject, setPlanObject] = useState(planData);
     const [viewAllPlans, setViewAllPlans] = useState(true);
     const [isAddingPlan, setIsAddingPlan] = useState(false);
     const [targetPlanIndex, setTargetPlanIndex] = useState(0);
@@ -32,8 +30,8 @@ export default function Plantab({ planData, user, token }) {
     // --------------------
     const updatePlanTarget = (planId) => {
         // find index of planData in which planId is found
-        for (let i=0; i<planObject.length; i++) {
-            if (planObject[i].id === planId) {
+        for (let i=0; i<props.planData.length; i++) {
+            if (props.planData[i].id === planId) {
                 setTargetPlanIndex(i)
                 setViewAllPlans(false);
             };
@@ -55,139 +53,50 @@ export default function Plantab({ planData, user, token }) {
             name: newPlanName,
             budget: 0,
             content: '',
-            UserId: user.id,
+            UserId: props.user.id,
             date: moment(newPlanDate._d).format("MM/DD/YYYY"),
         };
 
-        // create new plan
-        const res = await api.createPlan(body, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        });
-        
-        if (res.status === 200) {
-            // if successful, reload data
-            const allPlanData = await api.getAllTripPlans(id);
+        const newPlanId = props.handlePlanCreate(body);
+
+        if (newPlanId) {
             // view new plan
-            setTargetPlanIndex(updatePlanTarget(res.data.id));
+            setTargetPlanIndex(updatePlanTarget(newPlanId))
             setIsAddingPlan(false);
             setNewPlanName('');
             setNewPlanDate(null);
-            setPlanObject(allPlanData.data);
-        } else {
-            alert('Error creating new plan...')
         };
     };
 
     const handlePlanDelete = async (planId) => {
-        // delete plan
-        const res = await api.deletePlan(planId, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
+        const deletePlan = props.handlePlanDelete(planId);
 
-        if (res.status === 200) {
-            // if successful, reload data
-            const allPlanData = await api.getAllTripPlans(id);
+        if (deletePlan) {
             setViewAllPlans(true);
-            setPlanObject(allPlanData.data);
-        } else {
-            alert('Error deleting plan...')
-        }
+        };
     };
 
     const handlePlanUpdate = async (planId, body) => {
-        // update plan
-        const res = await api.updatePlan(planId, body, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            }
-        });
-
-        if (res.status === 200) {
-            // on success, reload data
-            const allPlanData = await api.getAllTripPlans(id);
-            setPlanObject(allPlanData.data);
-        } else {
-            alert('Error updating plan...')
-        }
+        props.handlePlanUpdate(planId, body);
     };
 
     const handleCommentOnPlan = async (planId, message) => {
-        // create new comment
-        const res = await api.createComment({
-            UserId: user.id,
+        const body = {
+            UserId: props.user.id,
             PlanId: planId,
             content: message
-        }, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        })
-
-        if (res.status === 200) {
-            // on success, reload data
-            const allPlanData = await api.getAllTripPlans(id);
-            setPlanObject(allPlanData.data);
-        } else {
-            alert('Error adding comment...');
         };
+
+        props.handleCommentCreate(body);
     };
 
     const handleCommentDelete = async (commentId) => {
-        // delete comment
-        const res = await api.deleteComment(commentId, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        });
-
-        if (res.status === 200) {
-            // on success, reload data
-            const allPlanData = await api.getAllTripPlans(id);
-            setPlanObject(allPlanData.data);
-        } else {
-            alert('Error deleting comment...');
-        }
-    }
-
-    const optInPlan = async (planId) => {
-        // opt into plan
-        const res = await api.addUserToPlan({
-            UserId: user.id,
-            PlanId: planId,
-        });
-
-        if (res.status === 200) {
-            // if successful, reload data
-            const allPlanData = await api.getAllTripPlans(id);
-            setPlanObject(allPlanData.data);
-        } else {
-            alert('Error joining plan...')
-        };
-    };
-
-    const optOutPlan = async (planId) => {
-        // opt out of plan
-        const res = await api.removeUserFromPlan({
-            UserId: user.id,
-            PlanId: planId,
-        });
-        
-        if (res.status === 200) {
-            // if successful, reload data
-            const allPlanData = await api.getAllTripPlans(id);
-            setPlanObject(allPlanData.data);
-        } else {
-            alert('Error joining plan...')
-        };
+        props.handleCommentDelete(commentId);
     }
 
     return (
         <>
-        {!planObject ? (null) : (
+        {!props.planData ? (null) : (
             <>
             {viewAllPlans ? (
                 <div className="plan-wrapper-super">
@@ -225,14 +134,14 @@ export default function Plantab({ planData, user, token }) {
                                 <input type="submit" value="Create plan!" className="submit-add-plan" />
                             </form>
                         ) : ( null )}
-                        {planObject.map((plan, i) => 
+                        {props.planData.map((plan, i) => 
                             <Plancard
                                 key={i}
                                 planData={plan}
                                 handleDetailTarget={updatePlanTarget}
-                                handleOptIn={optInPlan}
-                                handleOptOut={optOutPlan}
-                                user={user}
+                                handleOptIn={props.handleOptIn}
+                                handleOptOut={props.handleOptOut}
+                                user={props.user}
                             />)
                         }
                         </>
@@ -251,8 +160,8 @@ export default function Plantab({ planData, user, token }) {
                         Back
                     </button>
                     <Plandetails
-                        planData={planObject[targetPlanIndex]}
-                        user={user}
+                        planData={props.planData[targetPlanIndex]}
+                        user={props.user}
                         planDeleteHandler={handlePlanDelete}
                         planUpdateHandler={handlePlanUpdate}
                         commentHandler={handleCommentOnPlan}
